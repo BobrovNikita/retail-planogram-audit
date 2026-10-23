@@ -1,0 +1,16 @@
+**/bin/
+**/obj/
+**/TestResults/
+**/App_Data/
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/.vs/
+.idea/
+.env
+*.user
+*.onnx
+*.pt
+__pycache__/
+ml/datasets/*
+!ml/datasets/.gitkeep
