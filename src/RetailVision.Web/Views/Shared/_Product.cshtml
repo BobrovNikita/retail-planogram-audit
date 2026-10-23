@@ -1,0 +1,10 @@
+@model RetailVision.Core.Product
+<svg class="product-art" viewBox="0 0 100 150" role="img" aria-label="Учебная упаковка @Model.Name">
+    <rect x="32" y="8" width="36" height="13" rx="4" fill="#c6d0cd" />
+    <path d="M32 20H68L76 42V136Q76 143 68 143H32Q24 143 24 136V42Z" fill="@Model.Color" />
+    <path d="M32 30V132" stroke="#ffffff" stroke-opacity=".22" stroke-width="4" />
+    <rect x="24" y="59" width="52" height="49" rx="2" fill="#fff" fill-opacity=".94" />
+    <text x="50" y="78" text-anchor="middle" fill="#344841" font-size="9" font-weight="700">RV STUDIO</text>
+    <text x="50" y="94" text-anchor="middle" fill="@Model.Color" font-size="8">@Model.Name.Split(' ')[0].ToUpperInvariant()</text>
+    <text x="50" y="125" text-anchor="middle" fill="#fff" font-size="7">500 ml</text>
+</svg>

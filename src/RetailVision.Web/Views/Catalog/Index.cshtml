@@ -1,0 +1,9 @@
+@model CatalogViewModel
+@{ ViewData["Title"] = "Каталог товаров"; }
+<div class="page-heading"><div><p class="eyebrow">АССОРТИМЕНТ</p><h1>Каталог товаров</h1><p class="subheading">Шесть учебных SKU. Нейтральные упаковки, созданные для проекта.</p></div><span class="badge neutral">CRUD — этап 2</span></div>
+<div class="catalog-toolbar"><form method="get" class="search-form"><label class="visually-hidden" for="search">Поиск по названию, SKU или бренду</label><input id="search" name="search" value="@Model.Search" maxlength="100" placeholder="Поиск по названию, SKU или бренду…" /><button class="button secondary" type="submit">Найти</button>@if (!string.IsNullOrEmpty(Model.Search)) { <a href="/catalog" class="inline-link">Сбросить</a> }</form><span class="muted">Найдено: @Model.Products.Count</span></div>
+<div class="product-grid">
+@foreach (var product in Model.Products)
+{ <article class="product-card"><div class="product-image"><partial name="_Product" model="product" /><span class="badge neutral">Учебный SKU</span></div><div class="product-details"><small>@product.Brand · @product.Category.Name</small><h2>@product.Name</h2><p>@product.PackageSize</p><div class="product-bottom"><code>@product.Sku</code><span class="active-label">● Активен</span></div></div></article> }
+</div>
+@if (Model.Products.Count == 0) { <section class="panel feature-empty"><h2>Ничего не найдено</h2><p>Попробуйте другой запрос или сбросьте фильтр.</p></section> }

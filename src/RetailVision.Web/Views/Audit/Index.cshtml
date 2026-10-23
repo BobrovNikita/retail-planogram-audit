@@ -1,0 +1,15 @@
+@{ ViewData["Title"] = "Аудит витрины"; }
+<div class="page-heading"><div><p class="eyebrow">ПРОВЕРКА ВЫКЛАДКИ</p><h1>Аудит витрины</h1><p class="subheading">Выберите подготовленный сценарий и изучите результат сравнения.</p></div><span class="badge mint">fixture-v1</span></div>
+<partial name="_DemoNotice" />
+<form asp-action="Demo" method="post" class="demo-form" data-loading-form>
+    <section class="panel"><div class="panel-heading"><div><h2>01 <span class="heading-divider">/</span> Эталонная планограмма</h2><p class="muted">Напитки · базовая выкладка — фиксированный снимок DEMO v1</p></div><a href="/planograms" class="inline-link">Посмотреть →</a></div><div class="plan-summary"><span>▤ <strong>2</strong> полки</span><span>▦ <strong>6</strong> SKU</span><span>▥ <strong>8</strong> фейсингов</span></div></section>
+    <h2 class="section-title">02 <span class="heading-divider">/</span> Выберите сценарий</h2>
+    <div class="scenario-grid">
+        <label class="scenario"><input type="radio" name="scenario" value="correct" checked /><span class="scenario-letter">A</span><span class="scenario-icon success">✓</span><strong>Правильная выкладка</strong><span>Все 8 товаров на своих местах. Полное соответствие эталону.</span><small>Ожидаемый результат: 100%</small></label>
+        <label class="scenario"><input type="radio" name="scenario" value="missing" /><span class="scenario-letter">B</span><span class="scenario-icon warning">−</span><strong>Отсутствующий товар</strong><span>На первой полке нет Lime Fresh. Следующие товары остаются на месте.</span><small>Проверка обнаружения пропусков</small></label>
+        <label class="scenario"><input type="radio" name="scenario" value="sequence" /><span class="scenario-letter">C</span><span class="scenario-icon blue">⇄</span><strong>Нарушение порядка</strong><span>Lime Fresh и Orange Soda поменялись местами на первой полке.</span><small>Проверка последовательности SKU</small></label>
+    </div>
+    <div class="audit-submit"><p>Результат доступен сразу и не записывается в историю.</p><button type="submit" class="button primary" data-loading-text="Выполняется сравнение…">Запустить анализ <span>→</span></button></div>
+    <p class="loading-message" role="status" hidden>Сравниваем товары с эталонной последовательностью…</p>
+</form>
+<div class="coming-soon"><span>⌁</span><div><strong>Анализ собственной фотографии</strong><p>Будет доступен после подключения обученной ONNX-модели, проверки загрузок и калибровки полок на этапе 4.</p></div><span class="badge neutral">В разработке</span></div>

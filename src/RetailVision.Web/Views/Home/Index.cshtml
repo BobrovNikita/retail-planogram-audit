@@ -1,8 +1,39 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@model DashboardViewModel
+@{ ViewData["Title"] = "Дашборд"; }
+<div class="page-heading"><div><p class="eyebrow">ОБЗОР СИСТЕМЫ</p><h1>Каждый товар на своём месте.</h1><p class="subheading">Контролируйте выкладку. Находите отклонения. Принимайте решения.</p></div><a class="button primary" href="/audit"><span>＋</span> Новый аудит</a></div>
+<section class="hero">
+    <div class="hero-copy"><span class="badge mint">ЗНАКОМСТВО С RETAILVISION</span><h2>Посмотрите на полку<br />через призму данных.</h2><p>От эталонной выкладки до найденного нарушения — пройдите весь путь на подготовленном примере.</p><a class="button dark" href="/audit">Попробовать DEMO <span>→</span></a><div class="hero-note"><span>◈</span> Без регистрации · 3 учебных сценария</div></div>
+    <div class="hero-art" aria-label="Иллюстрация проверки учебной торговой полки">
+        <div class="scan-label"><span class="status-dot"></span> УЧЕБНАЯ ВИТРИНА <span>01</span></div>
+        <svg viewBox="0 0 520 280" role="img" aria-label="Полка с нейтральными упаковками и рамками проверки">
+            <rect x="18" y="25" width="485" height="226" rx="12" fill="#e6eeeb" />
+            <rect x="34" y="38" width="453" height="197" rx="5" fill="#dce6e1" />
+            <path d="M34 136H487M34 235H487" stroke="#b3c6bd" stroke-width="10" />
+            @for (var row = 0; row < 2; row++)
+            {
+                @for (var col = 0; col < 4; col++)
+                {
+                    var colors = new[] { "#a86155", "#a86155", "#71a18b", "#d1a35d", "#73a0b9", "#73a0b9", "#739660", "#c1a54c" };
+                    var x = 94 + col * 96;
+                    var y = 52 + row * 99;
+                    <g transform="translate(@x @y)"><rect x="7" y="0" width="22" height="7" rx="2" fill="#c0cfc8" /><rect x="0" y="7" width="36" height="70" rx="5" fill="@colors[col + row * 4]" /><rect x="0" y="30" width="36" height="27" fill="#f4f5ed" /><text x="18" y="47" text-anchor="middle" font-size="9" fill="#456056">RV</text><rect x="-6" y="-5" width="48" height="87" rx="5" fill="none" stroke="#21957c" stroke-width="1.5" stroke-dasharray="4 3" /></g>
+                }
+            }
+        </svg>
+        <div class="scan-result"><span class="check-circle">✓</span><div><strong>Выкладка соответствует</strong><small>Иллюстрация сценария A · не результат AI</small></div><b>100<span>%</span></b></div>
+    </div>
+</section>
+<section class="metrics" aria-label="Статистика сохранённых реальных аудитов">
+    <article class="metric"><span>Проведено аудитов <i>⌗</i></span><strong>@Model.AuditCount</strong><small>Сохранённые реальные проверки</small></article>
+    <article class="metric"><span>Среднее соответствие <i>◉</i></span><strong>@(Model.Average?.ToString("0.#") ?? "—")<em>@(Model.Average.HasValue ? "%" : "")</em></strong><small>@(Model.Average.HasValue ? "По выбранной метрике" : "Появится после первого аудита")</small></article>
+    <article class="metric"><span>Найдено нарушений <i>⚑</i></span><strong>@Model.Violations</strong><small>Требуют внимания</small></article>
+    <article class="metric"><span>Проверено товаров <i>▦</i></span><strong>@Model.Products</strong><small>Объекты в сохранённых проверках</small></article>
+</section>
+<div class="dashboard-grid"><section class="panel"><div class="panel-heading"><h2>Соответствие по датам</h2><span class="muted">Реальные аудиты</span></div><div class="chart-empty"><div class="empty-chart-icon">▥</div><h3>Здесь появится динамика проверок</h3><p>Демонстрационные примеры не влияют на статистику.<br />Показатели будут построены по сохранённым аудитам.</p><span class="badge neutral">Пока нет данных</span></div></section>
+<section class="panel quickstart"><p class="eyebrow">КАК ЭТО РАБОТАЕТ</p><h2>От снимка до отчёта</h2><ol><li><span>01</span><div><strong>Задайте эталон</strong><p>Выберите планограмму выкладки.</p></div></li><li><span>02</span><div><strong>Проверьте витрину</strong><p>Сейчас доступны учебные примеры.</p></div></li><li><span>03</span><div><strong>Изучите отклонения</strong><p>Посмотрите совпадения и пропуски.</p></div></li></ol><a class="inline-link" href="/planograms">Посмотреть планограмму →</a></section></div>
+<section class="panel recent"><div class="panel-heading"><h2>Последние аудиты</h2><a class="inline-link" href="/home/history">Вся история →</a></div>
+@if (Model.Recent.Count == 0)
+{ <div class="table-empty"><span>◷</span><div><strong>Ещё ни одной сохранённой проверки</strong><p>Начните с DEMO, чтобы познакомиться с анализом выкладки.</p></div><a class="button secondary" href="/audit">Открыть DEMO</a></div> }
+else
+{ <table><thead><tr><th>Проверка</th><th>Дата UTC</th><th>Соответствие</th></tr></thead><tbody>@foreach (var audit in Model.Recent) { <tr><td>#@audit.Id</td><td>@audit.CreatedAtUtc.ToString("dd.MM.yyyy HH:mm")</td><td>@audit.CompliancePercent%</td></tr> }</tbody></table> }
+</section>

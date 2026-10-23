@@ -1,0 +1,10 @@
+@model IReadOnlyList<RetailVision.Core.Planogram>
+@{ ViewData["Title"] = "Планограммы"; }
+<div class="page-heading"><div><p class="eyebrow">ЭТАЛОН ВЫКЛАДКИ</p><h1>Планограммы</h1><p class="subheading">Товары, полки и последовательность — единый источник правил для проверки.</p></div><span class="badge neutral">Редактор — этап 2</span></div>
+@foreach (var plan in Model)
+{
+    <section class="panel planogram"><div class="panel-heading"><div><h2>@plan.Name</h2><p class="muted">@plan.Store · Версия @plan.Version</p></div><span class="badge mint">@plan.Shelves.Count полки · @plan.Shelves.Sum(s => s.Slots.Sum(p => p.Facings)) фейсингов</span></div>
+    @foreach (var shelf in plan.Shelves.OrderBy(s => s.Number))
+    { <div class="shelf-row"><span class="shelf-number">ПОЛКА @shelf.Number</span><div class="shelf-products">@foreach (var slot in shelf.Slots.OrderBy(s => s.Position)) { @for (var i = 0; i < slot.Facings; i++) { <div class="shelf-product"><partial name="_Product" model="slot.Product" /><span>@slot.Product.Name</span><small>@slot.Product.Sku</small></div> } }</div></div> }
+    <div class="planogram-footer"><span class="muted">@plan.Description</span><a href="/audit" class="button primary">Проверить пример →</a></div></section>
+}
