@@ -17,10 +17,15 @@ public sealed class RetailVisionDbContext(DbContextOptions<RetailVisionDbContext
     {
         base.OnModelCreating(builder);
         builder.Entity<Product>().HasIndex(p => p.Sku).IsUnique();
+        builder.Entity<Product>().Property(p => p.Revision).IsConcurrencyToken();
+        builder.Entity<Planogram>().Property(p => p.Version).IsConcurrencyToken();
+        builder.Entity<SeedMarker>().HasKey(m => m.Id);
         builder.Entity<Product>().Property(p => p.Sku).HasMaxLength(64);
         builder.Entity<Product>().Property(p => p.Name).HasMaxLength(200);
         builder.Entity<Product>().HasOne(p => p.Category).WithMany().OnDelete(DeleteBehavior.Restrict);
         builder.Entity<ModelClassMapping>().HasKey(m => new { m.ModelVersionId, m.ClassIndex });
+        builder.Entity<ModelClassMapping>().HasIndex(m => new { m.ModelVersionId, m.ProductId }).IsUnique();
+        builder.Entity<ModelClassMapping>().ToTable(t => t.HasCheckConstraint("CK_ModelClass_Index", "ClassIndex >= 0"));
         builder.Entity<ModelClassMapping>().HasOne(m => m.Product).WithMany().OnDelete(DeleteBehavior.Restrict);
         builder.Entity<PlanogramShelf>().HasIndex(s => new { s.PlanogramId, s.Number }).IsUnique();
         builder.Entity<PlanogramShelf>().ToTable(t => t.HasCheckConstraint("CK_Shelf_Number", "Number > 0"));

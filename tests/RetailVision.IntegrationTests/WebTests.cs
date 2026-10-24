@@ -133,7 +133,7 @@ public sealed class WebTests(AppFactory factory) : IClassFixture<AppFactory>
         await DatabaseInitializer.InitializeAsync(db);
         Assert.Equal(6, await db.Products.CountAsync());
         Assert.Equal(1, await db.Planograms.CountAsync());
-        Assert.Single(await db.Database.GetAppliedMigrationsAsync());
+        Assert.Equal(2, (await db.Database.GetAppliedMigrationsAsync()).Count());
         var mappings = await db.ModelClassMappings.OrderBy(m => m.ClassIndex).ToListAsync();
         Assert.Equal(0, mappings[0].ClassIndex);
         Assert.NotEqual(mappings[0].ClassIndex, mappings[0].ProductId);

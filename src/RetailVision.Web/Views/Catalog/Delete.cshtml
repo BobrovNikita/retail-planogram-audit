@@ -1,0 +1,6 @@
+@model ProductDeleteModel
+@{ ViewData["Title"] = "Удаление товара"; }
+<section class="panel confirm-panel"><p class="eyebrow">КАТАЛОГ</p><h1>@Model.Product.Name</h1><code>@Model.Product.Sku</code><div asp-validation-summary="All" class="validation-errors" role="alert"></div>
+@if (Model.HasReferences) { <p>Товар используется в планограммах, привязках моделей или аудитах. Удаление запрещено, но можно отключить его для новых планограмм.</p> }
+else { <p>Товар не имеет связей. При удалении его изображение также будет удалено. Можно вместо этого отключить товар, чтобы сохранить карточку.</p> }
+<form asp-action="Delete" asp-route-id="@Model.Product.Id" method="post"><input type="hidden" name="revision" value="@Model.Product.Revision" /><div class="form-actions">@if (!Model.HasReferences) { <button class="button danger" type="submit" name="archive" value="false">Удалить товар</button> }<button class="button secondary" type="submit" name="archive" value="true">Отключить товар</button><a class="inline-link" href="/catalog/edit/@Model.Product.Id">Отмена</a></div></form></section>

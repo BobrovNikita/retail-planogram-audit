@@ -8,8 +8,16 @@ public static class DatabaseInitializer
     public static async Task InitializeAsync(RetailVisionDbContext db, CancellationToken ct = default)
     {
         await db.Database.MigrateAsync(ct);
-        if (await db.Products.AnyAsync(ct)) return;
+        if (await db.Set<SeedMarker>().AnyAsync(m => m.Id == "catalog-v1", ct)) return;
         await using var transaction = await db.Database.BeginTransactionAsync(ct);
+        // Upgrade existing databases once; never repopulate a deliberately emptied catalog.
+        if (await db.Products.AnyAsync(ct))
+        {
+            db.Add(new SeedMarker { Id = "catalog-v1" });
+            await db.SaveChangesAsync(ct);
+            await transaction.CommitAsync(ct);
+            return;
+        }
         var category = new ProductCategory { Name = "Напитки" };
         var data = new[]
         {
@@ -42,6 +50,7 @@ public static class DatabaseInitializer
                 new() { Number = 2, Slots = [Slot(products[3], 1, 2), Slot(products[4], 2), Slot(products[5], 3)] }
             ]
         });
+        db.Add(new SeedMarker { Id = "catalog-v1" });
         await db.SaveChangesAsync(ct);
         await transaction.CommitAsync(ct);
     }

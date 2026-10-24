@@ -348,7 +348,13 @@ namespace RetailVision.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ModelClassMappings");
+                    b.HasIndex("ModelVersionId", "ProductId")
+                        .IsUnique();
+
+                    b.ToTable("ModelClassMappings", t =>
+                        {
+                            t.HasCheckConstraint("CK_ModelClass_Index", "ClassIndex >= 0");
+                        });
                 });
 
             modelBuilder.Entity("RetailVision.Core.ModelVersion", b =>
@@ -389,6 +395,7 @@ namespace RetailVision.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Version")
+                        .IsConcurrencyToken()
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -487,6 +494,10 @@ namespace RetailVision.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Revision")
+                        .IsConcurrencyToken()
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Sku")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -515,6 +526,16 @@ namespace RetailVision.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("RetailVision.Core.SeedMarker", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SeedMarker");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

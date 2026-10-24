@@ -10,6 +10,7 @@
     <meta name="description" content="RetailVision — контроль выкладки товаров и соответствия планограммам." />
     <title>@ViewData["Title"] · RetailVision</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/editor.css" asp-append-version="true" />
     <script src="~/js/site.js" asp-append-version="true" defer></script>
 </head>
 <body>
@@ -25,8 +26,8 @@
         <a href="@url" class="nav-item @(active ? "active" : "")" aria-current="@(active ? "page" : null)"><span aria-hidden="true">@icon</span>@label</a>
     }
     </nav>
-    <div class="sidebar-bottom"><span class="badge outline">ЭТАП 01 / 06</span><h3>От полки к данным</h3><p>Основа системы готова к знакомству. Начните с трёх учебных сценариев.</p><a href="/audit">Открыть демонстрацию <span>↗</span></a></div>
-    <div class="sidebar-footer"><span class="avatar">RV</span><div>RetailVision<small>Версия 0.1 · DEMO</small></div></div>
+    <div class="sidebar-bottom"><span class="badge outline">ЭТАП 02 / 06</span><h3>От полки к данным</h3><p>Каталог и редактор готовы. Создайте эталон выкладки или изучите учебные сценарии.</p><a href="/audit">Открыть демонстрацию <span>↗</span></a></div>
+    <div class="sidebar-footer"><span class="avatar">RV</span><div>RetailVision<small>Версия 0.2 · DEMO</small></div></div>
 </aside>
 <div class="app-shell">
     <header class="topbar"><span>Рабочее пространство <span class="breadcrumb-slash">/</span> <strong>@ViewData["Title"]</strong></span><div class="topbar-right"><span class="status-dot"></span><span>Учебная версия</span>
@@ -35,7 +36,7 @@
     else
     { <a class="login-link" href="/account/login">Вход администратора ↗</a> }
     </div></header>
-    <main id="main">@RenderBody()</main>
+    <main id="main">@if (TempData["Notice"] is string notice) { <div class="success-message flash" role="status">@notice</div> }@RenderBody()</main>
     <footer class="page-footer"><span>RetailVision / Контроль выкладки</span><span>Прозрачные данные. Понятные решения.</span></footer>
 </div>
 @await RenderSectionAsync("Scripts", required: false)

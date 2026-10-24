@@ -1,9 +1,15 @@
 @model CatalogViewModel
-@{ ViewData["Title"] = "Каталог товаров"; }
-<div class="page-heading"><div><p class="eyebrow">АССОРТИМЕНТ</p><h1>Каталог товаров</h1><p class="subheading">Шесть учебных SKU. Нейтральные упаковки, созданные для проекта.</p></div><span class="badge neutral">CRUD — этап 2</span></div>
-<div class="catalog-toolbar"><form method="get" class="search-form"><label class="visually-hidden" for="search">Поиск по названию, SKU или бренду</label><input id="search" name="search" value="@Model.Search" maxlength="100" placeholder="Поиск по названию, SKU или бренду…" /><button class="button secondary" type="submit">Найти</button>@if (!string.IsNullOrEmpty(Model.Search)) { <a href="/catalog" class="inline-link">Сбросить</a> }</form><span class="muted">Найдено: @Model.Products.Count</span></div>
-<div class="product-grid">
-@foreach (var product in Model.Products)
-{ <article class="product-card"><div class="product-image"><partial name="_Product" model="product" /><span class="badge neutral">Учебный SKU</span></div><div class="product-details"><small>@product.Brand · @product.Category.Name</small><h2>@product.Name</h2><p>@product.PackageSize</p><div class="product-bottom"><code>@product.Sku</code><span class="active-label">● Активен</span></div></div></article> }
-</div>
-@if (Model.Products.Count == 0) { <section class="panel feature-empty"><h2>Ничего не найдено</h2><p>Попробуйте другой запрос или сбросьте фильтр.</p></section> }
+@{ ViewData["Title"] = "Каталог товаров"; var admin = User.IsInRole("Administrator"); }
+<div class="page-heading"><div><p class="eyebrow">АССОРТИМЕНТ</p><h1>Каталог товаров</h1><p class="subheading">SKU, категории и упаковки для ваших планограмм.</p></div>@if (admin) { <a class="button primary" href="/catalog/create">＋ Добавить товар</a> }</div>
+<form method="get" class="panel catalog-filters">
+    <div><label for="search">Поиск</label><input id="search" name="search" value="@Model.Search" maxlength="100" placeholder="Название, SKU или бренд" /></div>
+    <div><label for="categoryId">Категория</label><select id="categoryId" name="categoryId"><option value="">Все категории</option>@foreach (var c in Model.Categories) { <option value="@c.Id" selected="@(Model.CategoryId == c.Id)">@c.Name</option> }</select></div>
+    @if (admin) { <div><label for="status">Статус</label><select id="status" name="status"><option value="active" selected="@(Model.Status == "active")">Активные</option><option value="inactive" selected="@(Model.Status == "inactive")">Неактивные</option><option value="all" selected="@(Model.Status == "all")">Все товары</option></select></div> }
+    <div><label for="display">Отображение</label><select id="display" name="display"><option value="cards" selected="@(Model.Display == "cards")">Карточки</option><option value="table" selected="@(Model.Display == "table")">Таблица</option></select></div>
+    <button class="button secondary" type="submit">Найти</button><a href="/catalog" class="inline-link">Сбросить</a>
+</form><p class="muted">Найдено: @Model.Products.Count</p>
+@if (Model.Display == "table")
+{ <div class="panel table-scroll"><table><thead><tr><th>Товар</th><th>SKU</th><th>Бренд</th><th>Категория</th><th>Упаковка</th><th>Статус</th>@if (admin) { <th>Действия</th> }</tr></thead><tbody>@foreach (var p in Model.Products) { <tr><td>@p.Name</td><td><code>@p.Sku</code></td><td>@p.Brand</td><td>@p.Category.Name</td><td>@p.PackageSize</td><td>@(p.IsActive ? "Активен" : "Неактивен")</td>@if (admin) { <td><a class="inline-link" href="/catalog/edit/@p.Id">Изменить</a></td> }</tr> }</tbody></table></div> }
+else
+{ <div class="product-grid">@foreach (var p in Model.Products) { <article class="product-card"><div class="product-image"><partial name="_Product" model="p" /></div><div class="product-details"><small>@p.Brand · @p.Category.Name</small><h2>@p.Name</h2><p>@p.PackageSize</p><div class="product-bottom"><code>@p.Sku</code><span class="active-label">@(p.IsActive ? "● Активен" : "○ Неактивен")</span></div>@if (admin) { <a class="inline-link edit-link" href="/catalog/edit/@p.Id">Редактировать →</a> }</div></article> }</div> }
+@if (Model.Products.Count == 0) { <section class="panel feature-empty"><h2>Ничего не найдено</h2><p>Попробуйте другой запрос или сбросьте фильтры.</p></section> }

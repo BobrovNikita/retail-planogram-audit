@@ -1,0 +1,26 @@
+@model ProductEditModel
+@{ ViewData["Title"] = Model.Id == 0 ? "Новый товар" : "Редактирование товара"; }
+<div class="page-heading"><div><p class="eyebrow">КАТАЛОГ / АДМИНИСТРАТОР</p><h1>@ViewData["Title"]</h1><p class="subheading">Описание, изображение и соответствие классам модели.</p></div><a class="button secondary" href="/catalog?status=all">← В каталог</a></div>
+<form asp-action="@(Model.Id == 0 ? "Create" : "Edit")" asp-route-id="@(Model.Id == 0 ? null : Model.Id)" method="post" enctype="multipart/form-data" class="edit-form">
+    <input type="hidden" asp-for="Id" /><input type="hidden" asp-for="Revision" />
+    <div asp-validation-summary="All" class="validation-errors" role="alert"></div>
+    <div class="form-columns"><section class="panel"><h2>Основные сведения</h2><div class="field-grid">
+        <div><label asp-for="Sku">SKU</label><input asp-for="Sku" maxlength="64" placeholder="RV-NEW-PRODUCT" /><small>Уникальный код, не индекс класса модели.</small></div>
+        <div><label asp-for="Name">Наименование</label><input asp-for="Name" maxlength="200" /></div>
+        <div><label asp-for="Brand">Бренд</label><input asp-for="Brand" maxlength="100" /></div>
+        <div><label asp-for="PackageSize">Объём / размер упаковки</label><input asp-for="PackageSize" maxlength="80" placeholder="500 мл" /></div>
+        <div><label asp-for="CategoryId">Категория</label><select asp-for="CategoryId"><option value="">Выберите категорию</option>@foreach (var c in Model.Categories) { <option value="@c.Id">@c.Name</option> }</select></div>
+        <div><label asp-for="NewCategory">Или новая категория</label><input asp-for="NewCategory" maxlength="100" /><small>Новая категория заменяет выбранную.</small></div>
+        <div><label asp-for="Color">Цвет нейтральной упаковки</label><input asp-for="Color" type="color" /></div>
+        <div class="checkbox-field"><label><input asp-for="IsActive" /> Товар активен</label><small>Неактивные товары сохраняются в существующих планограммах.</small></div>
+    </div></section>
+    <section class="panel"><h2>Изображение товара</h2>@if (Model.HasImage) { <img class="edit-product-preview" src="/catalog/image/@Model.Id?v=@Model.Revision" alt="Текущее изображение" /><label class="checkbox-field"><input asp-for="RemoveImage" /> Удалить текущее изображение</label> }
+        <label asp-for="Image">Загрузить изображение</label><input asp-for="Image" type="file" accept="image/jpeg,image/png,image/webp" /><p class="method-note">JPEG, PNG или WebP · до 4 МБ и 4 мегапикселей. Загруженные изображения доступны администратору; в публичном каталоге показаны нейтральные упаковки. Загружайте только файлы, которые вы вправе использовать.</p>
+    </section></div>
+    <section class="panel mapping-panel"><h2>Классы моделей</h2><p class="muted">Пустое поле снимает привязку. Каждый класс может соответствовать только одному SKU.</p>
+    @for (var i = 0; i < Model.Mappings.Count; i++)
+    { var mapping = Model.Mappings[i]; var version = Model.Models.FirstOrDefault(m => m.Id == mapping.ModelVersionId); <div class="mapping-row"><input asp-for="Mappings[i].ModelVersionId" type="hidden" /><label asp-for="Mappings[i].ClassIndex">@(version?.Name ?? "Неизвестная модель") <span class="badge neutral">@(version?.Mode)</span></label><input asp-for="Mappings[i].ClassIndex" type="number" min="0" max="100000" placeholder="Без привязки" /></div> }
+    <p class="method-note">Изменение привязок не подключает нейросеть. Публичные DEMO-сценарии используют собственный фиксированный снимок.</p></section>
+    @if (Model.CreatedAtUtc.HasValue) { <p class="file-note">ID: @Model.Id · Создан: @Model.CreatedAtUtc.Value.ToString("dd.MM.yyyy HH:mm") UTC · Версия @Model.Revision</p> }
+    <div class="form-actions"><button type="submit" class="button primary">Сохранить товар</button>@if (Model.Id != 0) { <a class="button danger" href="/catalog/delete/@Model.Id">Удалить / отключить</a> }</div>
+</form>

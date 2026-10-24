@@ -1,0 +1,78 @@
+/* Catalog and editor share the existing application palette. */
+select, textarea { font: inherit; color: var(--ink); background: #fff; border: 1px solid #d9e3da; border-radius: 7px; padding: 11px 12px; max-width: 100%; min-width: 0; }
+textarea { resize: vertical; min-height: 90px; }
+.flash { margin-bottom: 20px; }
+.validation-summary-valid { display: none; }
+.edit-form input[type=color] { height: 46px; padding: 5px; }
+select:focus-visible, textarea:focus-visible { outline: 3px solid #39a992; outline-offset: 4px; }
+.edit-link { display: inline-block; margin-top: 16px; }
+.edit-form label, .catalog-filters label, .plan-editor label, .import-form label { display: block; font-size: 12px; font-weight: 600; margin: 14px 0 6px; }
+.edit-form small { display: block; margin-top: 6px; font-size: 10px; color: #71816f; }
+.form-columns { display: grid; grid-template-columns: 1.5fr 1fr; gap: 22px; }
+.field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+.field-grid input:not([type=checkbox]), .field-grid select, .edit-form input[type=file] { width: 100%; }
+.checkbox-field { align-self: center; }
+.checkbox-field input { width: auto; accent-color: var(--teal); }
+.edit-product-preview { width: 100%; height: 190px; object-fit: contain; background: #f3f6ef; border-radius: 10px; }
+.mapping-panel { margin-top: 22px; }
+.mapping-panel p { font-size: 12px; }
+.mapping-row { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; border-top: 1px solid var(--line); padding: 12px 0; }
+.mapping-row label { min-width: 200px; margin: 0; }
+.mapping-row input[type=number] { width: 170px; }
+.form-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 24px; }
+.danger { background: #fff1ed; border-color: #eac8bd; color: #9a4a39; }
+.confirm-panel { max-width: 700px; margin: 35px auto; }
+.confirm-panel > p:not(.eyebrow) { margin-top: 25px; color: #71816f; }
+.catalog-filters { display: flex; gap: 12px; align-items: end; flex-wrap: wrap; margin-bottom: 20px; padding-top: 10px; }
+.catalog-filters input, .catalog-filters select { width: 100%; }
+.catalog-filters > div:first-child { flex: 1; min-width: 210px; }
+.catalog-filters > .inline-link { padding-bottom: 12px; }
+.table-scroll { overflow-x: auto; }
+img.product-art { object-fit: contain; }
+.plan-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.plan-actions form { margin: 0; }
+.plan-metadata { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+.plan-metadata input, .plan-metadata textarea { width: 100%; }
+.plan-metadata .full-width { grid-column: 1/-1; }
+.editor-layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 22px; margin-top: 22px; }
+.editor-layout > *, .form-columns > *, .field-grid > *, .plan-metadata > * { min-width: 0; }
+.editor-palette { align-self: start; position: sticky; top: 20px; max-height: 80vh; overflow-y: auto; }
+.editor-palette input { width: 100%; }
+.palette-product { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.palette-product > div { flex: 1; min-width: 0; }
+.palette-product strong { display: block; font-size: 12px; overflow-wrap: anywhere; }
+.palette-product small { font-size: 9px; color: #819075; }
+.icon-button { border: 1px solid #d9e3da; background: #fff; color: #426c53; border-radius: 6px; padding: 5px 9px; font-size: 12px; }
+.icon-button:hover { background: #edf6ed; }
+.editor-shelf { padding: 20px; border: 1px solid var(--line); background: #fff; border-radius: 12px; margin-bottom: 18px; }
+.editor-shelf header { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.editor-shelf h3 { margin: 0; }
+.drop-zone { display: flex; gap: 12px; min-height: 160px; overflow-x: auto; padding: 20px 2px 12px; }
+.drop-zone.drag-over { background: #eef8ee; outline: 2px dashed #448d70; }
+.slot-card { width: 165px; flex: 0 0 165px; background: #f5f8f1; border: 1px solid #dce6d5; border-radius: 9px; padding: 12px; cursor: grab; }
+.slot-card:active { cursor: grabbing; }
+.slot-card strong { font-size: 12px; display: block; overflow-wrap: anywhere; }
+.slot-card small { font-size: 9px; color: #7e9173; }
+.slot-card label { font-size: 10px; margin: 8px 0 3px; }
+.slot-card input, .slot-card select { width: 100%; padding: 6px !important; font-size: 11px; }
+.slot-buttons { display: flex; gap: 6px; margin-top: 12px; }
+.slot-card.inactive { border-color: #dba767; background: #fff8e9; }
+.empty-shelf { font-size: 12px; color: #8b9b80; align-self: center; padding: 15px; }
+.editor-footer { position: sticky; bottom: 0; background: #fff; border: 1px solid var(--line); border-radius: 10px; display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 15px 20px; margin-top: 18px; z-index: 2; }
+.editor-message { white-space: pre-line; color: #426c53; font-size: 12px; }
+.editor-message.error { color: #a44936; }
+.editor-count { color: #7d9071; font-size: 12px; }
+.editor-help { color: #71816f; font-size: 12px; }
+.import-form { max-width: 700px; }
+.import-form input[type=file], .import-form textarea { width: 100%; }
+.file-note { font-size: 11px; color: #71816f; }
+@media(max-width:1000px) {
+    .form-columns, .editor-layout { grid-template-columns: minmax(0, 1fr); }
+    .editor-palette { position: static; max-height: 300px; }
+}
+@media(max-width:700px) {
+    .field-grid, .plan-metadata { grid-template-columns: minmax(0, 1fr); }
+    .editor-footer { align-items: stretch; flex-direction: column; }
+    .editor-shelf { padding: 14px; }
+    .catalog-filters > div, .planogram-footer .plan-actions { width: 100%; }
+}

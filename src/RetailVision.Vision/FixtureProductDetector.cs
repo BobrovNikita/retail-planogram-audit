@@ -5,6 +5,14 @@ namespace RetailVision.Vision;
 /// <summary>Only prepared illustrations; never accepts an arbitrary user photograph.</summary>
 public sealed class FixtureProductDetector : IProductDetector
 {
+    // Frozen fixture labels are independent of the administrator's mutable catalog.
+    public static IReadOnlyDictionary<string, Product> CreateProducts() => new[]
+    {
+        ("RV-COLA", "Cola Original", "#a24a43"), ("RV-LIME", "Lime Fresh", "#459d7a"),
+        ("RV-ORANGE", "Orange Soda", "#e5a048"), ("RV-WATER", "Pure Water", "#619acb"),
+        ("RV-TEA", "Green Tea", "#739660"), ("RV-JUICE", "Apple Juice", "#c1a54c")
+    }.ToDictionary(p => p.Item1, p => new Product { Sku = p.Item1, Name = p.Item2, Color = p.Item3, Brand = "RetailVision", PackageSize = "500 мл" });
+
     public static readonly IReadOnlyList<ExpectedPosition> Expected = Array.AsReadOnly(new[]
     {
         new ExpectedPosition(1, 1, "RV-COLA"), new(1, 2, "RV-COLA"), new(1, 3, "RV-LIME"), new(1, 4, "RV-ORANGE"),

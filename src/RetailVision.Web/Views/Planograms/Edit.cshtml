@@ -1,0 +1,21 @@
+@model PlanogramEditorModel
+@using System.Text.Json
+@{ ViewData["Title"] = Model.Id == 0 ? "Новая планограмма" : "Редактор планограммы";
+var data = JsonSerializer.Serialize(new { Model.Id, Model.Version, Model.Document, Products = Model.Products.Select(p => new { p.Sku, p.Name, p.IsActive }) }, new JsonSerializerOptions(JsonSerializerDefaults.Web)); }
+<div class="page-heading"><div><p class="eyebrow">КОНСТРУКТОР ВЫКЛАДКИ</p><h1>@ViewData["Title"]</h1><p class="subheading">Перетаскивайте товары на полки или используйте кнопки перемещения.</p></div><a class="button" asp-action="Index">К планограммам</a></div>
+<noscript><div class="notice">Для визуального редактора включите JavaScript.</div></noscript>
+<textarea id="editor-data" hidden>@data</textarea>
+<div class="plan-editor" id="plan-editor">
+@Html.AntiForgeryToken()
+<section class="panel plan-metadata">
+<div><label for="plan-name">Название</label><input id="plan-name" maxlength="120" required value="@Model.Document.Name" /></div>
+<div><label for="plan-store">Магазин или зона</label><input id="plan-store" maxlength="200" value="@Model.Document.Store" /></div>
+<div class="full-width"><label for="plan-description">Описание</label><textarea id="plan-description" maxlength="2000">@Model.Document.Description</textarea></div>
+</section>
+<div class="editor-layout">
+<aside class="panel editor-palette"><h2>Каталог товаров</h2><label for="palette-search">Поиск по названию или SKU</label><input id="palette-search" type="search" placeholder="Например, Cola" />
+<label for="target-shelf">Добавлять на полку</label><select id="target-shelf"></select><div id="palette"></div><p class="file-note">Неактивные товары недоступны для добавления.</p></aside>
+<section aria-label="Полки планограммы"><div id="shelves"></div><button type="button" class="button" id="add-shelf">+ Добавить полку</button><p class="editor-help">До 10 полок и 500 фейсингов. Удалить можно только пустую полку.</p></section>
+</div></div>
+<div class="editor-footer"><div><div id="editor-status" class="editor-message" role="status" aria-live="polite">@(Model.Id == 0 ? "Новая планограмма · ещё не сохранена" : $"Сохранённая версия {Model.Version}")</div><div id="editor-count" class="editor-count"></div></div><button type="button" class="button primary" id="save-plan">Сохранить планограмму</button></div>
+@section Scripts { <script src="~/js/planogram-editor.js" asp-append-version="true" defer></script> }

@@ -1,0 +1,9 @@
+@model PlanogramImportModel
+@{ ViewData["Title"] = "Импорт планограммы"; }
+<div class="page-heading"><div><p class="eyebrow">ПЕРЕНОС ВЫКЛАДКИ</p><h1>Импорт JSON</h1><p class="subheading">Создайте новую планограмму из файла экспорта RetailVision.</p></div></div>
+<form asp-action="Import" method="post" enctype="multipart/form-data" class="panel import-form">
+<div asp-validation-summary="All" class="validation-summary"></div>
+<label asp-for="File">Файл планограммы</label><input asp-for="File" type="file" accept=".json,application/json" required />
+<p class="file-note">До 256 КБ. Формат schemaVersion: 1. Товары сопоставляются по SKU, поэтому сначала добавьте их в каталог и сделайте активными. Импорт всегда создаёт отдельную копию.</p>
+<div class="form-actions"><button type="submit" class="button primary">Импортировать</button><a class="button" asp-action="Index">Отмена</a></div>
+</form>

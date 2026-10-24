@@ -36,7 +36,10 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddAuthorizationBuilder().AddPolicy("Admin", policy => policy.RequireRole("Administrator"));
 builder.Services.AddControllersWithViews(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 builder.Services.AddSingleton<IComplianceAnalyzer, ComplianceAnalyzer>();
+builder.Services.AddScoped<PlanogramStore>();
 builder.Services.AddSingleton<IProductDetector, FixtureProductDetector>();
+builder.Services.AddSingleton(sp => new ProductImageStore(
+    sp.GetRequiredService<IConfiguration>()["Storage:DataDirectory"] ?? dataPath));
 builder.Services.AddRateLimiter(options =>
 {
     options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;

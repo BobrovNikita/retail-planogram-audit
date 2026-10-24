@@ -1,0 +1,6 @@
+@model RetailVision.Core.Planogram
+@{ ViewData["Title"] = "Удаление планограммы"; }
+<section class="panel confirm-panel"><p class="eyebrow">УДАЛЕНИЕ ПЛАНОГРАММЫ</p><h1>@Model.Name</h1>
+<div asp-validation-summary="All" class="validation-summary"></div><p>Планограмма и её полки будут удалены. Это действие нельзя отменить. Планограммы, связанные с аудитами, удалить нельзя.</p>
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post"><input type="hidden" name="version" value="@Model.Version" />
+<div class="form-actions"><button type="submit" class="button danger">Удалить планограмму</button><a class="button" asp-action="Index">Отмена</a></div></form></section>

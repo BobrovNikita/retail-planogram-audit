@@ -19,6 +19,12 @@ public sealed class Product
     public ProductCategory Category { get; set; } = null!;
     public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
     public bool IsActive { get; set; } = true;
+    public int Revision { get; set; } = 1;
+}
+
+public sealed class SeedMarker
+{
+    public string Id { get; set; } = "";
 }
 
 public sealed class ModelVersion
