@@ -1,24 +1,90 @@
 @using RetailVision.Core
 @model DemoViewModel
-@{ ViewData["Title"] = "Результат аудита"; var c = Model.Compliance; }
-<div class="page-heading"><div><p class="eyebrow">DEMO / @(Model.Scenario == "correct" ? "СЦЕНАРИЙ A" : Model.Scenario == "missing" ? "СЦЕНАРИЙ B" : "СЦЕНАРИЙ C")</p><h1>Результат аудита</h1><p class="subheading">Напитки · базовая выкладка / фиксированный снимок v1</p></div><a class="button secondary" href="/audit">← Другой сценарий</a></div>
+@functions {
+    private static string Label(ViolationKind? kind) => kind switch {
+        ViolationKind.MissingProduct => "Товар не обнаружен", ViolationKind.WrongProduct => "Другой товар",
+        ViolationKind.WrongPosition => "Неправильная позиция", ViolationKind.WrongShelf => "Неправильная полка",
+        ViolationKind.ExtraProduct => "Лишний товар", ViolationKind.UnknownProduct => "Требуется проверка", _ => "Соответствует" };
+    private static string Shelf(int number) => number == 0 ? "Не определена" : number.ToString();
+}
+@{ ViewData["Title"] = "Результат аудита"; var c = Model.Compliance;
+    var scenario = Model.Scenario switch { "correct" => "Правильная выкладка", "missing" => "Отсутствующий товар", "sequence" => "Нарушение порядка",
+        "replacement" => "Другой SKU", "wrong-shelf" => "Неправильная полка", "extra" => "Лишний фейсинг", _ => "Низкая уверенность" };
+}
+<div class="page-heading"><div><p class="eyebrow">DEMO / @scenario.ToUpperInvariant()</p><h1>Результат аудита</h1><p class="subheading">Напитки · фиксированный снимок с известной геометрией</p></div><a class="button secondary" href="/audit">← Другой сценарий</a></div>
 <partial name="_DemoNotice" />
-<div class="result-grid"><section class="panel result-visual"><div class="panel-heading"><h2>Учебная витрина</h2><span class="badge neutral">Иллюстрация · @Model.Detection.ModelVersion</span></div>
+<section class="metrics audit-metrics" aria-label="Показатели выкладки">
+    <article class="metric"><span>Наличие ожидаемых SKU</span><strong data-testid="sku-presence">@c.Metrics.SkuPresencePercent.ToString("0.#")<em>%</em></strong><small>@c.Metrics.PresentSkus из @c.Metrics.ExpectedSkus SKU подтверждены</small></article>
+    <article class="metric"><span>Фейсинги по полкам</span><strong data-testid="facings">@c.Metrics.FacingsPercent.ToString("0.#")<em>%</em></strong><small>Сопоставление количества по SKU и полке</small></article>
+    <article class="metric"><span>Подтверждённые отклонения</span><strong data-testid="confirmed">@c.Metrics.ConfirmedViolations</strong><small>По имеющимся детекциям</small></article>
+    <article class="metric"><span>На ручную проверку</span><strong data-testid="review">@c.Metrics.ReviewCases</strong><small>Не входят в подтверждённые отклонения</small></article>
+</section>
+<div class="result-grid">
+<section class="panel result-visual"><div class="panel-heading"><h2>Учебная витрина</h2><span class="badge neutral">Иллюстрация · @Model.Detection.ModelVersion</span></div>
 <svg class="audit-svg" viewBox="0 0 800 500" role="img" aria-label="Подготовленная иллюстрация с результатами проверки товаров">
     <rect x="0" y="0" width="800" height="500" rx="12" fill="#edf2ef" />
     <path d="M30 225H770M30 455H770" stroke="#c1cec6" stroke-width="12" />
     @foreach (var d in Model.Detection.Products)
     {
-        var product = Model.Products[d.Sku!];
+        var match = c.Matches.Single(m => m.Detection?.Id == d.Id);
+        Model.Products.TryGetValue(d.Sku ?? "", out var product);
         var x = (int)(d.X * 800); var y = (int)(d.Y * 500); var w = (int)(d.Width * 800); var h = (int)(d.Height * 500);
-        var status = c.MatchedDetectionIds.Contains(d.Id) ? "box-correct" : "box-warning";
-        <g id="@d.Id" class="detection @status"><rect class="detection-box" x="@(x - 7)" y="@(y - 7)" width="@(w + 14)" height="@(h + 14)" rx="7" fill="none" stroke-width="3" /><rect x="@(x + 25)" y="@y" width="@(w - 50)" height="12" rx="3" fill="#bac8bf" /><rect x="@x" y="@(y + 12)" width="@w" height="@(h - 12)" rx="12" fill="@product.Color" /><rect x="@x" y="@(y + 57)" width="@w" height="55" fill="#f8f7ef" /><text x="@(x + w / 2)" y="@(y + 79)" text-anchor="middle" font-size="13" fill="#3c5748">RV STUDIO</text><text x="@(x + w / 2)" y="@(y + 99)" text-anchor="middle" font-size="12" fill="#3c5748">@product.Name.Split(' ')[0]</text><text x="@(x + w / 2)" y="@(y + h + 30)" text-anchor="middle" font-size="12" fill="#5d6e63">@d.Sku</text></g>
+        var status = !match.IsCertain ? "box-unknown" : match.Kind is null ? "box-correct" : match.Kind == ViolationKind.WrongPosition ? "box-warning" : "box-error";
+        <g id="@d.Id" class="detection @status"><title>@(d.Sku ?? "Неизвестный SKU"): @Label(match.Kind), уверенность @d.Confidence.ToString("P0")</title>
+        <rect class="detection-box" x="@(x - 7)" y="@(y - 7)" width="@(w + 14)" height="@(h + 14)" rx="7" fill="none" stroke-width="3" />
+        <rect x="@(x + w / 4)" y="@y" width="@(w / 2)" height="12" rx="3" fill="#bac8bf" />
+        <rect x="@x" y="@(y + 12)" width="@w" height="@(h - 12)" rx="12" fill="@(product?.Color ?? "#8c9991")" />
+        <rect x="@x" y="@(y + 57)" width="@w" height="55" fill="#f8f7ef" />
+        <text x="@(x + w / 2)" y="@(y + 79)" text-anchor="middle" font-size="@(w < 60 ? 9 : 13)" fill="#3c5748">RV</text>
+        <text x="@(x + w / 2)" y="@(y + 99)" text-anchor="middle" font-size="@(w < 60 ? 8 : 12)" fill="#3c5748">@(product?.Name.Split(' ')[0] ?? "?")</text>
+        <text x="@(x + w / 2)" y="@(y - 15)" text-anchor="middle" font-size="11" fill="#3c5748">@(match.IsCertain ? d.Confidence.ToString("P0") : "? " + d.Confidence.ToString("P0"))</text></g>
     }
 </svg>
-<div class="legend"><span><i class="legend-dot green"></i>Соответствует</span><span><i class="legend-dot yellow"></i>Неправильная позиция</span><span>Пропуски отмечены в эталоне ниже</span></div>
-<h3>Ожидаемые позиции</h3><div class="expected-grid">@foreach (var e in Model.Expected) { var missing = c.Violations.Any(v => v.Kind == ViolationKind.MissingProduct && v.Shelf == e.Shelf && v.Position == e.Position); <div id="expected-@e.Shelf-@e.Position" class="expected-slot @(missing ? "missing-slot" : "")"><small>Полка @e.Shelf · @e.Position</small><strong>@Model.Products[e.Sku].Name</strong><span>@(missing ? "Не обнаружен" : e.Sku)</span></div> }</div>
-</section><aside class="result-summary"><section class="panel score"><p class="eyebrow">СООТВЕТСТВИЕ ПО LCS</p><strong data-testid="compliance">@c.Percent.ToString("0.#")<span>%</span></strong><p>@c.Correct из @Math.Max(c.Expected, c.Detected) позиций сопоставлено</p><div class="score-details"><span>Обнаружено товаров <b>@c.Detected</b></span><span>Ожидается <b>@c.Expected</b></span><span>Нарушений / замечаний <b>@c.Violations.Count</b></span></div></section>
-<section class="panel issues"><h2>Результаты сравнения</h2>@if (c.Violations.Count == 0) { <div class="success-message">✓ Все товары соответствуют эталону.</div> }
-@foreach (var v in c.Violations)
-{ var title = v.Kind switch { ViolationKind.MissingProduct => "Товар не обнаружен", ViolationKind.WrongPosition => "Неправильная позиция", ViolationKind.WrongShelf => "Неправильная полка", ViolationKind.UnknownProduct => "Требуется проверка", _ => "Лишний товар" }; var target = v.DetectionId ?? $"expected-{v.Shelf}-{v.Position}"; <button type="button" class="issue" data-highlight="@target"><strong>@title <span>↗</span></strong><span>@v.Sku · полка @v.Shelf</span><small>@(v.Position.HasValue ? $"Ожидаемая позиция {v.Position}" : "Вне эталона")</small></button> }</section>
-<p class="method-note">Метрика: длина общей подпоследовательности по полкам / max(ожидаемых, обнаруженных) × 100%. Это учебная оценка сохранения порядка, а не универсальный отраслевой стандарт. При перестановке отмечается минимальное перемещение.</p></aside></div>
+<div class="legend audit-legend"><span><i class="legend-dot green"></i>Совпадение</span><span><i class="legend-dot yellow"></i>Позиция</span><span><i class="legend-dot red"></i>Отклонение</span><span><i class="legend-dot grey"></i>На проверку</span></div>
+<h3>Ожидаемые позиции</h3>
+<div class="expected-grid">@foreach (var e in Model.Expected) {
+    var match = c.Matches.Single(m => m.Expected == e);
+    var state = !match.IsCertain ? "review-slot" : match.Kind == ViolationKind.MissingProduct ? "missing-slot" : match.Kind.HasValue ? "wrong-slot" : "";
+    <div id="expected-@e.Shelf-@e.Position" class="expected-slot @state"><small>Полка @e.Shelf · позиция @e.Position</small><strong>@Model.Products[e.Sku].Name</strong><span>@Label(match.Kind)</span></div>
+}</div>
+<p class="method-note">Для пропуска выделяется ожидаемая позиция ниже снимка. «Не обнаружен» означает отсутствие подтверждённой детекции, а не доказанное отсутствие товара.</p>
+<h3 class="audit-section-heading">Статистика по полкам</h3>
+<div class="table-scroll"><table class="audit-table" data-testid="shelf-statistics"><thead><tr><th>Полка</th><th>Эталон / найдено</th><th>Позиции</th><th>Отклонения</th><th>Проверить</th></tr></thead><tbody>
+@foreach (var s in c.Shelves) { <tr><td>@Shelf(s.Shelf)</td><td>@s.Expected / @s.Detected</td><td>@s.Correct · @s.PositionsPercent.ToString("0.#")%</td><td>@s.ConfirmedViolations</td><td>@s.ReviewCases</td></tr> }
+</tbody></table></div>
+<p class="file-note">Отклонение относится к ожидаемой полке, а лишний объект — к фактической. Перенос между полками не учитывается дважды.</p>
+</section>
+<aside class="result-summary">
+<section class="panel score"><p class="eyebrow">СОВПАДЕНИЕ ПОЗИЦИЙ</p><strong data-testid="compliance">@c.Percent.ToString("0.#")<span>%</span></strong><p>@c.Correct из @Math.Max(c.Expected, c.Detected) позиций подтверждено</p>
+<div class="score-details"><span>Обнаружено объектов <b>@c.Detected</b></span><span>Ожидается фейсингов <b>@c.Expected</b></span><span>Сохранение порядка, LCS <b data-testid="sequence">@c.Metrics.SequencePercent.ToString("0.#")%</b></span></div></section>
+@foreach (var certain in new[] { true, false }) {
+    var issues = c.Violations.Where(v => v.IsCertain == certain).ToArray();
+    <section class="panel issues @(certain ? "" : "review-panel")"><h2>@(certain ? "Подтверждённые отклонения" : "На ручную проверку") <span class="badge neutral">@issues.Length</span></h2>
+    @if (issues.Length == 0) { <div class="@(certain ? "success-message" : "file-note")">@(certain ? "Отклонений по уверенным детекциям нет." : "Неопределённых случаев нет.")</div> }
+    @foreach (var v in issues) {
+        var target = v.DetectionId ?? $"expected-{v.Shelf}-{v.Position}";
+        <button type="button" class="issue" data-highlight="@target"><strong>@Label(v.Kind) <span>↗</span></strong>
+        @if (v.Position.HasValue) { <span>Ожидается: @v.Sku · полка @Shelf(v.Shelf), позиция @v.Position</span> }
+        @if (v.DetectionId is not null) { <span>Найдено: @(v.ActualSku ?? "SKU неизвестен") · полка @Shelf(v.ActualShelf ?? 0)</span><small>Уверенность: @v.Confidence?.ToString("P0")</small> }
+        <small>@v.Reason</small></button>
+    }</section>
+}
+<details class="panel method-details"><summary>Как рассчитаны показатели</summary>
+<p>Позиции: правильный SKU, полка и порядок, а также центр в пределах 8% ширины снимка от эталона. Делим число совпадений на максимум ожидаемых и обнаруженных фейсингов.</p>
+<p>LCS оценивает сохранение последовательности с учётом вставок и пропусков. Перестановка двух товаров может требовать одного перемещения, но нарушать две геометрические позиции.</p>
+<p>Наличие SKU: доля уникальных ожидаемых SKU, найденных хотя бы один раз, независимо от полки.</p>
+<p>Фейсинги: сумма минимумов ожидаемого и найденного количества для каждой пары «полка + SKU», делённая на сумму максимумов и число нераспознанных объектов. Порядок не учитывается.</p>
+<p>Учитываются известные SKU с уверенностью ≥ 50%. Неуверенные объекты не подтверждают наличие. Показатели консервативны и зависят от качества детекций; это не метрики точности нейросети.</p>
+<p>Геометрия задана для учебного снимка. Автоматическое определение и ручная калибровка полок на реальной фотографии появятся на этапе 4.</p>
+</details>
+</aside></div>
+<section class="panel matching-panel"><details><summary>Сопоставление всех позиций и объектов · @c.Matches.Count записей</summary>
+<div class="table-scroll"><table class="audit-table" data-testid="position-matches"><thead><tr><th>Эталон</th><th>Ожидаемый SKU</th><th>Объект / SKU</th><th>Фактическая полка</th><th>Результат</th></tr></thead><tbody>
+@foreach (var m in c.Matches) {
+    var target = m.Detection?.Id ?? $"expected-{m.Expected!.Shelf}-{m.Expected.Position}";
+    <tr><td>@(m.Expected is null ? "Вне эталона" : $"Полка {m.Expected.Shelf}, позиция {m.Expected.Position}")</td><td>@(m.Expected?.Sku ?? "—")</td><td>@(m.Detection is null ? "Не обнаружен" : $"{m.Detection.Id} / {m.Detection.Sku ?? "?"}")</td><td>@(m.Detection is null ? "—" : Shelf(m.Detection.Shelf))</td><td><button type="button" class="text-button" data-highlight="@target">@Label(m.Kind) ↗</button>@if (!m.IsCertain) { <small class="file-note"> · требует проверки</small> }</td></tr>
+}
+</tbody></table></div></details>
+<details><summary>Количество фейсингов по SKU и полкам</summary><div class="table-scroll"><table class="audit-table" data-testid="facing-counts"><thead><tr><th>Полка</th><th>SKU</th><th>Ожидается</th><th>Подтверждено</th><th>Разница</th></tr></thead><tbody>
+@foreach (var f in c.Facings) { <tr><td>@Shelf(f.Shelf)</td><td>@f.Sku</td><td>@f.Expected</td><td>@f.Detected</td><td>@((f.Detected - f.Expected).ToString("+0;-0;0"))</td></tr> }
+</tbody></table></div></details></section>

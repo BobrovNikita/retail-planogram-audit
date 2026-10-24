@@ -1,78 +1,66 @@
 namespace RetailVision.Core;
 
-public record ExpectedPosition(int Shelf, int Position, string Sku);
+public record ExpectedPosition(int Shelf, int Position, string Sku, double? CenterX = null);
 public record Detection(string Id, string? Sku, double Confidence, int Shelf,
     double X, double Y, double Width, double Height);
-public enum ViolationKind { MissingProduct, WrongPosition, ExtraProduct, UnknownProduct, WrongShelf }
-public record Violation(ViolationKind Kind, int Shelf, int? Position, string? Sku, string? DetectionId);
+public enum ViolationKind { MissingProduct, WrongPosition, ExtraProduct, UnknownProduct, WrongShelf, WrongProduct }
+public enum MatchingStrategy { Sequence, Positional }
+
+/// <summary>Normalized shelf band. Assignment uses the box's bottom-center support point.</summary>
+public record ShelfGeometry(int Shelf, double Left, double Right, double Top, double Bottom);
+public sealed record ComplianceOptions
+{
+    public double ConfidenceThreshold { get; init; } = 0.5;
+    public double PositionTolerance { get; init; } = 0.08;
+    public double ShelfTolerance { get; init; } = 0.02;
+    public MatchingStrategy Strategy { get; init; } = MatchingStrategy.Sequence;
+    public IReadOnlySet<string>? KnownSkus { get; init; }
+    public IReadOnlyList<ShelfGeometry> Shelves { get; init; } = [];
+}
+
+/// <summary>Every expected position and detection appears exactly once in the full match list.</summary>
+public record PositionMatch(ExpectedPosition? Expected, Detection? Detection,
+    ViolationKind? Kind, bool IsCertain, string Reason);
+public record Violation(ViolationKind Kind, int Shelf, int? Position, string? Sku, string? DetectionId,
+    string? ActualSku = null, int? ActualShelf = null, double? Confidence = null,
+    bool IsCertain = true, string Reason = "");
+public record FacingComparison(int Shelf, string Sku, int Expected, int Detected);
+public record ComplianceMetrics(double PositionsPercent, double SequencePercent, double SkuPresencePercent,
+    double FacingsPercent, int PresentSkus, int ExpectedSkus, int ConfirmedViolations, int ReviewCases);
+public record ShelfStatistics(int Shelf, int Expected, int Detected, int Correct,
+    double PositionsPercent, double FacingsPercent, int ConfirmedViolations, int ReviewCases);
 public record ComplianceResult(double Percent, int Correct, int Expected, int Detected,
-    IReadOnlyList<Violation> Violations, IReadOnlyList<string> MatchedDetectionIds);
+    IReadOnlyList<Violation> Violations, IReadOnlyList<string> MatchedDetectionIds,
+    IReadOnlyList<PositionMatch> Matches, ComplianceMetrics Metrics,
+    IReadOnlyList<ShelfStatistics> Shelves, IReadOnlyList<FacingComparison> Facings,
+    MatchingStrategy Strategy, bool UsesPositionGeometry);
 
 public interface IComplianceAnalyzer
 {
     ComplianceResult Analyze(IReadOnlyList<ExpectedPosition> expected, IReadOnlyList<Detection> detections,
         double confidenceThreshold = 0.5);
+    ComplianceResult Analyze(IReadOnlyList<ExpectedPosition> expected, IReadOnlyList<Detection> detections,
+        ComplianceOptions options);
+    ComplianceResult Analyze(PlanogramDocument planogram, IReadOnlyList<Detection> detections,
+        ComplianceOptions? options = null);
 }
 
-/// <summary>One-to-one LCS per shelf. Gaps do not shift every subsequent match.</summary>
-public sealed class ComplianceAnalyzer : IComplianceAnalyzer
+public static class PlanogramPositions
 {
-    public ComplianceResult Analyze(IReadOnlyList<ExpectedPosition> expected,
-        IReadOnlyList<Detection> detections, double confidenceThreshold = 0.5)
+    public static IReadOnlyList<ExpectedPosition> Expand(PlanogramDocument document)
     {
-        ArgumentOutOfRangeException.ThrowIfLessThan(confidenceThreshold, 0);
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(confidenceThreshold, 1);
-        if (expected.Count > 500 || detections.Count > 500)
-            throw new ArgumentException("At most 500 positions are supported.");
-        if (expected.Any(e => e.Shelf < 1 || e.Position < 1 || string.IsNullOrWhiteSpace(e.Sku)) ||
-            expected.Select(e => (e.Shelf, e.Position)).Distinct().Count() != expected.Count ||
-            detections.Select(d => d.Id).Distinct().Count() != detections.Count)
-            throw new ArgumentException("Positions and detection IDs must be valid and unique.");
-        var violations = new List<Violation>();
-        var matched = new HashSet<string>();
-        var unmatchedExpected = new List<ExpectedPosition>();
-        var unmatchedDetected = new List<Detection>();
-        foreach (var shelf in expected.Select(e => e.Shelf).Union(detections.Select(d => d.Shelf)).Order())
+        ArgumentNullException.ThrowIfNull(document);
+        var skus = (document.Shelves ?? []).Where(s => s is not null).SelectMany(s => s.Slots ?? [])
+            .Where(s => s is not null && !string.IsNullOrWhiteSpace(s.Sku)).Select(s => s.Sku).ToHashSet(StringComparer.Ordinal);
+        var errors = PlanogramValidator.Validate(document, skus);
+        if (errors.Count != 0) throw new ArgumentException(string.Join(" ", errors), nameof(document));
+        var result = new List<ExpectedPosition>();
+        foreach (var shelf in document.Shelves!.OrderBy(s => s.Number))
         {
-            var a = expected.Where(e => e.Shelf == shelf).OrderBy(e => e.Position).ToArray();
-            var b = detections.Where(d => d.Shelf == shelf).OrderBy(d => d.X + d.Width / 2).ToArray();
-            bool IsMatch(int i, int j) => b[j].Confidence >= confidenceThreshold && b[j].Sku == a[i].Sku;
-            var dp = new int[a.Length + 1, b.Length + 1];
-            for (var i = a.Length - 1; i >= 0; i--)
-                for (var j = b.Length - 1; j >= 0; j--)
-                    dp[i, j] = IsMatch(i, j) ? 1 + dp[i + 1, j + 1] : Math.Max(dp[i + 1, j], dp[i, j + 1]);
-            int x = 0, y = 0;
-            while (x < a.Length || y < b.Length)
-            {
-                if (x < a.Length && y < b.Length && IsMatch(x, y))
-                {
-                    matched.Add(b[y++].Id);
-                    x++;
-                }
-                else if (x < a.Length && (y == b.Length || dp[x + 1, y] >= dp[x, y + 1]))
-                    unmatchedExpected.Add(a[x++]);
-                else
-                    unmatchedDetected.Add(b[y++]);
-            }
+            var position = 1;
+            foreach (var slot in shelf.Slots.OrderBy(s => s.Position))
+                for (var i = 0; i < slot.Facings; i++) result.Add(new(shelf.Number, position++, slot.Sku));
         }
-        foreach (var e in unmatchedExpected)
-        {
-            var candidate = unmatchedDetected.FirstOrDefault(d => d.Sku == e.Sku && d.Confidence >= confidenceThreshold);
-            if (candidate is null)
-                violations.Add(new(ViolationKind.MissingProduct, e.Shelf, e.Position, e.Sku, null));
-            else
-            {
-                violations.Add(new(candidate.Shelf == e.Shelf ? ViolationKind.WrongPosition : ViolationKind.WrongShelf,
-                    e.Shelf, e.Position, e.Sku, candidate.Id));
-                unmatchedDetected.Remove(candidate);
-            }
-        }
-        var known = expected.Select(e => e.Sku).ToHashSet();
-        foreach (var d in unmatchedDetected)
-            violations.Add(new(d.Sku is null || d.Confidence < confidenceThreshold || !known.Contains(d.Sku)
-                ? ViolationKind.UnknownProduct : ViolationKind.ExtraProduct, d.Shelf, null, d.Sku, d.Id));
-        var denominator = Math.Max(expected.Count, detections.Count);
-        var percent = denominator == 0 ? 100 : Math.Round(100.0 * matched.Count / denominator, 1);
-        return new(percent, matched.Count, expected.Count, detections.Count, violations, matched.Order().ToArray());
+        return result;
     }
 }

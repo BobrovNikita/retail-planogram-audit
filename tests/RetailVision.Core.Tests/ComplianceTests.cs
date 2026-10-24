@@ -12,7 +12,11 @@ public sealed class ComplianceTests
     [Theory]
     [InlineData("correct", 100, 0)]
     [InlineData("missing", 87.5, 1)]
-    [InlineData("sequence", 87.5, 1)]
+    [InlineData("sequence", 75, 2)]
+    [InlineData("replacement", 87.5, 1)]
+    [InlineData("wrong-shelf", 75, 2)]
+    [InlineData("extra", 88.9, 1)]
+    [InlineData("uncertain", 87.5, 1)]
     public async Task FixturesUseRealAnalyzer(string scenario, double percent, int issues)
     {
         var detections = await new FixtureProductDetector().DetectAsync(new(scenario));
@@ -59,7 +63,9 @@ public sealed class ComplianceTests
         var result = analyzer.Analyze([E(1, "A")], [D(1, sku, confidence: confidence)]);
         Assert.Equal(0, result.Correct);
         Assert.Contains(result.Violations, v => v.Kind == ViolationKind.UnknownProduct);
-        Assert.Contains(result.Violations, v => v.Kind == ViolationKind.MissingProduct);
+        Assert.DoesNotContain(result.Violations, v => v.Kind == ViolationKind.MissingProduct);
+        Assert.Equal(1, result.Metrics.ReviewCases);
+        Assert.Equal(0, result.Metrics.ConfirmedViolations);
     }
     [Fact]
     public void EmptyShelfReportsEveryMissingPosition()

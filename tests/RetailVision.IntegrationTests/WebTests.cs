@@ -70,7 +70,11 @@ public sealed class WebTests(AppFactory factory) : IClassFixture<AppFactory>
     [Theory]
     [InlineData("correct", "100")]
     [InlineData("missing", "87,5")]
-    [InlineData("sequence", "87,5")]
+    [InlineData("sequence", "75")]
+    [InlineData("replacement", "87,5")]
+    [InlineData("wrong-shelf", "75")]
+    [InlineData("extra", "88,9")]
+    [InlineData("uncertain", "87,5")]
     public async Task DemoRunsWithoutPersistingVisitorData(string scenario, string expected)
     {
         using var client = Client();

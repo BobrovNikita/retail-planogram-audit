@@ -1,0 +1,33 @@
+.audit-metrics .metric small { display: block; line-height: 1.6; }
+.result-grid > *, .result-summary > * { min-width: 0; }
+.result-grid .table-scroll { max-width: 100%; overflow-x: auto; }
+.box-error .detection-box { stroke: #c65446; }
+.box-unknown .detection-box { stroke: #79858e; stroke-dasharray: 7 5; }
+.legend-dot.red { background: #c65446; }
+.legend-dot.grey { background: #79858e; }
+.audit-legend { flex-wrap: wrap; }
+.expected-slot.wrong-slot { border-color: #e0b07a; background: #fff7e9; }
+.expected-slot.review-slot { border-color: #a7b1b9; background: #edf0f3; }
+.audit-section-heading { margin-top: 28px; }
+.audit-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+.audit-table th { color: #68786e; font-weight: 600; text-align: left; background: #f4f7f3; }
+.audit-table th, .audit-table td { padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.audit-table td { min-width: 80px; }
+.audit-table .text-button { padding: 0; text-align: left; font-size: 11px; }
+.review-panel { border-color: #cbd3d9; }
+.review-panel .issue { background: #f3f5f7; border-color: #d9e0e5; }
+.issues h2 { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.issue span, .issue small { overflow-wrap: anywhere; }
+.method-details summary, .matching-panel summary, .extra-scenarios summary { cursor: pointer; font-size: 13px; font-weight: 600; color: #3f6552; }
+.method-details p { margin-top: 16px; font-size: 11px; color: #6e8074; }
+.method-details p:last-child { margin-bottom: 0; }
+.matching-panel { margin-top: 24px; }
+.matching-panel details + details { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 20px; }
+.matching-panel .table-scroll { margin-top: 16px; }
+.extra-scenarios { margin-top: 20px; }
+.extra-scenarios .scenario-grid { margin-top: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media(max-width:700px) {
+    .extra-scenarios .scenario-grid { grid-template-columns: minmax(0, 1fr); }
+    .audit-table th, .audit-table td { padding: 9px 7px; }
+    .audit-metrics .metric > strong { font-size: 27px; }
+}
