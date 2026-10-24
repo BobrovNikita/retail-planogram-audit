@@ -8,4 +8,9 @@
 - NuGet: пакетные версии проверены через официальный v3 feed. Использованы фиксированные Microsoft-пакеты 10.0.11 и lock-файлы.
 - GitHub Actions: официальные [checkout v7.0.1](https://github.com/actions/checkout/releases/tag/v7.0.1), [setup-dotnet v6.0.0](https://github.com/actions/setup-dotnet/releases/tag/v6.0.0), [upload-artifact v7.0.2](https://github.com/actions/upload-artifact/releases/tag/v7.0.2). Runtime node24 проверен в action.yml; workflow закреплён по SHA тегов.
 
+Дополнительно для этапа 2:
+
+- [SkiaSharp 4.153.1](https://github.com/mono/SkiaSharp/releases/tag/v4.153.1), [лицензия MIT](https://github.com/mono/SkiaSharp/blob/main/LICENSE.md). Версия и Linux native assets закреплены в пакетах; реальное декодирование проверяется тестами.
+- Microsoft: [EF Core concurrency tokens](https://learn.microsoft.com/en-us/ef/core/saving/concurrency). Используются управляемые приложением версии, совместимые с SQLite.
+
 Совместимость дополнительно проверена фактическим restore/build/test. Документация будущего ONNX/YOLO должна быть заново сверена при реализации этапа 4; универсальный формат выхода сейчас не предполагается.
