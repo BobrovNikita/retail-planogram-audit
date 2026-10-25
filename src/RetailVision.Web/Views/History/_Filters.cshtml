@@ -1,0 +1,8 @@
+@model HistoryFilter
+<form method="get" class="history-filters panel">
+<label>С даты (UTC)<input asp-for="From" type="date" /></label><label>По дату (UTC)<input asp-for="To" type="date" /></label>
+<label>Режим<select asp-for="Mode"><option value="">Все режимы</option><option value="REAL">REAL · модель</option><option value="DEMO">DEMO · учебные данные</option></select></label>
+<label>Исправления<select asp-for="State"><option value="">Все проверки</option><option value="original">Без исправлений</option><option value="corrected">Есть исправления</option></select></label>
+<label>Планограмма / торговая зона<input asp-for="Search" maxlength="120" placeholder="Название или зона" /></label>
+<button class="button primary" type="submit">Применить</button>
+</form>

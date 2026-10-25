@@ -1,0 +1,10 @@
+@model AnalyticsPage
+@{ViewData["Title"]="Аналитика";}
+<div class="page-heading"><div><p class="eyebrow">ПРОВЕРКИ / АНАЛИТИКА</p><h1>Динамика выкладки</h1><p class="subheading">Только ваши сохранённые проверки. По умолчанию — REAL.</p></div><a class="button secondary" href="/history">Вся история →</a></div>
+<div asp-validation-summary="All" class="validation-errors"></div><partial name="_Filters" model="Model.Filter" />
+@if(Model.Filter.Mode!="REAL"){<div class="notice"><span class="badge amber">@(Model.Filter.Mode=="DEMO"?"DEMO":"СМЕШАННЫЕ ДАННЫЕ")</span><p>В выборку включены учебные результаты. Это не оценка реальных витрин или точности модели.</p></div>}
+<section class="metrics"><article class="metric"><span>Проверок</span><strong>@Model.Count</strong></article><article class="metric"><span>Среднее соответствие</span><strong>@(Model.Average?.ToString("0.#")??"—")@(Model.Average.HasValue?"%":"")</strong></article><article class="metric"><span>Подтверждённые отклонения</span><strong>@Model.Violations</strong></article><article class="metric"><span>На проверку / с правками</span><strong>@Model.Review / @Model.Corrected</strong></article></section>
+<section class="panel"><div class="panel-heading"><h2>Соответствие по дням</h2><span class="badge neutral">UTC · до 60 последних дат</span></div>
+@if(Model.Count==0){<div class="chart-empty"><h3>Нет данных для выбранных условий</h3><p>Сохраните проверку или измените фильтры. DEMO не включается в REAL.</p></div>}
+else{<div class="trend-bars">@foreach(var day in Model.Days){<div class="trend-row"><time>@day.Date.ToString("dd.MM.yyyy")</time><progress max="100" value="@day.Average.ToString(System.Globalization.CultureInfo.InvariantCulture)" aria-label="Среднее соответствие @day.Date.ToString("dd.MM.yyyy")">@day.Average%</progress><strong>@day.Average.ToString("0.#")%</strong><small>@day.Count проверок</small></div>}</div>}
+<p class="file-note">Среднее арифметическое соответствия по последним редакциям сохранённых проверок. Ручные правки влияют на показатели; исходные значения сохранены в отчётах. Разные планограммы и модели могут быть несопоставимы. Это не точность распознавания.</p></section>

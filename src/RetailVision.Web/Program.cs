@@ -37,6 +37,8 @@ builder.Services.AddAuthorizationBuilder().AddPolicy("Admin", policy => policy.R
 builder.Services.AddControllersWithViews(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 builder.Services.AddSingleton<IComplianceAnalyzer, ComplianceAnalyzer>();
 builder.Services.AddScoped<PlanogramStore>();
+builder.Services.AddScoped(sp => new AuditStore(sp.GetRequiredService<RetailVisionDbContext>(), sp.GetRequiredService<IComplianceAnalyzer>(),
+    sp.GetRequiredService<IConfiguration>()["Storage:DataDirectory"] ?? dataPath));
 builder.Services.AddSingleton<IProductDetector, FixtureProductDetector>();
 builder.Services.AddSingleton<PhotoVisionService>();
 builder.Services.AddSingleton(sp => new PhotoDraftStore(sp.GetRequiredService<IConfiguration>()["Storage:DataDirectory"] ?? dataPath));

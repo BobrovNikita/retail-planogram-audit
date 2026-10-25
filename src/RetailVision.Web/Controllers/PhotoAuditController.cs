@@ -12,7 +12,7 @@ namespace RetailVision.Web.Controllers;
 
 [Authorize(Policy = "Admin"), EnableRateLimiting("photo"), ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
 public sealed class PhotoAuditController(PlanogramStore plans, RetailVisionDbContext db, PhotoDraftStore drafts,
-    PhotoVisionService vision, IComplianceAnalyzer analyzer) : Controller
+    PhotoVisionService vision, IComplianceAnalyzer analyzer, AuditStore history) : Controller
 {
     private string Owner => User.FindFirstValue(ClaimTypes.NameIdentifier)!;
     [HttpGet]
@@ -89,6 +89,14 @@ public sealed class PhotoAuditController(PlanogramStore plans, RetailVisionDbCon
                 var result = analyzer.Analyze(draft.Planogram, detection.Products, new ComplianceOptions
                 { Shelves = draft.Shelves, ShelfTolerance = 0, ConfidenceThreshold = draft.ConfidenceThreshold, KnownSkus = draft.ProductNames.Keys.ToHashSet(StringComparer.Ordinal) });
                 await drafts.SaveAsync(draft with { Detection = detection, Compliance = result }, Owner, ct);
+                if(detection.Mode=="REAL")
+                {
+                    var photo=await drafts.ImageAsync(id,Owner,ct) ?? throw new InvalidDataException("Фото недоступно для сохранения отчёта.");
+                    var snapshot=new AuditSnapshot(draft.Planogram,PlanogramPositions.Expand(draft.Planogram),draft.ProductNames,draft.Shelves,
+                        draft.ConfidenceThreshold,0,draft.Width,draft.Height,detection,result);
+                    var auditId=await history.SaveAsync(Owner,$"photo:{id}:{draft.Revision+1}",draft.PlanogramId,draft.PlanogramVersion,snapshot,photo,ct);
+                    return RedirectToAction("Details","History",new{id=auditId});
+                }
                 return RedirectToAction(nameof(Edit), new { id });
             }
             catch (DraftConflictException ex) { Response.StatusCode = 409; error = ex.Message; }

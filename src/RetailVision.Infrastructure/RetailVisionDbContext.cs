@@ -39,5 +39,8 @@ public sealed class RetailVisionDbContext(DbContextOptions<RetailVisionDbContext
         builder.Entity<Audit>().HasOne(a => a.Planogram).WithMany().OnDelete(DeleteBehavior.Restrict);
         builder.Entity<Audit>().HasOne(a => a.ModelVersion).WithMany().OnDelete(DeleteBehavior.Restrict);
         builder.Entity<Audit>().HasIndex(a => a.CreatedAtUtc);
+        builder.Entity<Audit>().Property(a => a.Revision).IsConcurrencyToken();
+        builder.Entity<Audit>().HasIndex(a => new { a.OwnerId, a.SourceKey }).IsUnique().HasFilter("SourceKey <> ''");
+        builder.Entity<Audit>().HasIndex(a => new { a.OwnerId, a.Mode, a.CreatedAtUtc });
     }
 }

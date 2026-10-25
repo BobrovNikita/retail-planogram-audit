@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,17 +10,24 @@ namespace RetailVision.Web.Controllers;
 
 public sealed class HomeController(RetailVisionDbContext db) : Controller
 {
+    [ResponseCache(NoStore=true,Location=ResponseCacheLocation.None)]
     public async Task<IActionResult> Index(CancellationToken ct)
     {
-        var audits = db.Audits.AsNoTracking().Where(a => a.Mode == "REAL");
+        var owner=User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var audits = db.Audits.AsNoTracking().Where(a => owner!=null && a.OwnerId==owner && a.Mode == "REAL" && a.SnapshotJson!="{}");
+        var days=await audits.GroupBy(a=>a.CreatedAtUtc.Date).Select(g=>new {Date=g.Key,Count=g.Count(),Average=g.Average(a=>a.CompliancePercent)})
+            .OrderByDescending(d=>d.Date).Take(14).ToListAsync(ct);
         return View(new DashboardViewModel(await audits.CountAsync(ct),
             await audits.Select(a => (double?)a.CompliancePercent).AverageAsync(ct),
-            await audits.SelectMany(a => a.Violations).CountAsync(ct),
-            await audits.SelectMany(a => a.Detections).CountAsync(ct),
-            await audits.OrderByDescending(a => a.CreatedAtUtc).Take(5).ToListAsync(ct)));
+            await audits.SumAsync(a=>a.ConfirmedViolations,ct),
+            await audits.SumAsync(a=>a.DetectionCount,ct),
+            await audits.OrderByDescending(a => a.CreatedAtUtc).Take(5).ToListAsync(ct),
+            days.Select(d=>new AuditDay(d.Date,d.Count,d.Average)).ToArray()));
     }
-    public IActionResult History() => Feature("История проверок", "Сохранение аудитов и фильтры появятся на этапе 5. DEMO-сеансы не записываются в историю.", "История пуста");
-    public IActionResult Analytics() => Feature("Аналитика", "Графики и сравнение проверок появятся после реализации сохранения аудитов на этапе 5.", "Пока нет данных для анализа");
+    [Authorize(Policy = "Admin")]
+    public IActionResult History() => RedirectToAction("Index","History");
+    [Authorize(Policy = "Admin")]
+    public IActionResult Analytics() => RedirectToAction("Analytics","History");
     [Authorize(Policy = "Admin")]
     public IActionResult Settings() => Feature("Настройки", "Вы вошли как администратор. Управление моделями и настройками будет добавлено на следующих этапах.", "Административный доступ активен");
     private IActionResult Feature(string title, string description, string heading) => View("Feature", new FeatureViewModel(title, description, heading));

@@ -218,23 +218,80 @@ namespace RetailVision.Infrastructure.Migrations
                     b.Property<double>("CompliancePercent")
                         .HasColumnType("REAL");
 
+                    b.Property<int>("ConfirmedViolations")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("TEXT");
+
+                    b.Property<string>("CurrentDetectionsJson")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DetectionCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("HasCorrections")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Mode")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ModelName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ModelSha256")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("ModelVersionId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<double>("OriginalPercent")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("OwnerId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("PhotoPath")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PlanogramId")
+                    b.Property<int?>("PlanogramId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("PlanogramName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("PlanogramSnapshotJson")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PlanogramVersion")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ResultJson")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ReviewCases")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Revision")
+                        .IsConcurrencyToken()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SnapshotJson")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SourceKey")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Store")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -246,6 +303,12 @@ namespace RetailVision.Infrastructure.Migrations
 
                     b.HasIndex("PlanogramId");
 
+                    b.HasIndex("OwnerId", "SourceKey")
+                        .IsUnique()
+                        .HasFilter("SourceKey <> ''");
+
+                    b.HasIndex("OwnerId", "Mode", "CreatedAtUtc");
+
                     b.ToTable("Audits");
                 });
 
@@ -254,6 +317,10 @@ namespace RetailVision.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("ActorId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("AuditId")
                         .HasColumnType("INTEGER");
@@ -264,6 +331,13 @@ namespace RetailVision.Infrastructure.Migrations
 
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("TEXT");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Revision")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -600,8 +674,7 @@ namespace RetailVision.Infrastructure.Migrations
                     b.HasOne("RetailVision.Core.Planogram", "Planogram")
                         .WithMany()
                         .HasForeignKey("PlanogramId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("ModelVersion");
 

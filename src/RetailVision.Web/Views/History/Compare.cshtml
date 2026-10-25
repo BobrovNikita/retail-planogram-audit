@@ -1,0 +1,14 @@
+@model AuditComparison
+@{ViewData["Title"]="Сравнение проверок";var a=Model.Left;var b=Model.Right;}
+<div class="page-heading"><div><p class="eyebrow">ИСТОРИЯ / СРАВНЕНИЕ</p><h1>Что изменилось между проверками</h1><p class="subheading">Сравниваются последние сохранённые редакции.</p></div><a href="/history" class="button secondary">← История</a></div>
+@if(!Model.SameContext){<div class="notice"><span class="badge amber">РАЗНЫЕ УСЛОВИЯ</span><p>Режим, эталон или модель различаются. Разница показателей не доказывает улучшение выкладки.</p></div>}
+<section class="panel"><div class="table-scroll"><table class="audit-table"><thead><tr><th>Показатель</th><th><a href="/history/details/@a.Audit.Id">#@a.Audit.Id · @a.Audit.Mode</a></th><th><a href="/history/details/@b.Audit.Id">#@b.Audit.Id · @b.Audit.Mode</a></th><th>Разница: справа − слева</th></tr></thead><tbody>
+<tr><th>Дата UTC</th><td>@a.Audit.CreatedAtUtc.ToString("dd.MM.yyyy HH:mm")</td><td>@b.Audit.CreatedAtUtc.ToString("dd.MM.yyyy HH:mm")</td><td>—</td></tr>
+<tr><th>Планограмма / модель</th><td>@a.Audit.PlanogramName · v@(a.Audit.PlanogramVersion)<br />@a.Audit.ModelName</td><td>@b.Audit.PlanogramName · v@(b.Audit.PlanogramVersion)<br />@b.Audit.ModelName</td><td>—</td></tr>
+<tr><th>Соответствие</th><td>@a.Result.Percent.ToString("0.#")%</td><td>@b.Result.Percent.ToString("0.#")%</td><td>@((b.Result.Percent-a.Result.Percent).ToString("+0.#;-0.#;0")) п.п.</td></tr>
+<tr><th>Порядок LCS</th><td>@a.Result.Metrics.SequencePercent.ToString("0.#")%</td><td>@b.Result.Metrics.SequencePercent.ToString("0.#")%</td><td>@((b.Result.Metrics.SequencePercent-a.Result.Metrics.SequencePercent).ToString("+0.#;-0.#;0")) п.п.</td></tr>
+<tr><th>Наличие SKU</th><td>@a.Result.Metrics.SkuPresencePercent.ToString("0.#")%</td><td>@b.Result.Metrics.SkuPresencePercent.ToString("0.#")%</td><td>@((b.Result.Metrics.SkuPresencePercent-a.Result.Metrics.SkuPresencePercent).ToString("+0.#;-0.#;0")) п.п.</td></tr>
+<tr><th>Фейсинги</th><td>@a.Result.Metrics.FacingsPercent.ToString("0.#")%</td><td>@b.Result.Metrics.FacingsPercent.ToString("0.#")%</td><td>@((b.Result.Metrics.FacingsPercent-a.Result.Metrics.FacingsPercent).ToString("+0.#;-0.#;0")) п.п.</td></tr>
+<tr><th>Отклонения / проверить</th><td>@a.Result.Metrics.ConfirmedViolations / @a.Result.Metrics.ReviewCases</td><td>@b.Result.Metrics.ConfirmedViolations / @b.Result.Metrics.ReviewCases</td><td>—</td></tr>
+<tr><th>Ручные правки</th><td>@a.Audit.Corrections.Count · r@(a.Audit.Revision)</td><td>@b.Audit.Corrections.Count · r@(b.Audit.Revision)</td><td>—</td></tr>
+</tbody></table></div><p class="file-note">Проценты описывают соответствие выкладки по детекциям. Ручные исправления влияют на результат; исходные данные доступны в каждом отчёте.</p></section>

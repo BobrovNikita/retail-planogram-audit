@@ -13,6 +13,7 @@
 }
 <div class="page-heading"><div><p class="eyebrow">DEMO / @scenario.ToUpperInvariant()</p><h1>Результат аудита</h1><p class="subheading">Напитки · фиксированный снимок с известной геометрией</p></div><a class="button secondary" href="/audit">← Другой сценарий</a></div>
 <partial name="_DemoNotice" />
+@if(User.IsInRole("Administrator")){<form asp-controller="History" asp-action="SaveDemo" method="post" class="report-actions"><input type="hidden" name="scenario" value="@Model.Scenario" /><input type="hidden" name="key" value="@Guid.NewGuid().ToString("N")" /><button class="button secondary" type="submit">Сохранить DEMO в мою историю</button><span class="file-note">С меткой DEMO, отдельно от статистики REAL.</span></form>}
 <section class="metrics audit-metrics" aria-label="Показатели выкладки">
     <article class="metric"><span>Наличие ожидаемых SKU</span><strong data-testid="sku-presence">@c.Metrics.SkuPresencePercent.ToString("0.#")<em>%</em></strong><small>@c.Metrics.PresentSkus из @c.Metrics.ExpectedSkus SKU подтверждены</small></article>
     <article class="metric"><span>Фейсинги по полкам</span><strong data-testid="facings">@c.Metrics.FacingsPercent.ToString("0.#")<em>%</em></strong><small>Сопоставление количества по SKU и полке</small></article>

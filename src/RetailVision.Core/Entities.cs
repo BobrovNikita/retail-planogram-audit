@@ -71,16 +71,32 @@ public sealed class PlanogramSlot
     public int Facings { get; set; } = 1;
 }
 
-// Audit persistence is reserved for stage 5. Public fixtures never insert rows here.
+// Only explicitly saved, owner-scoped reports are persisted. Public fixtures never insert rows.
 public sealed class Audit
 {
     public int Id { get; set; }
     public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
-    public int PlanogramId { get; set; }
-    public Planogram Planogram { get; set; } = null!;
+    public int? PlanogramId { get; set; }
+    public Planogram? Planogram { get; set; }
     public int ModelVersionId { get; set; }
     public ModelVersion ModelVersion { get; set; } = null!;
     public string PlanogramSnapshotJson { get; set; } = "{}";
+    public string OwnerId { get; set; } = "";
+    public string SourceKey { get; set; } = Guid.NewGuid().ToString("N");
+    public int Revision { get; set; } = 1;
+    public string PlanogramName { get; set; } = "";
+    public string Store { get; set; } = "";
+    public int PlanogramVersion { get; set; }
+    public string ModelName { get; set; } = "";
+    public string? ModelSha256 { get; set; }
+    public string SnapshotJson { get; set; } = "{}";
+    public string CurrentDetectionsJson { get; set; } = "[]";
+    public string ResultJson { get; set; } = "{}";
+    public double OriginalPercent { get; set; }
+    public int ConfirmedViolations { get; set; }
+    public int ReviewCases { get; set; }
+    public int DetectionCount { get; set; }
+    public bool HasCorrections { get; set; }
     public string Mode { get; set; } = "DEMO";
     public string? PhotoPath { get; set; }
     public double CompliancePercent { get; set; }
@@ -115,5 +131,8 @@ public sealed class AuditCorrection
     public int Id { get; set; }
     public int AuditId { get; set; }
     public string ChangesJson { get; set; } = "{}";
+    public string ActorId { get; set; } = "";
+    public string Reason { get; set; } = "";
+    public int Revision { get; set; }
     public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
 }

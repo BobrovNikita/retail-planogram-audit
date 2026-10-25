@@ -1,0 +1,22 @@
+@using RetailVision.Core
+@using System.Globalization
+@model AuditReport
+@functions {
+private static string N(double v)=>v.ToString("0.####",CultureInfo.InvariantCulture);
+private static string Label(ViolationKind? kind)=>kind switch {ViolationKind.MissingProduct=>"Не обнаружен",ViolationKind.WrongProduct=>"Другой SKU",ViolationKind.WrongPosition=>"Неверная позиция",ViolationKind.WrongShelf=>"Другая полка",ViolationKind.ExtraProduct=>"Лишний товар",ViolationKind.UnknownProduct=>"На проверку",_=>"Соответствует"};
+}
+@{var a=Model.Audit;var s=Model.Snapshot;var c=Model.Result;}
+<div class="saved-report-grid"><section class="panel"><div class="panel-heading"><h2>@(a.PhotoPath is null?"Учебная иллюстрация":"Фотография проверки")</h2><span class="badge neutral">@s.Width × @s.Height</span></div>
+<svg class="audit-svg saved-photo" viewBox="0 0 @s.Width @s.Height" role="img" aria-label="Изображение и текущие детекции">
+<rect width="@s.Width" height="@s.Height" fill="#edf2ef" />
+@if(a.PhotoPath is not null){<image href="/history/image/@a.Id" width="@s.Width" height="@s.Height" />}
+else { @foreach(var d in s.OriginalDetection.Products){<g><rect x="@N(d.X*s.Width)" y="@N(d.Y*s.Height)" width="@N(d.Width*s.Width)" height="@N(d.Height*s.Height)" rx="6" fill="#b5c9bc" /><text x="@N(d.CenterX*s.Width)" y="@N(d.CenterY*s.Height)" text-anchor="middle" font-size="10" fill="#233f32">@(d.Sku??"?")</text></g>} }
+@foreach(var band in s.Shelves){<rect x="@N(band.Left*s.Width)" y="@N(band.Top*s.Height)" width="@N((band.Right-band.Left)*s.Width)" height="@N((band.Bottom-band.Top)*s.Height)" fill="none" stroke="#728b7b" stroke-dasharray="5 5" />}
+@foreach(var m in c.Matches.Where(m=>m.Detection is not null)){var d=m.Detection!;var status=!m.IsCertain?"box-unknown":m.Kind is null?"box-correct":m.Kind==ViolationKind.WrongPosition?"box-warning":"box-error";
+<g class="detection @status" id="saved-@d.Id"><title>@d.Sku · @Label(m.Kind)</title><rect class="detection-box" x="@N(d.X*s.Width)" y="@N(d.Y*s.Height)" width="@N(d.Width*s.Width)" height="@N(d.Height*s.Height)" fill="none" stroke-width="3" vector-effect="non-scaling-stroke" /></g>}
+</svg><p class="file-note">@(a.PhotoPath is null?"Фон — фиксированная учебная иллюстрация исходных объектов, не фотография.":"Частная фотография, сохранённая независимо от срока жизни черновика.") Рамки показывают текущую редакцию.</p>
+<h3>Ожидаемые позиции</h3><div class="expected-grid">@foreach(var e in s.Expected){var match=c.Matches.Single(m=>m.Expected==e);<div id="saved-expected-@e.Shelf-@e.Position" class="expected-slot @(match.Kind==ViolationKind.MissingProduct?"missing-slot":"")"><small>Полка @e.Shelf · @e.Position</small><strong>@s.ProductNames[e.Sku]</strong><span>@Label(match.Kind)</span></div>}</div>
+</section><section class="panel"><h2>Объекты и отклонения</h2><p class="file-note">Нажмите на результат, чтобы выделить объект или ожидаемую позицию.</p><div class="table-scroll"><table class="audit-table"><thead><tr><th>Эталон / обнаружено</th><th>Полка</th><th>Источник решения</th><th>Результат</th></tr></thead><tbody>
+@foreach(var m in c.Matches){var reviewed=Model.Current.SingleOrDefault(d=>d.Detection.Id==m.Detection?.Id);<tr><td><strong>@(m.Expected?.Sku??"Вне эталона")</strong><br />@(m.Detection?.Sku??"—")</td><td>@(m.Detection?.Shelf.ToString()??"—")</td><td>@(reviewed is null?"—":reviewed.ConfirmedByHuman?"Подтверждено вручную":$"{(a.Mode=="DEMO"?"Fixture":"Модель")} {reviewed.Detection.Confidence:P0}")</td><td><button type="button" class="text-button" data-highlight="@(m.Detection is not null?$"saved-{m.Detection.Id}":$"saved-expected-{m.Expected!.Shelf}-{m.Expected.Position}")">@Label(m.Kind) ↗</button><p class="file-note">@m.Reason</p></td></tr>}
+</tbody></table></div></section></div>
+<section class="panel matching-panel"><h2>Статистика по полкам</h2><div class="table-scroll"><table class="audit-table"><thead><tr><th>Полка</th><th>Ожидалось</th><th>Обнаружено</th><th>Соответствие</th><th>Фейсинги</th><th>Отклонения / проверить</th></tr></thead><tbody>@foreach(var shelf in c.Shelves){<tr><td>@shelf.Shelf</td><td>@shelf.Expected</td><td>@shelf.Detected</td><td>@shelf.PositionsPercent.ToString("0.#")%</td><td>@shelf.FacingsPercent.ToString("0.#")%</td><td>@shelf.ConfirmedViolations / @shelf.ReviewCases</td></tr>}</tbody></table></div></section>

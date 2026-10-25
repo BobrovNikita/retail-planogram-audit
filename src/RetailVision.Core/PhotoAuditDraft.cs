@@ -1,6 +1,6 @@
 namespace RetailVision.Core;
 
-// Short-lived private workspace; permanent audit history belongs to stage 5.
+// Short-lived private workspace. Successful REAL analysis creates an independent saved audit.
 public sealed record PhotoAuditDraft
 {
     public string Id { get; init; } = Guid.NewGuid().ToString("N");
