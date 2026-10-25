@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-25",
+  "purpose": "untrained-architecture-probe-not-sku-model",
+  "architecture": "yolo26n.yaml",
+  "ultralytics": "8.4.187",
+  "torch": "2.14.1+cpu",
+  "onnx": "1.23.2",
+  "onnxruntime": "1.31.0",
+  "export": { "imgsz": 640, "batch": 1, "dynamic": false, "simplify": false, "opset": 17, "nms": false },
+  "inputs": [{ "name": "images", "shape": [1, 3, 640, 640], "type": "tensor(float)" }],
+  "outputs": [{ "name": "output0", "shape": [1, 300, 6], "type": "tensor(float)" }],
+  "observedOutputShape": [1, 300, 6],
+  "sampleRowOnZeroTensor": [-48, -48, 80, 80, 0.00015619397163391113, 0],
+  "trainedSkuAccuracy": null,
+  "productionModelInstalled": false
+}

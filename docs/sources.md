@@ -13,4 +13,10 @@
 - [SkiaSharp 4.153.1](https://github.com/mono/SkiaSharp/releases/tag/v4.153.1), [лицензия MIT](https://github.com/mono/SkiaSharp/blob/main/LICENSE.md). Версия и Linux native assets закреплены в пакетах; реальное декодирование проверяется тестами.
 - Microsoft: [EF Core concurrency tokens](https://learn.microsoft.com/en-us/ef/core/saving/concurrency). Используются управляемые приложением версии, совместимые с SQLite.
 
-Совместимость дополнительно проверена фактическим restore/build/test. Документация будущего ONNX/YOLO должна быть заново сверена при реализации этапа 4; универсальный формат выхода сейчас не предполагается.
+Дополнительно для этапа 4 (2026-10-25):
+
+- Ultralytics: [YOLO26](https://docs.ultralytics.com/models/yolo26/), [export](https://docs.ultralytics.com/modes/export/), [исходник end-to-end guide](https://github.com/ultralytics/ultralytics/blob/main/docs/en/guides/end2end-detection.md). nms=False выбран явно; форма проверена фактическим экспортом, а не только документацией.
+- Microsoft: [C# inference](https://onnxruntime.ai/docs/tutorials/csharp/basic_csharp.html), [RunOptions.Terminate](https://onnxruntime.ai/docs/api/csharp/api/Microsoft.ML.OnnxRuntime.RunOptions.html), [NuGet OnnxRuntime 1.31.0](https://www.nuget.org/packages/Microsoft.ML.OnnxRuntime/1.31.0).
+- Официальный PyPI: [Ultralytics](https://pypi.org/project/ultralytics/), [ONNX](https://pypi.org/project/onnx/). Версии закреплены в ml/requirements.txt, окружение и результаты пробы описаны в ml-pipeline.md.
+
+Совместимость дополнительно проверена фактическим restore/build/test и native ONNX inference. При смене версии экспортёра контракт нужно перепроверить.
