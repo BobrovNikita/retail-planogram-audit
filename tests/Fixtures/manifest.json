@@ -1,0 +1,14 @@
+{
+  "modelFile": "synthetic.onnx",
+  "sha256": "9a5237e14caaaa14cd1dc5efbfbc9c4766049027f068c00c689527cd8d9aac60",
+  "version": "synthetic-contract-test",
+  "purpose": "integration-test",
+  "classes": [
+    "RV-COLA",
+    "RV-LIME",
+    "RV-ORANGE",
+    "RV-WATER",
+    "RV-TEA",
+    "RV-JUICE"
+  ]
+}

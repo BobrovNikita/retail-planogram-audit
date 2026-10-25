@@ -10,7 +10,11 @@
 .env
 *.user
 *.onnx
+!tests/Fixtures/synthetic.onnx
 *.pt
 __pycache__/
+ml/runs/
+ml/artifacts/
+ml/.venv/
 ml/datasets/*
 !ml/datasets/.gitkeep

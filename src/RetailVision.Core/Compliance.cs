@@ -2,7 +2,13 @@ namespace RetailVision.Core;
 
 public record ExpectedPosition(int Shelf, int Position, string Sku, double? CenterX = null);
 public record Detection(string Id, string? Sku, double Confidence, int Shelf,
-    double X, double Y, double Width, double Height);
+    double X, double Y, double Width, double Height, int? ClassIndex = null)
+{
+    public double CenterX => X + Width / 2;
+    public double CenterY => Y + Height / 2;
+    public double SupportX => CenterX;
+    public double SupportY => Y + Height;
+}
 public enum ViolationKind { MissingProduct, WrongPosition, ExtraProduct, UnknownProduct, WrongShelf, WrongProduct }
 public enum MatchingStrategy { Sequence, Positional }
 

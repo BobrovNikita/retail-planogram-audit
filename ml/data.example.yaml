@@ -1,0 +1,11 @@
+path: datasets/retail
+train: images/train
+val: images/val
+test: images/test
+names:
+  0: RV-COLA
+  1: RV-LIME
+  2: RV-ORANGE
+  3: RV-WATER
+  4: RV-TEA
+  5: RV-JUICE

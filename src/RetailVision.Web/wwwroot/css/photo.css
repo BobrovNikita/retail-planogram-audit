@@ -1,0 +1,29 @@
+.photo-start { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; }
+.photo-upload { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+.photo-upload label, .threshold-label { font-size: 12px; font-weight: 600; }
+.photo-upload select { width: 100%; }
+.photo-guide ol { padding-left: 20px; margin-top: 26px; }
+.photo-guide li { padding-left: 8px; margin-bottom: 25px; }
+.photo-guide li p { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.photo-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 22px; align-items: start; }
+.photo-workspace > * { min-width: 0; }
+.photo-canvas-panel > p { margin-top: 16px; }
+#photo-canvas { display: block; width: 100%; height: auto; background: #edf2ef; border-radius: 8px; touch-action: none; cursor: crosshair; }
+#shelf-overlays rect { fill: #1aa18322; stroke: #08846c; stroke-width: 2; vector-effect: non-scaling-stroke; pointer-events: none; }
+#shelf-overlays rect.active-band { fill: #e7b45133; stroke: #d0911f; }
+.shelf-fields { border: 1px solid var(--line); border-radius: 8px; margin: 16px 0; padding: 12px; min-width: 0; }
+.shelf-fields legend { font-size: 12px; font-weight: 600; }
+.band-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.band-inputs label { font-size: 10px; color: #6e8074; }
+.band-inputs input { width: 100%; padding: 8px !important; margin-top: 4px; }
+.threshold-label { display: block; margin: 18px 0; }
+.threshold-label input { width: 100%; margin-top: 7px; }
+.calibration-panel .button { width: 100%; }
+.calibration-panel button:disabled { cursor: not-allowed; }
+#calibration-status { min-height: 32px; margin-top: 10px; }
+.photo-report { margin-top: 24px; min-width: 0; }
+.photo-report .metrics { margin-top: 24px; }
+.photo-footer { display: flex; gap: 15px; justify-content: space-between; margin-top: 22px; }
+.photo-footer .text-button { font-size: 11px; }
+@media(max-width:1100px) { .photo-workspace { grid-template-columns: minmax(0,1fr); } .photo-start { grid-template-columns: minmax(0,1fr); } }
+@media(max-width:700px) { .photo-footer { display: block; } .photo-report .metric > strong { font-size: 25px; } }

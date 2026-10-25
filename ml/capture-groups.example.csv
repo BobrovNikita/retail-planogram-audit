@@ -1,0 +1,4 @@
+image,capture_id,split
+images/train/store01-session01-001.jpg,store01-session01,train
+images/val/store02-session02-001.jpg,store02-session02,val
+images/test/store03-session03-001.jpg,store03-session03,test

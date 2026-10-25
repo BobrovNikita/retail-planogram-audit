@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "modelFile": "model.onnx",
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "version": "REPLACE-WITH-VERIFIED-TRAINED-MODEL",
+  "purpose": "sku-detection",
+  "contract": "yolo26-xyxy-v1",
+  "preprocessing": "rgb-nchw-letterbox114-scale255",
+  "nms": "none",
+  "inputName": "images",
+  "outputName": "output0",
+  "inputSize": 640,
+  "maxDetections": 300,
+  "classes": ["RV-COLA", "RV-LIME", "RV-ORANGE", "RV-WATER", "RV-TEA", "RV-JUICE"]
+}

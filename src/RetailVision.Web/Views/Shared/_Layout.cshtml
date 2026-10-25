@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/editor.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/audit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/photo.css" asp-append-version="true" />
     <script src="~/js/site.js" asp-append-version="true" defer></script>
 </head>
 <body>
@@ -23,12 +24,12 @@
     <nav aria-label="Основная навигация">
     @foreach (var (url, icon, label) in nav)
     {
-        var active = url == "/" ? current == "/" || current == "/home" || current == "/home/index" : current.StartsWith(url);
+        var active = url == "/" ? current == "/" || current == "/home" || current == "/home/index" : current.StartsWith(url) || url == "/audit" && current.StartsWith("/photoaudit");
         <a href="@url" class="nav-item @(active ? "active" : "")" aria-current="@(active ? "page" : null)"><span aria-hidden="true">@icon</span>@label</a>
     }
     </nav>
-    <div class="sidebar-bottom"><span class="badge outline">ЭТАП 03 / 06</span><h3>От полки к данным</h3><p>Позиции, наличие и фейсинги — изучите результаты на семи учебных сценариях.</p><a href="/audit">Открыть демонстрацию <span>↗</span></a></div>
-    <div class="sidebar-footer"><span class="avatar">RV</span><div>RetailVision<small>Версия 0.3 · DEMO</small></div></div>
+    <div class="sidebar-bottom"><span class="badge outline">ЭТАП 04 / 06</span><h3>От полки к данным</h3><p>Подготовьте фото и настройте полки. Для распознавания подключите обученную модель SKU.</p><a href="/photoaudit">Проверить фотографию <span>↗</span></a></div>
+    <div class="sidebar-footer"><span class="avatar">RV</span><div>RetailVision<small>Версия 0.4 · DEMO / ONNX</small></div></div>
 </aside>
 <div class="app-shell">
     <header class="topbar"><span>Рабочее пространство <span class="breadcrumb-slash">/</span> <strong>@ViewData["Title"]</strong></span><div class="topbar-right"><span class="status-dot"></span><span>Учебная версия</span>

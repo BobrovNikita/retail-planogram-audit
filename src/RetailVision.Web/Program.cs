@@ -38,11 +38,16 @@ builder.Services.AddControllersWithViews(options => options.Filters.Add(new Auto
 builder.Services.AddSingleton<IComplianceAnalyzer, ComplianceAnalyzer>();
 builder.Services.AddScoped<PlanogramStore>();
 builder.Services.AddSingleton<IProductDetector, FixtureProductDetector>();
+builder.Services.AddSingleton<PhotoVisionService>();
+builder.Services.AddSingleton(sp => new PhotoDraftStore(sp.GetRequiredService<IConfiguration>()["Storage:DataDirectory"] ?? dataPath));
 builder.Services.AddSingleton(sp => new ProductImageStore(
     sp.GetRequiredService<IConfiguration>()["Storage:DataDirectory"] ?? dataPath));
 builder.Services.AddRateLimiter(options =>
 {
     options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    options.AddPolicy("photo", context => RateLimitPartition.GetFixedWindowLimiter(
+        context.Connection.RemoteIpAddress?.ToString() ?? "unknown", _ => new FixedWindowRateLimiterOptions
+        { PermitLimit = 60, Window = TimeSpan.FromMinutes(1), QueueLimit = 0 }));
     options.AddPolicy("public", context => RateLimitPartition.GetFixedWindowLimiter(
         context.Connection.RemoteIpAddress?.ToString() ?? "unknown", _ => new FixedWindowRateLimiterOptions
         { PermitLimit = 30, Window = TimeSpan.FromMinutes(1), QueueLimit = 0 }));

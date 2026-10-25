@@ -1,0 +1,44 @@
+@using System.Globalization
+@using RetailVision.Core
+@model RetailVision.Web.Models.PhotoPageModel
+@functions {
+    private static string N(double x) => x.ToString("0.####", CultureInfo.InvariantCulture);
+    private static string Label(ViolationKind? kind) => kind switch {
+        ViolationKind.MissingProduct => "Не обнаружен", ViolationKind.WrongProduct => "Другой SKU", ViolationKind.WrongPosition => "Неверная позиция",
+        ViolationKind.WrongShelf => "Другая полка", ViolationKind.ExtraProduct => "Лишний товар", ViolationKind.UnknownProduct => "На проверку", _ => "Соответствует" };
+}
+@{ ViewData["Title"] = "Калибровка и анализ"; var d = Model.Draft; var c = d.Compliance; }
+<div class="page-heading"><div><p class="eyebrow">АУДИТ / ФОТОГРАФИЯ</p><h1>Полки на вашем снимке</h1><p class="subheading">@d.Planogram.Name · снимок версии @d.PlanogramVersion · @d.Width × @d.Height px</p></div><a class="button secondary" href="/photoaudit">Новое фото →</a></div>
+<div class="notice"><span class="badge @(Model.ModelReady ? "mint" : "amber")">@(Model.ModelReady ? "ONNX" : "НЕТ МОДЕЛИ")</span><div><strong>@Model.ModelMessage</strong><br /><span>Калибровка сохраняется независимо от готовности модели. Учебный детектор не обрабатывает эту фотографию.</span></div></div>
+<div asp-validation-summary="All" class="validation-errors"></div>
+<div class="photo-workspace" id="calibration" data-id="@d.Id" data-width="@d.Width" data-height="@d.Height" data-ready="@Model.ModelReady.ToString().ToLowerInvariant()">
+<section class="panel photo-canvas-panel"><div class="panel-heading"><h2>Области полок</h2><span class="badge neutral">Частное фото</span></div><p class="file-note">Выберите полку справа и протяните прямоугольник на фото. Полоса должна включать нижнюю опорную точку каждого товара.</p>
+<svg id="photo-canvas" viewBox="0 0 @d.Width @d.Height" role="img" aria-label="Фотография с границами полок и результатами распознавания">
+<image href="@Url.Action("Image", new { id = d.Id })" x="0" y="0" width="@d.Width" height="@d.Height" />
+<g id="shelf-overlays">@foreach(var s in d.Shelves) { <rect data-shelf="@s.Shelf" x="@N(s.Left*d.Width)" y="@N(s.Top*d.Height)" width="@N((s.Right-s.Left)*d.Width)" height="@N((s.Bottom-s.Top)*d.Height)" /> }</g>
+@if(c is not null) { <g id="photo-detections">@foreach(var m in c.Matches.Where(m => m.Detection is not null)) { var box=m.Detection!; var status=!m.IsCertain?"box-unknown":m.Kind is null?"box-correct":m.Kind==ViolationKind.WrongPosition?"box-warning":"box-error";
+<g id="@box.Id" class="detection @status"><title>@(box.Sku ?? "Неизвестный SKU") · @Label(m.Kind) · @box.Confidence.ToString("P0")</title><rect class="detection-box" x="@N(box.X*d.Width)" y="@N(box.Y*d.Height)" width="@N(box.Width*d.Width)" height="@N(box.Height*d.Height)" fill="none" vector-effect="non-scaling-stroke" stroke-width="3" /></g>
+}</g> }
+</svg><p class="file-note">Прямоугольные полосы не исправляют перспективу. При сильном наклоне переснимите витрину. Координаты относятся к показанному, уже переориентированному изображению.</p></section>
+<aside class="panel calibration-panel"><h2>Настройте полки</h2><form id="calibration-form">@Html.AntiForgeryToken()
+@foreach(var s in d.Planogram.Shelves.OrderBy(s=>s.Number)) { var band=d.Shelves.SingleOrDefault(x=>x.Shelf==s.Number);
+<fieldset class="shelf-fields" data-shelf="@s.Number"><legend><label><input type="radio" name="active-shelf" value="@s.Number" checked="@(s.Number==1)" /> Полка @s.Number</label></legend><div class="band-inputs">
+<label>Слева, %<input type="number" data-coordinate="left" min="0" max="100" step="0.1" value="@(band is null ? "" : N(band.Left*100))" required /></label>
+<label>Справа, %<input type="number" data-coordinate="right" min="0" max="100" step="0.1" value="@(band is null ? "" : N(band.Right*100))" required /></label>
+<label>Сверху, %<input type="number" data-coordinate="top" min="0" max="100" step="0.1" value="@(band is null ? "" : N(band.Top*100))" required /></label>
+<label>Снизу, %<input type="number" data-coordinate="bottom" min="0" max="100" step="0.1" value="@(band is null ? "" : N(band.Bottom*100))" required /></label>
+</div></fieldset> }
+<label class="threshold-label">Порог подтверждения, %<input type="number" id="confidence" min="25" max="95" step="1" value="@N(d.ConfidenceThreshold*100)" required /></label>
+<button class="button secondary" type="submit">Сохранить границы</button><p id="calibration-status" class="file-note" role="status" aria-live="polite">@(d.Shelves.Count==0 ? "Обозначьте все полки." : "Калибровка сохранена.")</p></form>
+<form asp-action="Analyze" asp-route-id="@d.Id" method="post" id="analyze-photo"><input type="hidden" name="revision" value="@d.Revision" /><button class="button primary" type="submit" disabled="@(!Model.ModelReady || d.Shelves.Count==0)">Распознать товары →</button></form>
+<p class="file-note">Объекты с уверенностью от 10% сохраняются для проверки; порог выше определяет подтверждённые SKU. Абсолютные позиции эталона не заданы: сравниваются полка, порядок и количество.</p>
+</aside></div>
+@if(c is not null) { <section class="panel photo-report" id="photo-report"><p class="eyebrow">@d.Detection!.Mode / @d.Detection.ModelVersion</p><h2>Результат сравнения</h2>
+<p class="file-note">По подтверждённым детекциям. Точность модели на вашем ассортименте зависит от обучения и независимой проверки.</p>
+<div class="metrics"><article class="metric"><span>Позиции и порядок</span><strong>@c.Percent.ToString("0.#")%</strong></article><article class="metric"><span>Наличие SKU</span><strong>@c.Metrics.SkuPresencePercent.ToString("0.#")%</strong></article><article class="metric"><span>Фейсинги</span><strong>@c.Metrics.FacingsPercent.ToString("0.#")%</strong></article><article class="metric"><span>Отклонения / проверить</span><strong>@c.Metrics.ConfirmedViolations / @c.Metrics.ReviewCases</strong></article></div>
+<div class="table-scroll"><table class="audit-table"><thead><tr><th>Эталон</th><th>Найдено</th><th>Полка / позиция</th><th>Уверенность</th><th>Результат</th></tr></thead><tbody>
+@foreach(var m in c.Matches) { var rowId = m.Expected is {} expected ? $"photo-expected-{expected.Shelf}-{expected.Position}" : $"photo-row-{m.Detection!.Id}";
+<tr id="@rowId"><td>@(m.Expected?.Sku ?? "Вне эталона")</td><td>@(m.Detection?.Sku ?? "—")</td><td>@(m.Detection is null ? "—" : m.Detection.Shelf==0 ? "Полка не определена" : $"{m.Detection.Shelf} / {c.Matches.Where(x=>x.Detection?.Shelf==m.Detection.Shelf).OrderBy(x=>x.Detection!.X+x.Detection.Width/2).ToList().FindIndex(x=>x==m)+1}")</td><td>@(m.Detection?.Confidence.ToString("P0") ?? "—")</td><td><button class="text-button" type="button" data-highlight="@(m.Detection?.Id ?? rowId)">@Label(m.Kind) ↗</button>@if(!m.IsCertain){<small> · требует проверки</small>}<p class="file-note">@m.Reason</p></td></tr> }
+</tbody></table></div></section> }
+<div class="photo-footer"><p class="file-note">Черновик доступен 24 часа после загрузки. Постоянная история появится на следующем этапе.</p><form asp-action="Delete" asp-route-id="@d.Id" method="post"><button class="text-button" type="submit">Удалить фото и черновик</button></form></div>
+<script src="~/js/photo-calibration.js" asp-append-version="true" defer></script>

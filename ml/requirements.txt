@@ -1,0 +1,5 @@
+# Install the appropriate CPU/CUDA torch build separately; tested with torch 2.14.1 CPU.
+ultralytics==8.4.187
+onnx==1.23.2
+onnxruntime==1.31.0
+PyYAML==6.0.3

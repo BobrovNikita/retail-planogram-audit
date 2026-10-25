@@ -1,0 +1,15 @@
+@model RetailVision.Web.Models.PhotoUploadModel
+@{ ViewData["Title"] = "Анализ фотографии"; }
+<div class="page-heading"><div><p class="eyebrow">АУДИТ / СОБСТВЕННОЕ ФОТО</p><h1>Начните с фотографии</h1><p class="subheading">Выберите эталон, загрузите витрину и обозначьте полки.</p></div><a class="button secondary" href="/audit">Учебные примеры →</a></div>
+<div class="photo-start">
+<section class="panel"><h2>Новая проверка</h2><p class="file-note">Фото доступно только вашей учётной записи. Черновик хранится 24 часа и пока не входит в историю аудитов.</p>
+<div asp-validation-summary="All" class="validation-errors"></div>
+<form asp-action="Upload" method="post" enctype="multipart/form-data" class="photo-upload">
+<label asp-for="PlanogramId">Эталонная планограмма</label><select asp-for="PlanogramId"><option value="0">Выберите планограмму</option>@foreach(var p in Model.Planograms) { <option value="@p.Id">@p.Name · версия @p.Version</option> }</select>
+<label asp-for="Photo">Фотография витрины</label><input asp-for="Photo" type="file" accept="image/jpeg,image/png,image/webp" required />
+<p class="file-note">JPEG, PNG или WebP · до 8 МБ и 12 Мп. Ориентация будет исправлена; длинная сторона уменьшится до 2400 px. Метаданные фотографии удаляются.</p>
+<button class="button primary" type="submit">Загрузить и настроить полки →</button>
+</form></section>
+<aside class="panel photo-guide"><p class="eyebrow">ТРИ ШАГА</p><h2>От витрины к результату</h2><ol><li><strong>Снимите полку целиком</strong><p>Фронтально, без сильного наклона. Упаковки и нижняя опора товаров должны быть видны.</p></li><li><strong>Обозначьте границы</strong><p>Выделите область каждой полки на снимке. Номера берутся из выбранной планограммы.</p></li><li><strong>Запустите распознавание</strong><p>Анализ станет доступен после подключения обученной модели SKU. Без модели можно подготовить фото и сохранить калибровку.</p></li></ol><a class="inline-link" href="/planograms">Открыть планограммы →</a></aside>
+</div>
+@if(Model.Drafts.Count>0) { <section class="panel photo-report"><h2>Ваши незавершённые проверки</h2><p class="file-note">До пяти черновиков на учётную запись. Откройте проверку, чтобы продолжить или удалить фото.</p><div class="table-scroll"><table><thead><tr><th>Планограмма</th><th>Фото</th><th>Состояние</th><th></th></tr></thead><tbody>@foreach(var d in Model.Drafts) { <tr><td>@d.Planogram.Name · v@d.PlanogramVersion</td><td>@d.Width × @d.Height</td><td>@(d.Compliance is not null ? "Результат готов" : d.Shelves.Count>0 ? "Полки настроены" : "Нужны границы полок")</td><td><a class="inline-link" href="@Url.Action("Edit",new{id=d.Id})">Продолжить →</a></td></tr> }</tbody></table></div></section> }

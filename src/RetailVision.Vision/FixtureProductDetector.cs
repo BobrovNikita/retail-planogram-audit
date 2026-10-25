@@ -24,6 +24,7 @@ public sealed class FixtureProductDetector : IProductDetector
     public Task<DetectionResult> DetectAsync(DetectionRequest request, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
+        if (request.Image is not null) throw new ArgumentException("Fixture detector never accepts photographs.", nameof(request));
         if (!Scenarios.Contains(request.FixtureId, StringComparer.Ordinal))
             throw new ArgumentException("Unknown fixture.", nameof(request));
         var products = Expected.Select((e, i) => new Detection($"fixture-{i}", e.Sku, 1, e.Shelf,
