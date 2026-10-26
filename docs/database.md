@@ -1,6 +1,6 @@
 # База данных
 
-EF Core 10.0.11, Microsoft SQLite provider. Миграции: InitialCreate и CatalogEditing; runtime использует MigrateAsync, а не EnsureCreated. База не пересоздаётся при запуске. Временные тестовые БД изолированы от пользовательской базы. CatalogEditing добавляет Revision = 1 существующим товарам, SeedMarker и ограничения классов модели; переход с InitialCreate проверен отдельным тестом.
+EF Core 10.0.11, Microsoft SQLite provider. Миграции: InitialCreate, CatalogEditing и AuditHistory; runtime использует MigrateAsync, а не EnsureCreated. База не пересоздаётся при запуске. Временные тестовые БД изолированы от пользовательской базы. CatalogEditing добавляет Revision = 1 существующим товарам, SeedMarker и ограничения классов модели. AuditHistory расширяет историю, не удаляя прежние записи; обновление с несколькими старыми аудитами проверено отдельно.
 
 ```mermaid
 erDiagram
@@ -10,7 +10,7 @@ erDiagram
     PlanogramShelf ||--o{ PlanogramSlot : orders
     ModelVersion ||--o{ ModelClassMapping : defines
     Product ||--o{ ModelClassMapping : mapped_to
-    Planogram ||--o{ Audit : audited
+    Planogram |o--o{ Audit : audited
     ModelVersion ||--o{ Audit : used
     Audit ||--o{ DetectedProduct : contains
     Audit ||--o{ AuditViolation : reports
@@ -21,8 +21,11 @@ erDiagram
 - ModelClassMapping: составной ключ (ModelVersionId, ClassIndex), уникальная пара (ModelVersionId, ProductId) и CHECK ClassIndex >= 0. Один SKU соответствует одному классу каждой версии модели. Индекс класса 0 не равен ProductId 1.
 - Planogram: название, описание, торговая зона и версия; полки нумеруются от 1.
 - PlanogramSlot: порядок внутри полки, товар и количество фейсингов. В учебном эталоне фейсинги разворачиваются в восемь отдельных ожидаемых позиций.
-- Audit: UTC, режим, ссылка на модель/планограмму, JSON-снимок планограммы, путь снимка, метрика. Таблица зарезервирована для этапа 5, UI пока не сохраняет аудит.
-- DetectedProduct, AuditViolation, AuditCorrection: основа будущей истории. Связь исправления с конкретным объектом и автором потребует расширения на этапе 5.
+- Audit: OwnerId, SourceKey, Revision, UTC, режим, ссылки на модель/планограмму, версия и имена эталона/модели, SHA, ключ PNG, неизменный SnapshotJson, CurrentDetectionsJson, ResultJson, исходный/текущий процент и счётчики. Планограмма может быть null для фиксированного DEMO; реальный эталон защищён Restrict.
+- DetectedProduct/AuditViolation: текущие объекты и отклонения, заменяемые при пересчёте. Канонические полные данные, ID детекций и ручные подтверждения хранятся также в JSON.
+- AuditCorrection: Revision, UTC, ActorId, причина, полный JSON до/после и результаты обоих расчётов. Журнал дополняется при коррекции и восстановлении, исходный SnapshotJson не меняется.
+
+Индекс (OwnerId, SourceKey) уникален для непустых SourceKey: двойная отправка не создаёт дубль. Старые служебные строки без владельца/источника остаются без назначения пользователю и не появляются в приватной истории. Индекс (OwnerId, Mode, CreatedAtUtc) поддерживает фильтрацию; Audit.Revision — токен конкурентного обновления. Весь пересчёт и запись журнала выполняются одним SaveChanges. Постоянные PNG лежат вне wwwroot; БД содержит случайное имя, а не произвольный путь.
 
 Уникальные индексы запрещают одинаковые номера полок в планограмме и одинаковые порядковые номера позиций в одной полке. CHECK запрещает неположительные позиции/полки и фейсинги вне 1..100. Foreign keys включены. Удаление товара, категории, модели или планограммы, на которые ссылаются защищённые записи, ограничено `Restrict`. Identity использует стандартные таблицы пользователей/ролей и хранит хэши паролей.
 
