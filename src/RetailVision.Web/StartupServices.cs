@@ -15,10 +15,19 @@ internal static class AdminBootstrap
     public static async Task InitializeAsync(IServiceProvider services, IConfiguration configuration)
     {
         var email = configuration["Admin:Email"];
-        var password = configuration["Admin:Password"];
-        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password)) return;
+        if (string.IsNullOrWhiteSpace(email)) return;
         var users = services.GetRequiredService<UserManager<IdentityUser>>();
         if (await users.FindByEmailAsync(email) is not null) return;
+        var password = configuration["Admin:Password"];
+        var passwordFile = configuration["Admin:PasswordFile"];
+        if (!string.IsNullOrWhiteSpace(passwordFile))
+        {
+            if (!string.IsNullOrEmpty(password)) throw new InvalidOperationException("Configure only one administrator password source.");
+            var info = new FileInfo(passwordFile);
+            if (!info.Exists || info.Length > 4096) throw new InvalidOperationException("Administrator secret file is missing or too large.");
+            password = (await File.ReadAllTextAsync(passwordFile)).TrimEnd('\r', '\n');
+        }
+        if (string.IsNullOrWhiteSpace(password)) return;
         var roles = services.GetRequiredService<RoleManager<IdentityRole>>();
         if (!await roles.RoleExistsAsync("Administrator")) Ensure(await roles.CreateAsync(new IdentityRole("Administrator")));
         var user = new IdentityUser { UserName = email, Email = email };

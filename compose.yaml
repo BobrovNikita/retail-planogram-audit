@@ -1,0 +1,75 @@
+name: retailvision
+services:
+  app:
+    image: retailvision:${IMAGE_TAG:-local}
+    build: .
+    restart: unless-stopped
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=128m,mode=1777
+    environment:
+      AllowedHosts: ${DOMAIN:-localhost};localhost;127.0.0.1
+      Proxy__KnownProxies__0: ${PROXY_IP:-172.30.85.2}
+      Proxy__HttpsPort: ${HTTPS_PORT:-8443}
+      Vision__ManifestPath: ${VISION_MANIFEST_PATH:-}
+    volumes:
+      - data:/data
+      - type: bind
+        source: ${MODELS_DIRECTORY:-./deploy/models}
+        target: /models
+        read_only: true
+        bind:
+          create_host_path: false
+    networks: [backend]
+    cpus: 2
+    mem_limit: 2g
+    pids_limit: 256
+    stop_grace_period: 45s
+    logging:
+      driver: json-file
+      options: {max-size: 10m, max-file: '3'}
+  nginx:
+    image: nginx:1.30.6-alpine
+    restart: unless-stopped
+    depends_on:
+      app:
+        condition: service_healthy
+    read_only: true
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /var/cache/nginx:size=64m
+      - /var/run:size=1m
+      - /etc/nginx/conf.d:size=1m
+    environment:
+      DOMAIN: ${DOMAIN:-localhost}
+      HTTPS_PORT: ${HTTPS_PORT:-8443}
+      NGINX_ENVSUBST_FILTER: '^(DOMAIN|HTTPS_PORT)$$'
+    ports:
+      - '${BIND_ADDRESS:-127.0.0.1}:${HTTP_PORT:-8080}:8080'
+      - '${BIND_ADDRESS:-127.0.0.1}:${HTTPS_PORT:-8443}:8443'
+    volumes:
+      - ./deploy/nginx/default.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - type: bind
+        source: ${TLS_DIRECTORY:-./deploy/tls}
+        target: /etc/nginx/tls
+        read_only: true
+        bind:
+          create_host_path: false
+    networks:
+      backend:
+        ipv4_address: ${PROXY_IP:-172.30.85.2}
+    mem_limit: 128m
+    pids_limit: 64
+    logging:
+      driver: json-file
+      options: {max-size: 10m, max-file: '3'}
+networks:
+  backend:
+    ipam:
+      config:
+        - subnet: ${NETWORK_SUBNET:-172.30.85.0/24}
+volumes:
+  data:

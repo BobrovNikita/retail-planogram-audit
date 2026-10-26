@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
@@ -11,11 +12,16 @@ using RetailVision.Vision;
 using RetailVision.Web;
 
 var builder = WebApplication.CreateBuilder(args);
+if (builder.Configuration.GetValue<bool>("ASPNETCORE_FORWARDEDHEADERS_ENABLED"))
+    throw new InvalidOperationException("Use Proxy:KnownProxies instead of ASPNETCORE_FORWARDEDHEADERS_ENABLED.");
+builder.Services.Configure<ForwardedHeadersOptions>(options => ReverseProxyConfiguration.Configure(options, builder.Configuration));
+builder.Services.AddHttpsRedirection(options => options.HttpsPort = builder.Configuration.GetValue<int?>("Proxy:HttpsPort") ?? 443);
 var dataPath = Path.GetFullPath(builder.Configuration["Storage:DataDirectory"] ?? Path.Combine(builder.Environment.ContentRootPath, "App_Data"));
 Directory.CreateDirectory(dataPath);
 builder.Services.AddDbContext<RetailVisionDbContext>(options => options.UseSqlite(
     new Microsoft.Data.Sqlite.SqliteConnectionStringBuilder { DataSource = Path.Combine(dataPath, "retailvision.db"), ForeignKeys = true }.ToString()));
-builder.Services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo(Path.Combine(dataPath, "keys")));
+builder.Services.AddDataProtection().SetApplicationName("RetailVision")
+    .PersistKeysToFileSystem(new DirectoryInfo(Path.Combine(dataPath, "keys")));
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
     options.Password.RequiredLength = 12;
@@ -65,10 +71,12 @@ using (var scope = app.Services.CreateScope())
     await AdminBootstrap.InitializeAsync(scope.ServiceProvider, app.Configuration);
 }
 app.UseExceptionHandler("/home/error");
+app.UseForwardedHeaders();
 if (!app.Environment.IsDevelopment() && !app.Environment.IsEnvironment("Testing"))
 {
     app.UseHsts();
-    app.UseHttpsRedirection();
+    // The container probes only this minimal database readiness endpoint over its own loopback.
+    app.UseWhen(context => context.Request.Path != "/health", branch => branch.UseHttpsRedirection());
 }
 app.Use(async (context, next) =>
 {

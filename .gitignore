@@ -8,6 +8,14 @@
 **/.vs/
 .idea/
 .env
+.env.*
+!.env.example
+deploy/tls/*
+!deploy/tls/.gitkeep
+deploy/models/*
+!deploy/models/.gitkeep
+deploy/secrets/
+backups/
 *.user
 *.onnx
 !tests/Fixtures/synthetic.onnx

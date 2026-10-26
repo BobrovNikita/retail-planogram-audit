@@ -1,0 +1,11 @@
+# Optional, first startup only. This file does not embed a password.
+services:
+  app:
+    environment:
+      Admin__Email: ${ADMIN_EMAIL:?Set ADMIN_EMAIL for bootstrap}
+      Admin__PasswordFile: /run/secrets/admin_password
+    secrets:
+      - admin_password
+secrets:
+  admin_password:
+    file: ${ADMIN_PASSWORD_FILE:?Set path to administrator password file}
