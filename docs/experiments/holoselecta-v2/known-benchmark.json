@@ -1,0 +1,77 @@
+{
+  "weights": "small80-end2end/weights/best.pt",
+  "split": "test",
+  "input": "640x640 full letterbox FP32 (deployment shape)",
+  "metrics": {
+    "metrics/precision(B)": 0.8753070815264747,
+    "metrics/recall(B)": 0.9300803424720911,
+    "metrics/mAP50(B)": 0.9557832592896658,
+    "metrics/mAP50-95(B)": 0.678082786437752,
+    "fitness": 0.678082786437752
+  },
+  "per_class": [
+    {
+      "sku": "HS-SNICKERS-50",
+      "precision": 0.7895997006394248,
+      "recall": 0.9655172413793104,
+      "map50": 0.9620967741935483,
+      "map50_95": 0.6559821223350083
+    },
+    {
+      "sku": "HS-TWIX-50",
+      "precision": 1.0,
+      "recall": 0.9207331594615982,
+      "map50": 0.965,
+      "map50_95": 0.6445394818980225
+    },
+    {
+      "sku": "HS-MMS-PEANUT",
+      "precision": 0.882089321135071,
+      "recall": 0.8018816516404302,
+      "map50": 0.9222435303374716,
+      "map50_95": 0.7362637920325524
+    },
+    {
+      "sku": "HS-KNOPPERS",
+      "precision": 0.6741032829190124,
+      "recall": 0.9642857142857143,
+      "map50": 0.9519403896066854,
+      "map50_95": 0.6611264132106458
+    },
+    {
+      "sku": "HS-BIFI-ROLL-50",
+      "precision": 0.8915572251064405,
+      "recall": 0.9489392587239617,
+      "map50": 0.9427352647352647,
+      "map50_95": 0.6790780334723491
+    },
+    {
+      "sku": "HS-ZWEIFEL-PAPRIKA-90",
+      "precision": 0.8347136014673626,
+      "recall": 0.875,
+      "map50": 0.9202501154443556,
+      "map50_95": 0.6363508252958796
+    },
+    {
+      "sku": "HS-OREO-66",
+      "precision": 0.9713422617415324,
+      "recall": 0.9642857142857143,
+      "map50": 0.989,
+      "map50_95": 0.727269486520983
+    },
+    {
+      "sku": "HS-MALTESERS-100",
+      "precision": 0.9590512592029544,
+      "recall": 1.0,
+      "map50": 0.9930000000000001,
+      "map50_95": 0.6840521367365755
+    }
+  ],
+  "speed_ms": {
+    "preprocess": 0.5833931058516789,
+    "inference": 11.518282759613518,
+    "loss": 0.0009137880185554768,
+    "postprocess": 0.17736896326572732
+  },
+  "evaluationRole": "known-regression-benchmark-not-new-independent-test"
+}

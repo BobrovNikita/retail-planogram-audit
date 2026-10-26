@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "modelFile": "model.onnx",
+  "sha256": "b359930eef08eeba01c50909704ff0a95fc7e45652a02d12d07ca7a1e818d8c2",
+  "version": "holoselecta-snacks-v2-experimental",
+  "purpose": "sku-detection",
+  "contract": "yolo26-xyxy-v1",
+  "preprocessing": "rgb-nchw-letterbox114-scale255",
+  "nms": "none",
+  "inputName": "images",
+  "outputName": "output0",
+  "inputSize": 640,
+  "maxDetections": 300,
+  "classes": [
+    "HS-SNICKERS-50",
+    "HS-TWIX-50",
+    "HS-MMS-PEANUT",
+    "HS-KNOPPERS",
+    "HS-BIFI-ROLL-50",
+    "HS-ZWEIFEL-PAPRIKA-90",
+    "HS-OREO-66",
+    "HS-MALTESERS-100"
+  ]
+}

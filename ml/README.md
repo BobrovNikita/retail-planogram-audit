@@ -39,7 +39,7 @@ python train.py --data data.yaml --groups capture-groups.csv --weights yolo26n.p
 python validate.py --weights runs/train/train/weights/best.pt --data data.yaml --groups capture-groups.csv --split test --device 0
 ```
 
-train.py использует transfer learning; начальный checkpoint yolo26n.pt при отсутствии может быть загружен библиотекой из официального источника. Результаты и лучшие веса сохраняются Ultralytics в runs; имя очередного каталога уточняйте в журнале. --workers по умолчанию 0 для безопасного запуска в Windows, --name задаёт имя эксперимента. validate.py использует полный квадратный letterbox 640×640/FP32, сохраняет общие и поклассовые метрики и время в JSON. Тяжёлое обучение на VPS не выполняется.
+train.py использует transfer learning; начальный checkpoint yolo26n.pt при отсутствии может быть загружен библиотекой из официального источника. Результаты и лучшие веса сохраняются Ultralytics в runs; имя очередного каталога уточняйте в журнале. --workers по умолчанию 0 для безопасного запуска в Windows, --name задаёт имя эксперимента; --fliplr, --degrees, --perspective позволяют зафиксировать преобразования упаковок. Обучение явно задаёт nms=False: в Ultralytics 8.4.187 значение None выбирает другой, one-to-many head для валидации и выбора best.pt. Export и C# требуют one-to-one. validate.py использует полный квадратный letterbox 640×640/FP32, сохраняет общие и поклассовые метрики и время в JSON. Тяжёлое обучение на VPS не выполняется.
 
 ## Экспорт и проверка
 
@@ -67,7 +67,7 @@ python generate_test_fixture.py
 
 ## Профиль HoloSelecta
 
-Первый реальный эксперимент: [model card, результаты и ограничения](../docs/experiments/holoselecta-v1/README.md). Профиль содержит восемь упаковок и фиксированные даты train/val/test. Каталог DEMO в classes.json не заменяется: во все команды нужно передать отдельный --classes.
+Первый реальный эксперимент: [v1](../docs/experiments/holoselecta-v1/README.md). Текущая локальная модель: [v2, исправление выбора head и результаты](../docs/experiments/holoselecta-v2/README.md). Профиль содержит восемь упаковок и фиксированные даты train/val/test. Каталог DEMO в classes.json не заменяется: во все команды нужно передать отдельный --classes. После просмотра v1 прежний test считается известным набором регрессий, а не независимой приёмкой следующих улучшений.
 
 Пример PowerShell из корня репозитория с активированным Python 3.12 venv. Каталог эксперимента выбирайте вне Git; prepared должен быть новым. Архив около 2 ГБ, установке CUDA-сборки также требуется несколько ГБ.
 

@@ -1,0 +1,14 @@
+{
+  "created": "2026-10-26",
+  "datasetProfile": "holoselecta-snacks-v1",
+  "dataChanges": "None. Same capture-date split, classes and image hashes as v1.",
+  "candidate": "YOLO26s, 640x640, pretrained official yolo26s.pt",
+  "training": {"epochs":80,"patience":20,"batch":8,"workers":2,"device":"0","seed":42,"nms":false,"fliplr":0,"degrees":3,"perspective":0.0001},
+  "diagnosticCorrection": "Before candidate evaluation, source inspection found Ultralytics 8.4.187 validator sets model.end2end = args.nms is False. Training previously left nms=None and selected checkpoints on the one-to-many head, while export/standalone validation use one-to-one. Initial small80 diagnostic stopped; fresh small80-end2end run explicitly sets nms=False. Baseline standalone/native measurements remain valid.",
+  "selection": "Compare v1 best, v1 last and the new candidate on the unchanged validation split using full 640x640 FP32 letterbox. Prefer higher val mAP50-95; export/native checks are mandatory. Do not choose by former test metrics.",
+  "recoveredCandidate": "v1 last.pt at epoch 20 is added before its one-to-one validation, because the discovered head mismatch invalidated its exclusion by original best.pt selection. This recovers a smaller existing candidate without any further training or former-test use.",
+  "hypothesis": "Larger capacity and upright packaging with small camera-angle augmentation may improve localization and SKU discrimination. This is a combined candidate, not an ablation that identifies causal contributions.",
+  "formerTestRole": "Known regression benchmark after v1 inspection; no longer a fresh independent acceptance set for iterative improvements.",
+  "productionGate": "Not met by either this validation split or reused benchmark. Requires new independent target-shelf captures with machine/location grouping and predefined acceptance criteria.",
+  "baselineOnnxSha256": "d5374db048147452868617d618ba67efc8e3895253967ed946eba5b29d02d75c"
+}

@@ -1,0 +1,28 @@
+{
+  "selected": "small-end2end",
+  "criterion": "highest validation mAP50-95, FP32 one-to-one, full 640x640 letterbox",
+  "candidates": [
+    {
+      "name": "baseline-v1",
+      "weights": "runs/detect/runs/baseline50/weights/best.pt",
+      "sha256": "9c26808587ab97b32bdb4c118eecb94f1ffc7d58cbe5429019f9b544f0def2b0",
+      "valMap50": 0.5943585521379647,
+      "valMap50_95": 0.4058310211786608
+    },
+    {
+      "name": "nano-last",
+      "weights": "runs/detect/runs/baseline50/weights/last.pt",
+      "sha256": "92b04f0492e3d3b5836b0ab0d489f4304ef9a64040380efa235b5a862a56acc4",
+      "valMap50": 0.9222982557918176,
+      "valMap50_95": 0.6344166301772078
+    },
+    {
+      "name": "small-end2end",
+      "weights": "runs-v2/small80-end2end/weights/best.pt",
+      "sha256": "07c89094b5dc2c19d679fd10e65004a7ffca79ab8ab3b3f410f1f5eddb2ca137",
+      "valMap50": 0.948642668227903,
+      "valMap50_95": 0.6853167368158373
+    }
+  ],
+  "knownBenchmarkUsedForSelection": false
+}
