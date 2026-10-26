@@ -29,8 +29,17 @@ public sealed class HomeController(RetailVisionDbContext db) : Controller
     [Authorize(Policy = "Admin")]
     public IActionResult Analytics() => RedirectToAction("Analytics","History");
     [Authorize(Policy = "Admin")]
-    public IActionResult Settings() => Feature("Настройки", "Вы вошли как администратор. Управление моделями и настройками будет добавлено на следующих этапах.", "Административный доступ активен");
-    private IActionResult Feature(string title, string description, string heading) => View("Feature", new FeatureViewModel(title, description, heading));
+    [ResponseCache(NoStore=true,Location=ResponseCacheLocation.None)]
+    public async Task<IActionResult> Settings([FromServices] PhotoVisionService vision, CancellationToken ct)
+    {
+        var products = await db.Products.AsNoTracking().Where(p => vision.Skus.Contains(p.Sku)).ToDictionaryAsync(p => p.Sku, ct);
+        var skus = vision.Skus.Select((sku, index) =>
+        {
+            products.TryGetValue(sku, out var product);
+            return new SettingsSku(index, sku, product?.Id, product?.Name, product?.IsActive ?? false);
+        }).ToArray();
+        return View(new SettingsViewModel(vision.Ready, vision.Message, vision.ModelVersion, vision.ModelSha256, skus));
+    }
     [IgnoreAntiforgeryToken]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

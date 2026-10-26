@@ -15,6 +15,8 @@ public sealed class PhotoVisionService : IDisposable
     public bool Ready => detector is not null;
     public string Message { get; }
     public IReadOnlyList<string> Skus => detector?.Manifest.Classes ?? [];
+    public string? ModelVersion => detector?.Manifest.Version;
+    public string? ModelSha256 => detector?.Manifest.Sha256;
     public PhotoVisionService(IConfiguration config, ILogger<PhotoVisionService> logger)
     {
         var path = config["Vision:ManifestPath"];
@@ -25,7 +27,7 @@ public sealed class PhotoVisionService : IDisposable
             Message="Подключена модель "+detector.Manifest.Version+" · CPU · "+
                 (config["Vision:ModelNotice"] ?? "точность требует независимой проверки.");
         }
-        catch(Exception ex) when(ex is IOException or UnauthorizedAccessException or System.Text.Json.JsonException or ArgumentException or Microsoft.ML.OnnxRuntime.OnnxRuntimeException)
+        catch(Exception ex) when(ex is IOException or InvalidDataException or UnauthorizedAccessException or System.Text.Json.JsonException or ArgumentException or Microsoft.ML.OnnxRuntime.OnnxRuntimeException)
         { Message="Модель недоступна: файл, контрольная сумма или контракт не прошли проверку. Подробности в журнале сервера.";logger.LogError(ex,"ONNX model configuration rejected"); }
     }
     // Explicit injection is only used by isolated integration tests; production always validates Purpose=sku-detection.

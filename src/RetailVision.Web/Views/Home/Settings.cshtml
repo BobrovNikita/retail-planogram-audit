@@ -1,0 +1,44 @@
+@model SettingsViewModel
+@{ ViewData["Title"] = "Настройки"; }
+<link rel="stylesheet" href="~/css/settings.css" asp-append-version="true" />
+<div class="settings-page">
+<div class="page-heading"><div><p class="eyebrow">РАБОЧЕЕ ПРОСТРАНСТВО</p><h1>Настройки</h1><p class="muted">Состояние распознавания и параметры работы приложения.</p></div><a href="/photoaudit" class="button primary">Анализ фотографии →</a></div>
+<section class="panel">
+    <div class="panel-heading"><h2>Модель распознавания</h2><span class="badge @(Model.Ready ? "neutral" : "amber")">@(Model.Ready ? "Подключена" : "Недоступна")</span></div>
+    <p>@Model.Message</p>
+    @if(Model.Ready)
+    {
+        <p><strong>Версия:</strong> @Model.Version · ONNX Runtime CPU</p>
+        <details><summary>Контрольная сумма модели SHA-256</summary><p class="model-hash">@Model.Sha256</p></details>
+        <p class="file-note">Загрузка модели не подтверждает точность на ваших фотографиях. Проверьте результат и при необходимости исправьте детекции в отчёте.</p>
+    }
+    else
+    {
+        <p>DEMO доступен. Загрузка фотографии и разметка полок работают; распознавание станет доступно после подключения проверенной модели администратором сервера.</p>
+    }
+</section>
+@if(Model.Ready)
+{
+    <section class="panel"><div class="panel-heading"><h2>Поддерживаемые товары</h2><span>@Model.Skus.Count SKU</span></div>
+    <p class="file-note">Для фотоаудита все классы модели должны присутствовать в каталоге. Для новой планограммы выбирайте активные товары. Другой ассортимент модель может не обнаружить.</p>
+    <div class="table-scroll"><table class="audit-table"><thead><tr><th>Класс</th><th>SKU / товар</th><th>Каталог</th></tr></thead><tbody>
+    @foreach(var sku in Model.Skus)
+    {
+        <tr><td>@sku.ClassIndex</td><td>@sku.Sku<br />@sku.Name</td><td>
+        @if(sku.ProductId is int id){<a href="/catalog/edit/@id">@(sku.Active ? "Активен" : "Отключён") →</a>}
+        else{<span class="badge amber">Отсутствует</span>}
+        </td></tr>
+    }
+    </tbody></table></div><a href="/catalog" class="button secondary">Открыть каталог</a></section>
+}
+<section class="panel"><h2>Параметры фотоаудита</h2>
+    <p>JPEG, PNG или WebP: до 8 МБ, до 6000 пикселей по стороне и 12 мегапикселей. Границы полок и порог подтверждения 25–95% задаются отдельно для каждого фотоаудита.</p>
+    <p>Одновременно выполняется один анализ; в очереди — до двух запросов. Общий лимит ожидания и обработки — 30 секунд.</p>
+    <p>Черновики доступны 24 часа. Сохранённые отчёты и фотографии хранятся постоянно; их видит создавшая проверку учётная запись.</p>
+</section>
+<section class="panel"><h2>Подключение и обслуживание</h2>
+    <p>Модель задаётся в конфигурации сервера через <code>Vision__ManifestPath</code>. После замены модели приложение нужно перезапустить; текущая страница показывает уже загруженную версию.</p>
+    <p>Перед обновлением приложения сохраните резервную копию базы, фотографий и ключей доступа. Контролируйте свободное место: автоматическое удаление постоянной истории не настроено.</p>
+    <p class="file-note">Изменение файлов модели, секретов и параметров сервера выполняется вне браузера по инструкции развёртывания.</p>
+</section>
+</div>

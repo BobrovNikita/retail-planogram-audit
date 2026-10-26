@@ -28,6 +28,6 @@ public sealed class AccountController(SignInManager<IdentityUser> signIn) : Cont
     public IActionResult Denied()
     {
         Response.StatusCode = 403;
-        return View("~/Views/Home/Feature.cshtml", new FeatureViewModel("Доступ ограничен", "Для этого раздела нужна роль администратора.", "Недостаточно прав"));
+        return View();
     }
 }
