@@ -71,5 +71,6 @@ networks:
     ipam:
       config:
         - subnet: ${NETWORK_SUBNET:-172.30.85.0/24}
+          ip_range: ${NETWORK_DYNAMIC_RANGE:-172.30.85.128/25}
 volumes:
   data:
