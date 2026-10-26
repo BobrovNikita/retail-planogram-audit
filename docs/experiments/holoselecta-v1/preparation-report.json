@@ -1,0 +1,4767 @@
+{
+  "profile": "holoselecta-snacks-v1",
+  "source": "https://data.mendeley.com/datasets/gz39ggf35n/1",
+  "archiveSha256": "4492e5f544a035cf4884626187ebf39ab5e703f71a3ff05733b6c11baf926afb",
+  "license": "CC BY 4.0",
+  "attribution": "HoloSelecta v1, Klaus Fuchs, Tobias Grundmann, Mirella Haldimann, Elgar Fleisch (2020), DOI:10.17632/gz39ggf35n.1",
+  "splitPolicy": "Entire capture dates; same machines may recur across dates. Not an unseen-store benchmark.",
+  "labelPolicy": "Only the eight selected labels are targets; other products are background. No generic product detection.",
+  "boxPolicy": "VOC one-based inclusive minima converted to zero-based edges; normalized before aspect-preserving resize.",
+  "counts": {
+    "train": 173,
+    "val": 41,
+    "test": 29
+  },
+  "boxesByClass": {
+    "train": {
+      "HS-ZWEIFEL-PAPRIKA-90": 85,
+      "HS-KNOPPERS": 247,
+      "HS-MMS-PEANUT": 115,
+      "HS-SNICKERS-50": 129,
+      "HS-MALTESERS-100": 73,
+      "HS-OREO-66": 79,
+      "HS-TWIX-50": 89,
+      "HS-BIFI-ROLL-50": 90
+    },
+    "val": {
+      "HS-ZWEIFEL-PAPRIKA-90": 35,
+      "HS-MMS-PEANUT": 34,
+      "HS-MALTESERS-100": 34,
+      "HS-TWIX-50": 34,
+      "HS-SNICKERS-50": 34,
+      "HS-KNOPPERS": 34,
+      "HS-BIFI-ROLL-50": 34,
+      "HS-OREO-66": 32
+    },
+    "test": {
+      "HS-ZWEIFEL-PAPRIKA-90": 32,
+      "HS-MALTESERS-100": 29,
+      "HS-MMS-PEANUT": 28,
+      "HS-TWIX-50": 29,
+      "HS-KNOPPERS": 28,
+      "HS-OREO-66": 28,
+      "HS-SNICKERS-50": 29,
+      "HS-BIFI-ROLL-50": 26
+    }
+  },
+  "excluded": [
+    {
+      "annotation": "20190125_114246.xml",
+      "image": "20190125_114246.jpg",
+      "reason": "Image/XML size or orientation mismatch"
+    },
+    {
+      "annotation": "DSC01627.xml",
+      "image": "DSC01627.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01628.xml",
+      "image": "DSC01628.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01629.xml",
+      "image": "DSC01629.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01630.xml",
+      "image": "DSC01630.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01631.xml",
+      "image": "DSC01631.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01632.xml",
+      "image": "DSC01632.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01633.xml",
+      "image": "DSC01633.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01634.xml",
+      "image": "DSC01634.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01635.xml",
+      "image": "DSC01635.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01638.xml",
+      "image": "DSC01638.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01639.xml",
+      "image": "DSC01639.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01640.xml",
+      "image": "DSC01640.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01641.xml",
+      "image": "DSC01641.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01642.xml",
+      "image": "DSC01642.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01643.xml",
+      "image": "DSC01643.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01644.xml",
+      "image": "DSC01644.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01645.xml",
+      "image": "DSC01645.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01646.xml",
+      "image": "DSC01646.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01647.xml",
+      "image": "DSC01647.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01651.xml",
+      "image": "DSC01651.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01652.xml",
+      "image": "DSC01652.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01653.xml",
+      "image": "DSC01653.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01655.xml",
+      "image": "DSC01655.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01656.xml",
+      "image": "DSC01656.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01657.xml",
+      "image": "DSC01657.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01658.xml",
+      "image": "DSC01658.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01659.xml",
+      "image": "DSC01659.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01660.xml",
+      "image": "DSC01660.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01661.xml",
+      "image": "DSC01661.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01662.xml",
+      "image": "DSC01662.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01663.xml",
+      "image": "DSC01663.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01664.xml",
+      "image": "DSC01664.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01665.xml",
+      "image": "DSC01665.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01666.xml",
+      "image": "DSC01666.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01667.xml",
+      "image": "DSC01667.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01668.xml",
+      "image": "DSC01668.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01669.xml",
+      "image": "DSC01669.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01670.xml",
+      "image": "DSC01670.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01671.xml",
+      "image": "DSC01671.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01672.xml",
+      "image": "DSC01672.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01673.xml",
+      "image": "DSC01673.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01674.xml",
+      "image": "DSC01674.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01675.xml",
+      "image": "DSC01675.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01676.xml",
+      "image": "DSC01676.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01677.xml",
+      "image": "DSC01677.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01678.xml",
+      "image": "DSC01678.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01679.xml",
+      "image": "DSC01679.png",
+      "reason": "Missing image in published archive"
+    },
+    {
+      "annotation": "DSC01680.xml",
+      "image": "DSC01680.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "DSC01681.xml",
+      "image": "DSC01681.png",
+      "reason": "Unknown/unassigned capture date; potential derivative"
+    },
+    {
+      "annotation": "IMG_20190430_111230.xml",
+      "image": "IMG_20190430_111230.jpg",
+      "reason": "Photographed digital product menu, not physical packages"
+    },
+    {
+      "annotation": "IMG_20190430_111456.xml",
+      "image": "IMG_20190430_111456.jpg",
+      "reason": "Photographed digital product menu, not physical packages"
+    }
+  ],
+  "images": [
+    {
+      "image": "images/train/20190103_103704.jpg",
+      "sourceImage": "20190103_103704.jpg",
+      "captureId": "date-20190103",
+      "split": "train",
+      "sourceSha256": "e90a20dfa4a924a49b2b4ee96bdc5672b6e9c0eaac072af8db8bf0cc1674ef14",
+      "imageSha256": "60b59e6160ba7ba09beb973b1307527b404f897b24e86f14f176093ba7351a8e",
+      "labelSha256": "36907a699c59b6ca81864f79655c6aeb23f613a342f4f41f6d4fb30d4785e9b1",
+      "sourceSize": [
+        1960,
+        4032
+      ],
+      "preparedSize": [
+        778,
+        1600
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/20190111_111600_HoloLens.jpg",
+      "sourceImage": "20190111_111600_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "913fe58a25d0a5b3e6387e8683f08a6f0b6329ede4ea23dff5a6a04f851632ff",
+      "imageSha256": "a2188939fa1a68833c15f9bc9d90d2ad79e4de018a16e8752d54f3337672cd72",
+      "labelSha256": "22e4baf74b6e535f3337ca9fc0fa1064d714a7d1bae633170b5a677871974440",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/20190111_111611_HoloLens.jpg",
+      "sourceImage": "20190111_111611_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "9831d12fe381bb75a0e4ed91f6c8ccf8b4a73fc097bbdcf58a9ca17080de7028",
+      "imageSha256": "00966d0f4ff099e02b174ce7b706d0470300e5da395c41a42bd59caaae5db0f8",
+      "labelSha256": "75f51eb94fe514f58f1a2946a5a7701f0ee4bf92f6886d2ca88498b2d7cfdae7",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/20190111_111616_HoloLens.jpg",
+      "sourceImage": "20190111_111616_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "78794bc8d6e10f1cf43462a3f573456d0bb243e74c35967541113de12a989512",
+      "imageSha256": "7567a67c9c49f56a365832bcbd7dc8cd8152179c95d86ed3f3d88f9ad700c57f",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/20190111_111623_HoloLens.jpg",
+      "sourceImage": "20190111_111623_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "5646cc1847d12ad9e1fa44c6fd939baab629e6da6ac10c7b41711929c4c44973",
+      "imageSha256": "9a4d87ea1d4f009f0fa90acc4c896e0335c4529fabef461016af0b4b63a17d44",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/20190111_111631_HoloLens.jpg",
+      "sourceImage": "20190111_111631_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "73fa60ea3770b809c9fa631ece6ed4e2a7a8ec9cfd286c8d7b6f2f7a234b176e",
+      "imageSha256": "3d4b5fac79bf449ee37e1488511ab9f5c84fa51c1b8fa32e9f3387a064327a58",
+      "labelSha256": "4ea45abe3d6e455c2d4e2af200102beaf009cd720094becb1f305aabfc17d2de",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/20190111_111641_HoloLens.jpg",
+      "sourceImage": "20190111_111641_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "bbaa0221f8d1dedaefc3799e7cb107cb8076d1b63dc8ba88fb019c30446dbbe1",
+      "imageSha256": "9b7b69588810da65a2afab4dde4e76202e6d5e2c12e4913513d005a4d094f49a",
+      "labelSha256": "01cedd9f595ee8e9e72b72b3c7468c52231f559b6395b1df83a26e0aa51b152a",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/20190111_111648_HoloLens.jpg",
+      "sourceImage": "20190111_111648_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "dba41a0036e089fe4dfde4b1cf779b5ba2946a419c2fb1e2ed174defb53e2c52",
+      "imageSha256": "9429a845b2b29d9877f804d53b088516b4eb7ae182082cf4e5d95d5e634b55e6",
+      "labelSha256": "2b180c32d7da7e19bbf79c94f9756b4f140e7dcf69beaa3789f22e50661414a5",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 1
+    },
+    {
+      "image": "images/train/20190111_111656_HoloLens.jpg",
+      "sourceImage": "20190111_111656_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "4f4eee4bd23d638620ebe9648d24f71d3c8ab5ad62860061c81f7c3f08599d27",
+      "imageSha256": "6a1781467af425be9da88ca73a17322893d3f3f1557ab569cb8314db90e9fb33",
+      "labelSha256": "d8ca5a53f55a710d0581561045546d5d8ab7b2b4a11c24bed5837c4163cc56cb",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/20190111_111703_HoloLens.jpg",
+      "sourceImage": "20190111_111703_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "a8302c32430f28754a3a1abda1b5dfab3625030f9048aedd50803f7bda9c0c0a",
+      "imageSha256": "df82f701d4acd2d7c8d66c9741235ec3c9016cae0773eee602688663f3eaa9a1",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/20190111_111715_HoloLens.jpg",
+      "sourceImage": "20190111_111715_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "9c6cac72142e84a51ea4f3132275da910afaef5c820b54db943da8d584195ccb",
+      "imageSha256": "d9e77a884f0cb8b860b6d5d07847cac9176b89b09dcb78e0f2d4a9a0c4b10a40",
+      "labelSha256": "48c06df0f7bec7ed4561d9bf715b5f0b21e2eeb09b6ae4979648eff575ac1a7f",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/20190111_111725_HoloLens.jpg",
+      "sourceImage": "20190111_111725_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "40ee8d26178ed2be215137102af59bf7b15974cb081ed3b3c2a7f9a7dc97f52f",
+      "imageSha256": "bc2e05bdfc7174fa79fb2a0285ba6dbc16f6e48942e2e6f8e063a64fa71775b1",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/20190111_111731_HoloLens.jpg",
+      "sourceImage": "20190111_111731_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "c157bfa6ccef7bceaafa358dc51488359e49ead3b28785f946c361bea66b04d3",
+      "imageSha256": "00ad4cfdd2db15721aaa86d9d7576fa1b9b40366b4fd7149e3dd53ae13acf30f",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/20190111_115003_HoloLens.jpg",
+      "sourceImage": "20190111_115003_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "56af07832769e1bd515ca0919d29eecf8eaae45fc71debb050fd5a1bfdee2710",
+      "imageSha256": "9aadd8092f3b147628f94f2b1347d3e76a20a683ffb67eff94f809c1e71ccdf9",
+      "labelSha256": "d106e4123e024d4c65ca6e8cc724126fbeb245abda8108ee90f63d687210f172",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/20190111_115010_HoloLens.jpg",
+      "sourceImage": "20190111_115010_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "7d4ff1623e1b6fe060490620cc603b389de146a282eab12e7fd7451a5716e38a",
+      "imageSha256": "7731d84d168d0021c04f948a4ef23b0134a340bb9944f49a976be480003cb029",
+      "labelSha256": "1c4a33611a07e178c7e5ba8a9f485d9e8deb76cddbca268eada22690ee4d04cd",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/20190111_115017_HoloLens.jpg",
+      "sourceImage": "20190111_115017_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "9d5c4702381aa4d71c1e228d40ba6784f90e81df9420615d8712a9e5c50642c5",
+      "imageSha256": "86a9132bade446821dc454174916798a1e8fa2e080df524db879fd9247a323ac",
+      "labelSha256": "d08e12b9aabc3741952303972938ad9d2ca3948b13c16181f7be74ab92b79d62",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/20190111_115028_HoloLens.jpg",
+      "sourceImage": "20190111_115028_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "028e3245270e0567a556a917d4f78bade876e4947e5e7e302dc00387acefd0a9",
+      "imageSha256": "37291818f3ad71093b447ef29a3369450f4db7f474b396283d12b018df6ae832",
+      "labelSha256": "8ed54f23bae014b3fb04d4f5e1969f54058c6fbe50c378b508d3cb056c5c8bd9",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/20190111_115042_HoloLens.jpg",
+      "sourceImage": "20190111_115042_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "5cb5ca12c57bbdc85a5188f5cb29c4110434c50afd4616ba998b02767e1932f9",
+      "imageSha256": "e3ba409fc8a0948afaa38c085bc6a42162d63d7eb89b8efbf072824d921c6936",
+      "labelSha256": "6d57c43db7aa30938ba35e36c298c0aa4f821ec1f0231a36736f2e5e8c524e53",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/20190111_115050_HoloLens.jpg",
+      "sourceImage": "20190111_115050_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "5a8a0ff71457997583c22399559d2a49c7d4de2da5bd1aea6caa4efe8d40619d",
+      "imageSha256": "9806aa52737869f8b8993a92a1593705bcc82c56168a65ea9adee6c93f77429f",
+      "labelSha256": "a7f982d36e4cc32241b735a350f44237ac3606f101ed22b64de1814e835d77d3",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/20190111_115057_HoloLens.jpg",
+      "sourceImage": "20190111_115057_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "b0f0eb5a04277f0a0842dcf96f7fb14e1278dbb45dfa9a9d6aa5ac9e4704889c",
+      "imageSha256": "508609e920631dff0a708b9f9d8a32ab6b5ebf3912259a216f7cca2fe185d092",
+      "labelSha256": "0933265f8407ee41f377a8f9ddfea883f93e49d40fe174604d784cc61ecb938a",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 2
+    },
+    {
+      "image": "images/train/20190111_115106_HoloLens.jpg",
+      "sourceImage": "20190111_115106_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "f599ac25f8e556986c05bb7a2bfad19bb084f68cc496685730b5664e7e1e6b91",
+      "imageSha256": "73cad299e032486f06ec98dce8f176e2e468f72222ba5a4027c59650d519fa11",
+      "labelSha256": "df0d4969dbdd9cecd9ed7cca2a841c96eb1f2c63e6e36cbefb98e37370a2d0aa",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/20190111_115116_HoloLens.jpg",
+      "sourceImage": "20190111_115116_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "78b992c59a64f4d448e3f1dd1ffbf85bea564f85a7505825a272277e4434947b",
+      "imageSha256": "45e00e67999cecbea520230a329e3cba8c629dc50fe0d44834a3f474d760445c",
+      "labelSha256": "53e602130446f553aed31d77ac79dfe6472cee1206e7c57cddb7302501e2c93d",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/20190111_115122_HoloLens.jpg",
+      "sourceImage": "20190111_115122_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "df0ff5b1fe51bff4404f3d28103a8dd231e92c6f1586d0d11e9e0fe960a517d8",
+      "imageSha256": "b209418fd97f9ed38ca899b3bfcd31fef718aeb173e1cb3cbb43d0e9cebb7532",
+      "labelSha256": "db6bbc577554a1fb29fa14bdf4d4803f53bbc30e0830ddabd3c47554a90b9f7b",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/20190111_115129_HoloLens.jpg",
+      "sourceImage": "20190111_115129_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "aca35109dc6a04a7f9348796143c74fd06585b65af3ad857668092bf2c759277",
+      "imageSha256": "e43ae23d13b2fb16ad31e1bff8733f57ca4488b4fd8afe1e6f10ba95db754658",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/20190111_115136_HoloLens.jpg",
+      "sourceImage": "20190111_115136_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "51c3d16039745cd2ca9a789d35337330dab8a4dad1dcb5959f2355ed7d35aa79",
+      "imageSha256": "2e314576e83231911f77677f3a0453b9911667d4f5c63c3bd92bce63055d9407",
+      "labelSha256": "9c5ae23d7512466c68461602fcb835a9ed4b75f29af5cce62ec8d3d181a9d7a7",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 2
+    },
+    {
+      "image": "images/train/20190111_115143_HoloLens.jpg",
+      "sourceImage": "20190111_115143_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "639869ae8ff0daf8e180c847118780fab272b46a376c77acc6b807a06ebc49db",
+      "imageSha256": "c4996dbc28e1ac83dd57f7301b9f0a046c2733643170241d06a0d03689cd1a75",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/20190111_115150_HoloLens.jpg",
+      "sourceImage": "20190111_115150_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "f170eb1d5cb31318beed76a50ceeaf291f0fab6ed10d021b71e389defd7bf599",
+      "imageSha256": "00ebcfcacd96e59b6345d2830de9fc54a6ccd7cab5b45d54bcdcfefab9672cfb",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/20190111_115157_HoloLens.jpg",
+      "sourceImage": "20190111_115157_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "5d5cd88655a68b9e8f92f7b8373f6b6c1b07c71a23747c26bc8e5d4f6fa42990",
+      "imageSha256": "3a71ad7e67dc85c6a839b03c38258c3d6cde22cdfbe5255ad15aa883c81daefd",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/20190111_115203_HoloLens.jpg",
+      "sourceImage": "20190111_115203_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "3d68a83682afde2ad8a531a29a0a54232275d7ae13642ac53e473c59187891e2",
+      "imageSha256": "591e017aef2eb3a63b88b26cc3dc3015ed2c7c1cb9fe48abe77a366af32dcfe3",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/20190111_115218_HoloLens.jpg",
+      "sourceImage": "20190111_115218_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "0a41016e448199fa51d019ce7e3b486cad0b2fa780cc103b44c933fe8e0c9915",
+      "imageSha256": "3c5e903adff4036d2eae3f57b4519158343aa93a9412160688d7143d0d702d4a",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/20190111_115234_HoloLens.jpg",
+      "sourceImage": "20190111_115234_HoloLens.jpg",
+      "captureId": "date-20190111",
+      "split": "train",
+      "sourceSha256": "ca1ae8969547f5fbc8430d07bf019f0633391a4b14ca72f3b333526454762e5e",
+      "imageSha256": "633b8f391385201e4bb52db3ce524ee549273091aa0ff8fa761af44cdae2c053",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        1408,
+        792
+      ],
+      "preparedSize": [
+        1408,
+        792
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/20190125_113909.jpg",
+      "sourceImage": "20190125_113909.jpg",
+      "captureId": "date-20190125",
+      "split": "train",
+      "sourceSha256": "76a4bf92654e8a02daa2171181251d45a179ff734070a99bc540317146637822",
+      "imageSha256": "220cdbba12033799e729e5e68f71d93af0a365dd2c404610ef10dd8570891fba",
+      "labelSha256": "0fe2d2772eda0d0168a76d1d7169d3e612fbb94a6b5128cd22f1fbfe2daff022",
+      "sourceSize": [
+        1960,
+        4032
+      ],
+      "preparedSize": [
+        778,
+        1600
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/20190125_113923.jpg",
+      "sourceImage": "20190125_113923.jpg",
+      "captureId": "date-20190125",
+      "split": "train",
+      "sourceSha256": "0489cb0bcf9fdb2164e3ed9999ab41658902cbf6ca2c86eac4567d0d9a692b8a",
+      "imageSha256": "0f31f4603d8d8768fed17fa754c3865f0e469973a0ba317f53b933a7a61b591e",
+      "labelSha256": "3bf601fada1ec209268046c9e238a3a64beb31dbd78146b4d3c1414d2ab6a719",
+      "sourceSize": [
+        1960,
+        4032
+      ],
+      "preparedSize": [
+        778,
+        1600
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/20190125_113928.jpg",
+      "sourceImage": "20190125_113928.jpg",
+      "captureId": "date-20190125",
+      "split": "train",
+      "sourceSha256": "4c76a7f9281a748797782dd40fbf95fa43b1d9c2850fc3851cc00c57c809d498",
+      "imageSha256": "8731c0be01a6686f4bde3b78f2e16a41bfc3caf0df3160e708d4942d1602717d",
+      "labelSha256": "e733804b943c967ad480cb954142178474c25473d1c18efddae8cb6259b8e26c",
+      "sourceSize": [
+        1960,
+        4032
+      ],
+      "preparedSize": [
+        778,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/20190125_113931.jpg",
+      "sourceImage": "20190125_113931.jpg",
+      "captureId": "date-20190125",
+      "split": "train",
+      "sourceSha256": "8ba5a2cc0fe17bb3594a73adcc191510048abe1e723af566396d9cae230ad610",
+      "imageSha256": "c2de3dc292ebd218ffe3d0e87538fe2e9e84efa4994b87afd7d96ce04842e617",
+      "labelSha256": "3f743f495316e991a3d85367a90cb49328e118446a23a6cac17c6b7bad8327f5",
+      "sourceSize": [
+        1960,
+        4032
+      ],
+      "preparedSize": [
+        778,
+        1600
+      ],
+      "boxes": 1
+    },
+    {
+      "image": "images/train/20190125_114244.jpg",
+      "sourceImage": "20190125_114244.jpg",
+      "captureId": "date-20190125",
+      "split": "train",
+      "sourceSha256": "ebf1e8e6319e5f7e0a7d2ff53d74777bdc8ec5a841a89186b0679c9af49b8133",
+      "imageSha256": "25df2e06c8cdd1d3bd53c966bd95c91bcdcb3824fd5e19198d0471a2543c83bd",
+      "labelSha256": "6b6bbb5ee28ca1d8291ae8f6592cc9989d26c0e54035b7b0b0a71e51d0b27c06",
+      "sourceSize": [
+        1960,
+        4032
+      ],
+      "preparedSize": [
+        778,
+        1600
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_125954.jpg",
+      "sourceImage": "IMG_20181218_125954.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "7814b8cdfe9b3ddec4dcff30f48f9852bebff7d38725e750a583f27eaddc0bf4",
+      "imageSha256": "f9f17c95ad3185e21eef9aa56923ff7038b24283ef8b3624540d4f69a5626290",
+      "labelSha256": "a3fb9c70152ac3fc65b6f8555ac9a72a0f0f21abf77c2f3d933bec4e6b4e4ca6",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_130002.jpg",
+      "sourceImage": "IMG_20181218_130002.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "3a538aa285ab28b9890be9bd8a620d70224495a8f7c2ba6db6b0cb3f81f38b6d",
+      "imageSha256": "9354f4f8fb6e82074ad65b073988dc2829eff3fd73207a3b0128dc87a53cab47",
+      "labelSha256": "b5a5c37eeb2ae144bc539a7a7eff594d329542079b816e30dec02a831118171c",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_130005.jpg",
+      "sourceImage": "IMG_20181218_130005.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "acfe617df7895c8bf6446c89f48286cf5a9b209cd67c0b5abe79ddf6e8ca8571",
+      "imageSha256": "46de99745826d47ff258ae001a2134b5b4499b657824c6e888b19bde4ea6e426",
+      "labelSha256": "5d35c0e12b8323db3fccb5bb93370dee8e19a7d73180c0d993ea42a380143a80",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_130011.jpg",
+      "sourceImage": "IMG_20181218_130011.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "3a07cb8959043163070c7a521edea7435a15ec6c18ca7dfa94e16d5969f6eef9",
+      "imageSha256": "fc21b53d9f012913923e5fa3b7c51994f7dfcd620907191d1fd15009b7c976e8",
+      "labelSha256": "9548148d1b8b482e614e2a011b90c161da23411b961c13a9cfd3315197847d79",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20181218_164606.jpg",
+      "sourceImage": "IMG_20181218_164606.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "d77397970255c60c2893d4bbef5da574e83174f4983a00480237202c705122c8",
+      "imageSha256": "053e4776d82f0c2dc9daa9bab428e68be537451932eb211d5cde0cdcdd1775cb",
+      "labelSha256": "b3534cf9b8e48230794f75d0fb9e98ca88ede4079ae85984a670638963a77d4a",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_164608.jpg",
+      "sourceImage": "IMG_20181218_164608.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "f62051ba64373d5da6d55ad912eca4d2bbc910edc74d79f7c1c463512119c110",
+      "imageSha256": "252f1e724000eb97576e03b3cb19f4539cce58d69be80ce22854a80331b86188",
+      "labelSha256": "20c82733cfe4fcbea1b51da8e21d824eedc7fd2ebfbbfa9c3279b225bb5f8d1a",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_165501.jpg",
+      "sourceImage": "IMG_20181218_165501.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "c9dea7fed2a334b4db4dd337b985f69542ccbfd6ef93e8d22e188bb44a60514b",
+      "imageSha256": "604f8266c54975e96f2a44231290189f81043526dcb455799ff4fc6171a1a8f1",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20181218_165504.jpg",
+      "sourceImage": "IMG_20181218_165504.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "05a41ab2fbc9ccfea72d1c5fda43b3894eed5f1dec50cd5ccc8f2bd20bb612cf",
+      "imageSha256": "4a0c6f1b2761b1330aa788f3a192da9b3731cc49240eb1ef8642f216e7607099",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20181218_165508.jpg",
+      "sourceImage": "IMG_20181218_165508.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "2bfc11be33eb903f99ac1054cacd7f6887d4b1a4178923a58e3defd9dfa78ddb",
+      "imageSha256": "82bbb3d7d15c64fc115501fea8d2e9d0b93127619f3871da1c4a73e11a87dd87",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20181218_165513.jpg",
+      "sourceImage": "IMG_20181218_165513.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "a831fb6f823f5bd196407c84c002af61c3edd9bc1b766db797f55893ab6d09fb",
+      "imageSha256": "d8650a4e2b5afd80dbe3650f964fa1b6efddd6d82e68f7b9b8439e0df6c8fb4e",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20181218_165646.jpg",
+      "sourceImage": "IMG_20181218_165646.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "4c36eb5c3d4b75577ce94ace76ae88d9ae7c0ec18441123842f7aaf383cd6d7a",
+      "imageSha256": "217308107b9e0f3e8265c3d0ef90640b460f7b8868aaaa66152da2ce0e3df37a",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20181218_165648.jpg",
+      "sourceImage": "IMG_20181218_165648.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "dfb7979e35d29ad4c6ac1da7fa8c4354b6a32c57841d0b5ab5fffc0f33f23ca5",
+      "imageSha256": "eaaea8f67cd6265a3a7941fc2ed0a01025b5481e30c76782d6ecca99e4fa768a",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20181218_165652.jpg",
+      "sourceImage": "IMG_20181218_165652.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "6ae341a8bac0da178c5e00bdde4070fc9e0021265cfc0a1605511c77493a987a",
+      "imageSha256": "bc8efe1327ef39ba0f546531404d2aa8ccbe4bc9b517690f4b252c408db43891",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20181218_165657.jpg",
+      "sourceImage": "IMG_20181218_165657.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "edef7e6bb142edfd061f69c05ce0a970b62d8e2e1eb8da6e7834be25b6c9878e",
+      "imageSha256": "fbaf1e1f38e74b3ad1c97e71206bf4d0638cdfaa5c074cd052b0f5689f680372",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20181218_165753.jpg",
+      "sourceImage": "IMG_20181218_165753.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "9bb2dbb3aad1ed671731c8a3b9661b8c0252759a92af5a8553c2dbfd121d3c78",
+      "imageSha256": "7777e037ef346360d93ec4dfd649cb60ae3a9d1c08d3e533efaae5334808a711",
+      "labelSha256": "875cbe52d8753a4554dc9344203185615f7d2d544a760c601d9355952b5bad05",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_165757.jpg",
+      "sourceImage": "IMG_20181218_165757.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "f9bcf7b162c8ea6d92b470a7da1da35b5029612b77ba4d49b80d1c6b416dbd61",
+      "imageSha256": "0f688c4815a08f6294a8727a3c48eb4791b633f92f7c10582f5f2cf483f34a01",
+      "labelSha256": "e63fb14ae29aea2f5e5336b7ccacc7c0648eaf54972affd24699abe3b28037bf",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 6
+    },
+    {
+      "image": "images/train/IMG_20181218_165800.jpg",
+      "sourceImage": "IMG_20181218_165800.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "72111d8790d24f7b86b5638c61021af8ca73353176d815542a5f153e738db157",
+      "imageSha256": "218ec2eb0c8de2789b30281de1bb2cbb3ab284b8add97834fa5d8fae55681593",
+      "labelSha256": "8c0f0d2dc6b6b0180ac0480b063205f22e08e9a158996fe58da5fc9b41636d87",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_165804.jpg",
+      "sourceImage": "IMG_20181218_165804.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "20c59b1f183586753183b66cb484bbeeb1f0d3d7e2dbae579d828c319cb7831f",
+      "imageSha256": "1c1f8ebb2644455113e06f4b026d5a5ff9a221ea32e333545226eb0d534ad6ae",
+      "labelSha256": "8834c4eff0cc0a6da455e3ae1a9fa0f436a06782cd0b04da741459fa62246762",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_165922.jpg",
+      "sourceImage": "IMG_20181218_165922.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "2059b963359982ca832f2e13315e76b3026964bf0e780d815cdc9e3c79733b6c",
+      "imageSha256": "9cd6d30ce12be662b3263c9f16713719807000bfad52c197da4c1af948492024",
+      "labelSha256": "58226857eb19dd577e667b0f869ff59559e0bc2aa83ecaf3fc9da4af0f892f67",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_165931.jpg",
+      "sourceImage": "IMG_20181218_165931.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "dd5168bf856c9b9bff9a2cb4668c8e124012363cc796b747d1d01f6b67f7428a",
+      "imageSha256": "a8b6f0d4b768f02fb21465f5baf143eecde9be7559b841e77aa026f1c05d6910",
+      "labelSha256": "ce47c50cdb49ba47e7cc915c15f92e76160368e3e5b683d284308ff609c731f6",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_165934.jpg",
+      "sourceImage": "IMG_20181218_165934.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "4392bad38ae9bb34d8ddb496d1269a535ecc348dd1e3c8777d9d7ae433327137",
+      "imageSha256": "363306958376c122b9ee7675f22aee8f87f5d34ee0121d4d8ddfe4ffc02391c9",
+      "labelSha256": "b64e717512b1fa7c795081973757e0a465c9e8c5e4b849c8368d9ff0fdf5993a",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_170040.jpg",
+      "sourceImage": "IMG_20181218_170040.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "c32462cd85162ca3e7709ddd22c74cbc99c57aae66ba1f3bcd3f7e5078944cd3",
+      "imageSha256": "4fd25bc1c0b638ea049743617c63b4b4262f9b90c88ba51711208161db1c1350",
+      "labelSha256": "b591b2b4230ef57a246f64bfdc03f348887e4dc47d03c8f1bc91a2b58da1644b",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_170043.jpg",
+      "sourceImage": "IMG_20181218_170043.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "c94cf594c87995ff4a26a9beb5b45b20693e96c430b18b76f398a4cd471b4f76",
+      "imageSha256": "d550175fc9085ae79682622a4cceff6663bc89c527ad0a40f342147e7365c09f",
+      "labelSha256": "e3be269960766929587d4b3a9b22a7514fb323f34dc3defc810228e8d4be3d1d",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_170046.jpg",
+      "sourceImage": "IMG_20181218_170046.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "119210a015a8eb37df2404051ff11df3eaee244d31fd55a73afa33f18980b62a",
+      "imageSha256": "a9a9a16330144dcdcc393e67321b9314387fa5b573130b375aa2158ea4e56511",
+      "labelSha256": "73330ce9bf07b42320a8ea9e47783ba1f6a8d3d933fba76d046776b0f010553f",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_170049.jpg",
+      "sourceImage": "IMG_20181218_170049.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "aaebb8ef4fc0a26972c30c85700d5ed3037e2307be928c9f2fe5738ae33aff21",
+      "imageSha256": "cd40e5d4726077dfd18c31aad1f8b173149214f3260955cd2df3d0565cc70f15",
+      "labelSha256": "c5b36041ebf618ea346012d59b6f7088ddab8296e137fd5d032fa46e579187ce",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 5
+    },
+    {
+      "image": "images/train/IMG_20181218_170238.jpg",
+      "sourceImage": "IMG_20181218_170238.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "3e6fbd720f97959f373c665b15efe49310512c95951e0c177c58b234219777b1",
+      "imageSha256": "969cdba34949dfa96fd2f6ad57231e2003bff8d03a8a38e6cb2f3785342dece1",
+      "labelSha256": "005a40ee3ffacdbd068c54193f9c341e6cbc9c5784be7994a630da33613c1221",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_170243.jpg",
+      "sourceImage": "IMG_20181218_170243.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "8879caa22f812a82af583aed9a36c9f79de6abd2893c39fd63acdaad6ee3f064",
+      "imageSha256": "138cfb58e20503437673d51d5a17aa3e93a306716e9f7798dee0679be965058e",
+      "labelSha256": "25b1fec75e641f069385d3c7aef019c4ef8967b1bf7e9ed102b67d8f7eb4a199",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_170247.jpg",
+      "sourceImage": "IMG_20181218_170247.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "a8a50f65fc2c78f5286873605050bf374e1e666bf3ba2a0147fb5c54c5a2b124",
+      "imageSha256": "448b62b32d0bf78e28dc2812a337b2ed143b667ff65ec4407cb9bdddb3270e87",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20181218_170459.jpg",
+      "sourceImage": "IMG_20181218_170459.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "372bf6f362dad4dbc9a0b6ec7eb0df208ae89955d8e0a196578cae0f0a8028c0",
+      "imageSha256": "50c1878a38f9e3a099bbddedea732d9077d069471a37ffbde7a5b4929adae1c3",
+      "labelSha256": "c93c175809c1fa7d99c021174f5b1d8d687b2605b32851efbc74289747fcf5a6",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_170502.jpg",
+      "sourceImage": "IMG_20181218_170502.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "333ab78aec0c0b90cf049203ecddc9500b163d47b4e0422072daf76c5f7341bc",
+      "imageSha256": "4c2087a5fdae96a29fa68213fb1be0b3ad6bc64ece1fab80b418d64e5af4f4f1",
+      "labelSha256": "d9e5d0220b665826e92436d77b9f0d77415d472bbd7f70ea938631a0d99ddf2b",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_170508.jpg",
+      "sourceImage": "IMG_20181218_170508.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "248237fbe1f5de4648571025500026282935b17ee2c1e2d32b2d31d14c2ec09e",
+      "imageSha256": "0c68c55d884ef8cb327845a3c0cdf04bf639b69a0836b37034e9c241576b6b49",
+      "labelSha256": "1b4ef62362e36fb1d72b337c155db8dacaa02cfd6a098ad588ddd59ac607fcf4",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_170510.jpg",
+      "sourceImage": "IMG_20181218_170510.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "624638280f51a24bfc444f0c6a1dd84c71d17e00d5aac4b9a1a5014ffcd621fa",
+      "imageSha256": "9789d24c6a9b68c2d86f51387d833c21a5efd1ce204f654e720dd4a0bcbc9c54",
+      "labelSha256": "5bfa7d4cdef847daedfeaf5dc476b163bb076c5e0a58cc928c8c4d0d957de488",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_170513.jpg",
+      "sourceImage": "IMG_20181218_170513.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "efc8bfbc7344929d1fede5719e84efaf782ef9322f3fc67833ad517c4e822b6a",
+      "imageSha256": "e1b7e1431572378b3401a9c94ba8c2689298f4ab8fcfa929307afae5f8c79b0e",
+      "labelSha256": "2f4508851333240fd555d536f6cff195fa0d0ec9abacfd28f6a85de841bd12bd",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 5
+    },
+    {
+      "image": "images/train/IMG_20181218_170633.jpg",
+      "sourceImage": "IMG_20181218_170633.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "354048eb3750168ef2851fe530b608e30fc639173825278794e18589a0df9464",
+      "imageSha256": "b933dfee26a0ae7b3dc1022d45edcf064a83512a38d0c5124c6b3f9798226967",
+      "labelSha256": "084ec2bda585bc25db8af51c78e2d79976706c6955f2421af25478e1a666206a",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_170635.jpg",
+      "sourceImage": "IMG_20181218_170635.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "805f0ca8632fc57d1784b223a13f2b20fba55aacd9f7897f29d4f4fa3063a50f",
+      "imageSha256": "0fc8df32abb77ccf72c1938dc024f050f96bf86f546081c6d0bfb475bdb16cb7",
+      "labelSha256": "54d40b1eb2665e7dcf84e5c4ab3d91205f985c1b78374ed3bc0030259c6ef6c9",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_170645.jpg",
+      "sourceImage": "IMG_20181218_170645.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "0a964ee048ff0723efc7da9e2fd3405551c21e475a6767f20c18b5ccf7548e7d",
+      "imageSha256": "bebca568032d3b6cd1892c16fae27ac8b6b0d4d21ae9c6728c06dc0bfb46e72d",
+      "labelSha256": "480165683daf0c6837168f991af645e9f663186ce63e607fb6cca7eeccbe3750",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 6
+    },
+    {
+      "image": "images/train/IMG_20181218_170648.jpg",
+      "sourceImage": "IMG_20181218_170648.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "ea05d217751fd45c39c543418bb6920280e4fb889df9a95288bd97c870c5d593",
+      "imageSha256": "118a2918985899f5911fafea52fde9f824d8e562d0f3d48caeac3d5e4a77a07d",
+      "labelSha256": "ab6f6d47f5ece084d24d10fb57c1b7c6f04a725c52483005b9da425449240faa",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 5
+    },
+    {
+      "image": "images/train/IMG_20181218_170649.jpg",
+      "sourceImage": "IMG_20181218_170649.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "3d5c11eee5400e5d22eee352a9366e6f6643b5dbca3a0eaea577125ab8be9b02",
+      "imageSha256": "09249437e09210fb1e57d5897e0a9089329ca7591d2af777c94f3f5d1fe28880",
+      "labelSha256": "9d413cf79dcbb304edf78ed1eed75affbae1270b58289c360b8d0f842802c68f",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 5
+    },
+    {
+      "image": "images/train/IMG_20181218_170655.jpg",
+      "sourceImage": "IMG_20181218_170655.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "903b1abebe3f824c0f603018e0266d388b21d0ff6c12a25487288b1d9255248d",
+      "imageSha256": "616a2c1d75fe9f16a012da418cbd1016650d8e11afd5f81f358a730aca5d806d",
+      "labelSha256": "589b06a0a98e1a51e0d2d24850ae07003207fe2b3b07e0a6b91494cfb071825c",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_170657.jpg",
+      "sourceImage": "IMG_20181218_170657.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "b1ccf169708a7572f62da4e6e031e42299d60ee2e42c1ba028ba4c531e9de726",
+      "imageSha256": "3040c8cdb9d9aed760762e0e9efff1b4562fa82f0c080225d4356385c116ae17",
+      "labelSha256": "3d00d7a53d978a741525bc694c2834cecddce826cd350d63b9fcefff06e40ae7",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_171555.jpg",
+      "sourceImage": "IMG_20181218_171555.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "5e411ce8ee46e42ec228744d92e0e847d54c022680d1cb5abe197ae0efe7347b",
+      "imageSha256": "f7e2254fa1bc607c55194f38497d3a8d6320d2ca1904031c039f03e04c721670",
+      "labelSha256": "21fb0f21bf6731a3e2ac760ab5378e255588c9bface341770c16144ecfc82777",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_171604.jpg",
+      "sourceImage": "IMG_20181218_171604.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "dbf15f31e07a11c7cd4cca6cd210853d8a6191ecc0c173a7b5c17a0b755a18dc",
+      "imageSha256": "2e4b7361e9b73063b4c76e867a6e4d75faeb9c09c9091ca61a1c4996d78db7a7",
+      "labelSha256": "9a2874c6a0dc077e3dcf16dd51629145740ae6ad93cfd72260621fa55f0d25e4",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_171607.jpg",
+      "sourceImage": "IMG_20181218_171607.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "e14b815de449348071c5b17f8703ee42f395d1ab52deb35ea18be667ac0f474e",
+      "imageSha256": "dfbb4076088718e0a328cab71cc47ba13f8ff2f45da163478d0203a4e91458b8",
+      "labelSha256": "3e46a18f3dff921b4850f462c60b14537076f56207d7683512da8b24327c1a85",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_171737.jpg",
+      "sourceImage": "IMG_20181218_171737.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "4b62fe5b13c06b280ad75b652fa4f99511ffb30c5a86c49a2e2f0d56e2817d2d",
+      "imageSha256": "6ccc2cef06849bc43c9d94442a096bd8b306f1e297126542764ae92f64639de4",
+      "labelSha256": "ddc82df3f7fa723115aef40ae427f28e03f8f2980e0b2cec1269dda6388ab2b0",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_171740.jpg",
+      "sourceImage": "IMG_20181218_171740.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "a37093666f667ee9ad7ec6480060cff437f08ff688ae574782ae653e8e0e7f16",
+      "imageSha256": "288501ddd04e7d32c73aaa583ed634be528070cc2c1445d30ba4ff0ee76b088e",
+      "labelSha256": "af6d8f3c14e7e0e7b5f7e2aadcd05d35a076d9ed2469c499f44696c2af830015",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_171743.jpg",
+      "sourceImage": "IMG_20181218_171743.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "db0c688e909d4de9518bf18f8861d46798a475d2e8a00fea31b43856d5fc230f",
+      "imageSha256": "a69726799d604617451b0ebb298d0cf4d85842bc57cbf1e076a701cc3f634678",
+      "labelSha256": "2da0cdd9a1b7a678a7ff9289247b0921af5db8105c4ee23feaee9aa51c3c45fd",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_171749.jpg",
+      "sourceImage": "IMG_20181218_171749.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "2e74a142e26ee8b658edad22fa8c9086931d421dda1fe4de5d8d33b5afd8108d",
+      "imageSha256": "c4f2bd6a04734fc500770df7619fcde1625a01baceabe7a3ddee1b68ef5261d7",
+      "labelSha256": "bf66da2d8f0fc2690b6500cc11b12c0a7fbb9bca3765447ca14f3f350d1a43bc",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_171753.jpg",
+      "sourceImage": "IMG_20181218_171753.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "4f964e477759254b049a8b431a16c4f3c9519733491d7aab2cb8b3b3813b6143",
+      "imageSha256": "72fab6d5c9b3c760a41ef0d42c71521fbbc0263b96a4a08dac0344100e46fabd",
+      "labelSha256": "4ac4a81b6eaf1779dd8fddacfa7aff20e54fb6018df20d85b221abc681dcd955",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 9
+    },
+    {
+      "image": "images/train/IMG_20181218_171755.jpg",
+      "sourceImage": "IMG_20181218_171755.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "f934db1050d1fe8c8e0ffe6cda086c6147533442f5141e50ad57fbec0a7a4dcf",
+      "imageSha256": "76d9f7110959d0894720320e86ab302d80f74fd7a98a5839a829b0171d117ee9",
+      "labelSha256": "fc3c8bfaea0f2bf79e05e8ac7ccc60084a3dd38cca08fec11ee34839dca0f508",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 9
+    },
+    {
+      "image": "images/train/IMG_20181218_171800.jpg",
+      "sourceImage": "IMG_20181218_171800.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "819269a75daaa9c2c8e310d42af0c8c52241500426bb3174aa06cb7c35fcbd28",
+      "imageSha256": "d1fa9234dba6e97cec206bf1d8bb341be531f0a6fff2a9cfd3aeaba7ed0218e5",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20181218_171802.jpg",
+      "sourceImage": "IMG_20181218_171802.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "813f1100ae43bf5d14eff63bfa146373b721286ea635a4c654b96234b629cb80",
+      "imageSha256": "5da3990717dcadfb99c9d201c0fe2236db5d901fa3156243e96032269875487e",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20181218_171805.jpg",
+      "sourceImage": "IMG_20181218_171805.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "7c267a719209504071469d8ec64c0953f23b9a0da05a4c32ee2a0604c1c57953",
+      "imageSha256": "b0b6fb96e7cc03a31a5d310a785c497489992f2344f9f8247f94f0baf37885ed",
+      "labelSha256": "ab6cd67a59177f3a38edd34bc0298a62f17ff52164237eb0a0786ac31f592608",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_172430.jpg",
+      "sourceImage": "IMG_20181218_172430.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "178a6cbfc2ca05dd58d29f235ef15f566c1de5d219de2c731e8d925b2d66cb5d",
+      "imageSha256": "0917bc3b6ee670f2bc5352b9a2843d4289aefee4891fd4c7e9ec02adcea25b43",
+      "labelSha256": "32c518d6755dd35b370315998bdc994ea3455c5b4468ca6d4599cd0f6d311165",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_172432.jpg",
+      "sourceImage": "IMG_20181218_172432.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "9260d099cb0cb10316f7ac92297d48d27c1bc3db6ef99e9d69b71770f8a1245b",
+      "imageSha256": "f8fac9a4acc96625d23873a352ddd2a0579dae0c4702844935a21e1ba7800ac2",
+      "labelSha256": "a6cded2af38166a48661aae515dc0e590391c4eb44de2cdea9d27721b64daf52",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_172433.jpg",
+      "sourceImage": "IMG_20181218_172433.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "49775d920db177a19d4749b21b52a7baa32d117072776768df1fb2bde99714b1",
+      "imageSha256": "3cfbcba55ce3ccaa64695b62aedd5ecab4d883a1e719b7ac471eb8b4d4eb8b13",
+      "labelSha256": "1b73ee8ce1269a272e05fad4b9161d85462bf5a46a35197bfbd95fb2ab33058f",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_172438.jpg",
+      "sourceImage": "IMG_20181218_172438.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "4973838c752e5f6df7a8186e3e5be3fa174e6f782472e55ee419c586518c6277",
+      "imageSha256": "2c0413a66e49000003ad20c7bb51205d0aef3ebb212a1b044481ca3cce025210",
+      "labelSha256": "bfb9477380a453f7f452ce61f2bd2748872c0b8df27dd94ec32fe8b2004fcf32",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_172440.jpg",
+      "sourceImage": "IMG_20181218_172440.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "721818dc7406c887cbeae6b5a94c02eb3c1273ec0fbb97c95710e238d012d56e",
+      "imageSha256": "d99da8e18388411ee376a0aace9cde0b50b1ccd61d8cfa98c7e68d046a6f92b7",
+      "labelSha256": "c07aea4cb365af5e5aef480f674a611fd095323d21da9977eeb5617b63c71879",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 5
+    },
+    {
+      "image": "images/train/IMG_20181218_172442.jpg",
+      "sourceImage": "IMG_20181218_172442.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "8809e857c7a346ac4e12c75a9cddea3945e41f91425e540694bfc3a71924dbdd",
+      "imageSha256": "54f644a26f2b525bba20babb04b6cb33fd30baf49f404e15dc0c6d4bf55dcacc",
+      "labelSha256": "c18bd1d325327d1aa2284d1b770f3a2841b03fcd648a99ca59bd8b8168fa48d9",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_172839.jpg",
+      "sourceImage": "IMG_20181218_172839.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "220f87022245780d6baa1dd215911cccc240608538776cee702c354093d802a7",
+      "imageSha256": "9e488843ea5a7fd9db4a553eb75f957588c6da3e660587dde08ce51e051bc99a",
+      "labelSha256": "770581137ab863609cc783183223b12f482a41a7169d7750501aebe5fb315a2d",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_172841.jpg",
+      "sourceImage": "IMG_20181218_172841.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "de37f5893322ef9a88578d7f604e7b7095a8c36c1a39a9242a5b90832bc1e464",
+      "imageSha256": "f9d9fd46f0ef6c5fe57a211b436b362fb6c0ffccfe89e304f24f54d13fc2d7bb",
+      "labelSha256": "efaf95ebe9bae67f06adceb8bfc150f6c2336399ca6f412c9efdc702f27af5e7",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/train/IMG_20181218_172844.jpg",
+      "sourceImage": "IMG_20181218_172844.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "ba851e9eda473a7b6fb9e7bb52f83b970fa27d172514b236dcf3e3a92176dc6a",
+      "imageSha256": "2ce7423e7013869c0b19dbb62e756a1f3aaa26f19f97e51ea591fb1242526982",
+      "labelSha256": "35aa404593931b30dc2cfd6cb81ec8bd7657e11b56d27ab7571401b835380193",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/train/IMG_20181218_172846.jpg",
+      "sourceImage": "IMG_20181218_172846.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "68714a701d8731904b609e8d137fcc6db38beb687c366c0edc2f2dcf8e17775a",
+      "imageSha256": "015d9bd296383e07b6c1341bc4a01fbc35dccfde5158fb73bfc740ff340df022",
+      "labelSha256": "60bc293537d54468c08e46c197a5a043aab8099e58dc4e7e07e6f33fa4da4754",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 5
+    },
+    {
+      "image": "images/train/IMG_20181218_172849.jpg",
+      "sourceImage": "IMG_20181218_172849.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "c44a9a49dd321fa9490b186eb270ebeed9a9b7adcdb189dbb72e3adc96fd7c84",
+      "imageSha256": "a58efccbec81b409e65e1b28b5a83c7112a9e05079f7c1f6632cc24d8ea14039",
+      "labelSha256": "44574c462aa6f56050eb5d496e6c38fb79089c456461f37d0055d7120301c9aa",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 5
+    },
+    {
+      "image": "images/train/IMG_20181218_172854.jpg",
+      "sourceImage": "IMG_20181218_172854.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "eab7b693ef5508851040148350dbc07e46be78d26bc304cc29380df3367fb8a2",
+      "imageSha256": "166610ab7617d469a7977884d98f117063b567dc0d3c570f8c4b919c69bc22bd",
+      "labelSha256": "6bda9ecc96e9db03d4c77c94578218810a84bf46109a1a4e13a6b9ec73bcc627",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_172856.jpg",
+      "sourceImage": "IMG_20181218_172856.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "c3d8b40e35350747cc3959e453ba935441cdf43ee5aaa81877dc82ecdfff74dc",
+      "imageSha256": "64d2848addf27eb155c6b6cff8a511d22f141d8fbbf97eb941b56e0783b43dd7",
+      "labelSha256": "2a0518ebb73856c695b210d600083e48b86154dbcfb5da4be49572026482bc82",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_172857.jpg",
+      "sourceImage": "IMG_20181218_172857.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "2fa68bb8f3c7e43b109b647161d25b9b832a60301484d7e0ebd098a35dd2194b",
+      "imageSha256": "a16c21475ae194a9687cb55f80215cd6021c095a6150134ecf312e3dcc9aa142",
+      "labelSha256": "f7783fc1b557792cee24e4342b773a52a7e2574f8e9b08f883e14237fca0cd23",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 7
+    },
+    {
+      "image": "images/train/IMG_20181218_172859.jpg",
+      "sourceImage": "IMG_20181218_172859.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "6f36cb060d34326fb2355a6d85a8b30c382ad2022adc2c0b7acfc925a5e62125",
+      "imageSha256": "54153e6c162d926d9eacf964fea395d3e98f3fb69e6b4c1402573538a45376dd",
+      "labelSha256": "ab70c0f6c9f5678aab1569b364ab528a8e656ff818ebf04a789b37d3fb5e8b9f",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_173028.jpg",
+      "sourceImage": "IMG_20181218_173028.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "abea72f4b150ed262161b103486acb5c0fedabd521d08732eaa26ef6df2aed3c",
+      "imageSha256": "806339a958ccaff2c9a83fa618d611665367ec945ef5e7f0f18d65c62b273aa6",
+      "labelSha256": "b13af417a56fe5fe0f1aef21ffffff074058483b553f849bbbfeb9a8d68ff3f9",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_173031.jpg",
+      "sourceImage": "IMG_20181218_173031.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "52b3a0275c4a9667b3ab6c0768b2e9e2a64b0f271519b844f60edf2d386ad922",
+      "imageSha256": "0897a5db3e98bdb039b8a79a9e618f0a0e119ac2ee4e4b3897b44cf1aa7576b8",
+      "labelSha256": "f5f5293f26d34b876289bc9776b28cb1b7fb488b232370f2c0e7d1ea4133ead8",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 9
+    },
+    {
+      "image": "images/train/IMG_20181218_173033.jpg",
+      "sourceImage": "IMG_20181218_173033.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "9ffc318d20b25af3fb10fe9c5be7eb5b24f69802e984723a8bec4779f929bb4c",
+      "imageSha256": "7700cbef741ab3c9a76b58503711888e3c5c1e844ebd6dc10146390354161708",
+      "labelSha256": "0a53203ded17f25c0dc8aeb5b58426fb8ef1cf38aae9b01f2d03d036f15e91b5",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 9
+    },
+    {
+      "image": "images/train/IMG_20181218_173035.jpg",
+      "sourceImage": "IMG_20181218_173035.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "6284482bc88e2f20886d8d85b3428fc2d2bf77a7a4ef1ead26392c524f30f8e7",
+      "imageSha256": "86e27ea8b42e7e130f2600141ac1dfa074c1009fb77463de9e05d9392a43befc",
+      "labelSha256": "3794637637f67b4b1baa9f631bbf8f15a836460eb6ab5ffe6be99a46df4bbde3",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 6
+    },
+    {
+      "image": "images/train/IMG_20181218_173039.jpg",
+      "sourceImage": "IMG_20181218_173039.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "430317fee629de915253ddbda811cd7c4e6ad06c4b1825c1671ed0bae50edc09",
+      "imageSha256": "3635f7772ff133d8f871706a02f0c5d5dc732b634facf878fdc8c72e7d496456",
+      "labelSha256": "16291274ed64b51b00fc4ea2121b82d191f0343c5ea2555b6266358b927d8023",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_173652.jpg",
+      "sourceImage": "IMG_20181218_173652.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "2179590081a007b5fd32341193ba3910f9f07c146bb149043043a9cb95172806",
+      "imageSha256": "a626adfabcdd8712d1c6b3a2b572a7d54546263ce84f264f6ac9e40a30292858",
+      "labelSha256": "781d297ba874a1cee2fa2ddfc6f232d418d429a582a6c2957dae57bf0197c266",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_173655.jpg",
+      "sourceImage": "IMG_20181218_173655.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "eba874bd7c8b35a10924e1a7125f44d35f72d27695c03b09f7d1023fb9dacf07",
+      "imageSha256": "1683314abd15f81fcc1e713ac3eecd6fa456fe3ac74806eb495c62f2fd4121d6",
+      "labelSha256": "acc9e81abcd388af086944a4ecfe162af2d3ef3442dcc841676a6370f53ab01c",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 9
+    },
+    {
+      "image": "images/train/IMG_20181218_173657.jpg",
+      "sourceImage": "IMG_20181218_173657.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "0ad5d49e5ab77690fc7e8560f3cc4c2b50e3e628ef0e8866ba2f18534f3e889d",
+      "imageSha256": "e6c07164686fe6db68f7e0c390a2b8c6fd7af153c481ccb8211f5d8823d9d75a",
+      "labelSha256": "604004afdc7ad0ddef283151663723024b80c285400bdcb36f376d0ef32e1b19",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/train/IMG_20181218_173700.jpg",
+      "sourceImage": "IMG_20181218_173700.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "cc847839a7d9abc8cee723938306e883caa4b6c1e3bc3a22cf80a978637f61e6",
+      "imageSha256": "71d8d4ddbff5efdb0ba811a21503de6719bd6d64c6ef8925025e5a22f29da853",
+      "labelSha256": "6620063a329928d5baa53a204f41415ef8bf876a59e63c27654d0bbe8c8036cf",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 5
+    },
+    {
+      "image": "images/train/IMG_20181218_173702.jpg",
+      "sourceImage": "IMG_20181218_173702.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "2827218aba4375508cc3d7a20b1dd924c91791dd5426a3e32fca9120b1d258c9",
+      "imageSha256": "f05c3888525838254b0d77b03e26de428559265c7e3457e96e3b65666fead21f",
+      "labelSha256": "0960128f98e2af2210b8b722168c6fafdfdfa6916e14c8015bdba32483d1fb71",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 2
+    },
+    {
+      "image": "images/train/IMG_20181218_173705.jpg",
+      "sourceImage": "IMG_20181218_173705.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "b65a97b4dfe21c1285373c12aa31d35a727a4c6c4d538263f7bffddab3114725",
+      "imageSha256": "85d68f42e3a9156deb4816b2e5bb721e9adeb8d638b53754dbc904867031dfc1",
+      "labelSha256": "1ea19460cd7c867400ecfb04b548a65dcd3a15f62412883f242fa5a8754a2f26",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_174501.jpg",
+      "sourceImage": "IMG_20181218_174501.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "088e39b5fda7e8718e68ca5d5e6d326891d3a9f3197860e488a2b25932e4b1f8",
+      "imageSha256": "6756de484e26c817128d4190271e1eb87994fca38e604de7d6da898d7e1cecd6",
+      "labelSha256": "5d3ca711388a095ffd5e87c008b19ea730b1b6d1aa01c63f75815b0ecf5da250",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_174507.jpg",
+      "sourceImage": "IMG_20181218_174507.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "db0f87fcc5364a5dc9a84fdfb435108d6aea52885bf95c264644fd5679132360",
+      "imageSha256": "0ebe5c41f78621f14f7a322b32fe6b6456a508c6384fc752e15b4724cd247168",
+      "labelSha256": "09d2f4a60224d51e12884618afca46b8af3bdec2d70389d0e258db9f62a90b24",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_174511.jpg",
+      "sourceImage": "IMG_20181218_174511.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "acc9416d6089092cd24bce183d28defd411874aaeeb3933fe893faa206eb8817",
+      "imageSha256": "5b4184aa8edabb897e62e74a376204d991d6ab2a89546f3431c4777fa69da7bc",
+      "labelSha256": "70df3ada1a806575c8ee7d877072d2569119b86778e40a22cfdc86c870d89f68",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 9
+    },
+    {
+      "image": "images/train/IMG_20181218_174557.jpg",
+      "sourceImage": "IMG_20181218_174557.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "82ed52af6f1bf51954e6e8dc96e48f817722ce199e7abf0d11ec955559bdfec1",
+      "imageSha256": "95dd01c5ac173f870490aefb4a71009b067451fc44ee513a3e685ae3b463ab15",
+      "labelSha256": "8679a0d266dfd1718dd6338b88e63e2fb9aa0f55163a92843c7cc400130d1151",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_174559.jpg",
+      "sourceImage": "IMG_20181218_174559.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "733ecc0e76ce9858c1c897317dcf72d97262c79daec512ced872440a73b595c1",
+      "imageSha256": "64142c5ae04446de95a5a4373f15fa334a2f7d4c54e512e762a531fccdc20c12",
+      "labelSha256": "aaca9b4e35561442b15e19b28104824515e2e331c5075f7966c66ef383eeb760",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_174601.jpg",
+      "sourceImage": "IMG_20181218_174601.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "29985911876ad3e0d4455f8b74b5ae526fc9f49d0b041beb6272d680acfb7a69",
+      "imageSha256": "978f9d696841ac939b3deb450c037006558be4330530b7fd7432153ce0821966",
+      "labelSha256": "22d4fb31c9e68cf7f1955fc0ed9955afe595929d09d70c5252a2ce0822d514c3",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_174603.jpg",
+      "sourceImage": "IMG_20181218_174603.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "d2b8daaff1af0f0e740176cddc9e90cfea241940d7301c9e9b9d72b3972dd0f9",
+      "imageSha256": "17e45c93eb8ee443f6249864b57184e835282ac45829017bf94fb8606983760d",
+      "labelSha256": "6124c9efadd3e73d7f58f562340136115240c8e393c5ba95b63795fc51d77bc8",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 5
+    },
+    {
+      "image": "images/train/IMG_20181218_174605.jpg",
+      "sourceImage": "IMG_20181218_174605.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "3fb5976e16afc73a6c0d09ef36a0949407810afd1f1daea7de7eca5e11d11502",
+      "imageSha256": "ffb2b6e91b165623823341ca3cc4cd9bee0ade246708309e4dab161e0015a673",
+      "labelSha256": "0a0c067a5bf6d28c7bf141bb5ba48fba56378027ea4303c35b74ad500e3cf9cc",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 5
+    },
+    {
+      "image": "images/train/IMG_20181218_175259.jpg",
+      "sourceImage": "IMG_20181218_175259.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "ab36da537c42c2b1a182c5f51870091c262b532e2681745eab019e362c75dc18",
+      "imageSha256": "e86a8e0c44613e3327a2406b2fa1e95411d7b7362e708e1163cdaa05558bff57",
+      "labelSha256": "6244bbd21c9832253b9bd083323e58abb889691d7fe679f971325a56967238a6",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_175301.jpg",
+      "sourceImage": "IMG_20181218_175301.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "d33a7ad84f634922da5b66a8a053d7355ac923c694c0f0b2316e4b4ef093bb4d",
+      "imageSha256": "0f6019bd757c0d6a15917a90355bbcd8905e1872261c9e45e1b91e93ef744051",
+      "labelSha256": "b22cee23534c8c5e8329122700fce03b90bd90c5c6610066f07d28fc99a83e13",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_175304.jpg",
+      "sourceImage": "IMG_20181218_175304.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "aea106c0337741e8689faed01a7fd37768b36b58c5061a8aa69944b528f9696e",
+      "imageSha256": "ebe671e068daa40b1e0644ae72b35ca6631a02f6aa3e1197b065788746cbf20d",
+      "labelSha256": "66a77208cf5950cfe72974322b4445a948ea830727e794f6a0262a660074ea75",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 6
+    },
+    {
+      "image": "images/train/IMG_20181218_175308.jpg",
+      "sourceImage": "IMG_20181218_175308.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "7deedf939b6a183c5c0d2cfeacdc503f93aba51d902bac3e99466748521c3430",
+      "imageSha256": "64f0ddb97c1e49540626fa93501ef792f287173e8bc8c476f37724067f812a3d",
+      "labelSha256": "850cd7b9541ea1dd6bf33459d57673e87f2deb142af15a795ec0874cb34e81be",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 1
+    },
+    {
+      "image": "images/train/IMG_20181218_175311.jpg",
+      "sourceImage": "IMG_20181218_175311.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "c89875c33187c78835dace6d32d662b13578a894ba6bffbcc690d18bbc584484",
+      "imageSha256": "8daadb7d8b27dc4f91b1229a6b326dbaf00c7e041a34104740c50a96f89b80e1",
+      "labelSha256": "6dc88c57863d7b590cb96b827d767dbdb518e195d16085bad15ac08230c8396a",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 6
+    },
+    {
+      "image": "images/train/IMG_20181218_175334.jpg",
+      "sourceImage": "IMG_20181218_175334.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "645ff92fa655a0f6629ff80fb7a2600223ad5ec37c70121f17e7de3390a3c17f",
+      "imageSha256": "d2363bb2c3379d29f84fbc27dddcab2e9f83315aa820b9f2e99ef52e184f0fe3",
+      "labelSha256": "700c4d7bbd7736d2ce6f88d34b43cf8d39d09ef28618a147e031d729f4e757b9",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_175338.jpg",
+      "sourceImage": "IMG_20181218_175338.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "098b05ee8b7137a4a998e5cf8028c41cf49880cc2a2cb39d5a23ee22fb578168",
+      "imageSha256": "32c8f644e25f98bcdb3e329b197ef79d0c202e5ca7276c3d9161b0dfc04a119b",
+      "labelSha256": "08c3b46f31e5895c7795b96cd8ff22117a976f27a653ec790368850803384f44",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_175340.jpg",
+      "sourceImage": "IMG_20181218_175340.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "e0027a7adee820d2a20d2ca543e7456c8ca630f6029bf42c6e95d3ccea47d211",
+      "imageSha256": "10683ecb05e9357c95e43086bcbe0d44b200410384d19c6b4bf0fb6af4208976",
+      "labelSha256": "481c6b98ece88f8523b820e0c4a630e373d04eacdee35e82f090d444f648ab3d",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_175416.jpg",
+      "sourceImage": "IMG_20181218_175416.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "1247703be319f798168f3bbec8a050bb5da3f71350e7c88bb61e11ac9893051e",
+      "imageSha256": "3cc93ae7ce0e5d9c3f66daa144ddcc932028f5081f796e9406122e1f6d620b7f",
+      "labelSha256": "c1e9e01e8cc10d92ad92c115f03adcd81c1ecf377a020fc52fe3cfc92ecaea5a",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_175420.jpg",
+      "sourceImage": "IMG_20181218_175420.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "6858f3dbea1692e2d24f650393abe358f9ac02107b368722855297be335b118f",
+      "imageSha256": "905e3323c2e8ad560f9f55b3c61a7c42ce743c39d472a4dfd6f2e6bcbc693111",
+      "labelSha256": "4b0a24292522246a2a2b13ea25bcb1eab8a4900808c9ed597bf1219416dc7653",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_175423.jpg",
+      "sourceImage": "IMG_20181218_175423.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "c5c6a014c967783c65b233434c893133c106d3bac5ebac89d20cb297435f9045",
+      "imageSha256": "2d347c9f54a1e7b2eb754643abb5d79948dbd44995925cacbb5619df65824d73",
+      "labelSha256": "0e68375dac5542e392518867b5cae0213294b3d6d71d945d180526ed82fe3314",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_175425.jpg",
+      "sourceImage": "IMG_20181218_175425.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "422b9ab6a2492d8d1fcb0f89ee941ca9f880477d048bf33eceb4b31a0c46e1b2",
+      "imageSha256": "74ebf4c975b775d19e747bb2a51174caed5a425c63c9bcd8f79615044bacf902",
+      "labelSha256": "27517691f65bbd5f0caf4492f1ec19cf9dcfa4bce2b97b21220f926bb330e3c3",
+      "sourceSize": [
+        4640,
+        3480
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20181218_175457.jpg",
+      "sourceImage": "IMG_20181218_175457.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "46c6c2d78860c19b1f8123494798f33dfbdb9fc71783f262271f84be0281f50c",
+      "imageSha256": "5c3de5ec6bf76e452d2f328f196831e98d874db6a194ff678154ebac3b6c53a1",
+      "labelSha256": "1416a2ab3d9a64a23c805faebc831f2d07707ad62013efed796e64f20bb0832e",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_175501.jpg",
+      "sourceImage": "IMG_20181218_175501.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "6d8e2e74d2ea1fd61f831b01af3fc7659af0ed2971f795355feafeae9c5a3a86",
+      "imageSha256": "790ce03084a572616152e347535ad97115203d2ae28c9219239be664488d3876",
+      "labelSha256": "5df2517eb822a4fbedfd0df7a862a1202c13fc56626aec9bdb4dffa2fd1588b7",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 10
+    },
+    {
+      "image": "images/train/IMG_20181218_175503.jpg",
+      "sourceImage": "IMG_20181218_175503.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "b4d83e2616a853f5e78ac96f026d95d3d5b7ad8be85bb886cd329746bdad001b",
+      "imageSha256": "c1ba1575e2405957d45b6d935233f291e50facd36970c8f75f5c8cbd929a3753",
+      "labelSha256": "e3434ea0af2fdd5ad487d7a258d4b48312890521639d036a5deb630626500811",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 9
+    },
+    {
+      "image": "images/train/IMG_20181218_175504.jpg",
+      "sourceImage": "IMG_20181218_175504.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "7eeef226685801f3625da1acf5dffb428c3bc49160b70bf01d956f8d52ec0a0f",
+      "imageSha256": "39a154f75017d5d9a18e29e5259b68e2f716736543bb16cd0fc774ffe69b96d5",
+      "labelSha256": "a3cd101ac8ae407c61e73a15103178529b06326ef02de3234c03b30399889a95",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/train/IMG_20181218_175507.jpg",
+      "sourceImage": "IMG_20181218_175507.jpg",
+      "captureId": "date-20181218",
+      "split": "train",
+      "sourceSha256": "4d19de61d27efc80f46cc4858931c135f73594834c76a1b1bf64ff68a226133b",
+      "imageSha256": "310082f692c8830ab18432b1ec7c171aaf7dc20faaeef5b76ba04c0587202307",
+      "labelSha256": "dc14041bde48a71a31f9d955475bd12c9508f3abff3a1351909df4350bfbf467",
+      "sourceSize": [
+        3480,
+        4640
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 6
+    },
+    {
+      "image": "images/train/IMG_20190125_113823.jpg",
+      "sourceImage": "IMG_20190125_113823.jpg",
+      "captureId": "date-20190125",
+      "split": "train",
+      "sourceSha256": "88db06a435f66906f9ac47aea1e98f358584e98baeb6d74f909e97c36106698e",
+      "imageSha256": "5bef1b7e797b2278500f12cccb77980264f0d361d991021852b35925db1b60ce",
+      "labelSha256": "142eb1d3a6b410d9a57a1e27eed0be05838a418c3188991e85b687b4de5ada9a",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20190125_113830.jpg",
+      "sourceImage": "IMG_20190125_113830.jpg",
+      "captureId": "date-20190125",
+      "split": "train",
+      "sourceSha256": "915768765e68d4c6ad3ac03218eab949496cf71a5cc7cbf2afd3d9729a49cd94",
+      "imageSha256": "e70b125c22889a9a909cc4e1b9b393ddffc40d3e22cafa058052f1b58f6b21a2",
+      "labelSha256": "10a2e9118634f279bc23972a87fdcfba4592a277b90c3e23521108bb2302d0ea",
+      "sourceSize": [
+        4608,
+        3456
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20190125_113835.jpg",
+      "sourceImage": "IMG_20190125_113835.jpg",
+      "captureId": "date-20190125",
+      "split": "train",
+      "sourceSha256": "9094de2ca6b949bf7cc371d6fc5e556b3899e9d8865526017ad04f3f86de0c86",
+      "imageSha256": "582bf5d3827cd618caf52d249e81b26eecffd63408cf4d5cd282c2b4be8cf95d",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        4608,
+        3456
+      ],
+      "preparedSize": [
+        1600,
+        1200
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20190125_133951.jpg",
+      "sourceImage": "IMG_20190125_133951.jpg",
+      "captureId": "date-20190125",
+      "split": "train",
+      "sourceSha256": "fb7ad7e85905d40827c79986def35223c9aba60d4c5ddfd733bde13c2381c542",
+      "imageSha256": "46e89ffc0c26eb8dec6128182979ed61fbe8763fbede71a366fc63ab2b1a7873",
+      "labelSha256": "b128d626862e26954df9efb04085366961d0769e18c543795f175447650df5d0",
+      "sourceSize": [
+        2112,
+        4608
+      ],
+      "preparedSize": [
+        733,
+        1600
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/val/IMG_20190206_120945.jpg",
+      "sourceImage": "IMG_20190206_120945.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "6998ffdae82552d49bd8d7ee06ff0cb83b1e70e21832bb7c6c62718ba43f3e6e",
+      "imageSha256": "857f79ec6fe8ca71f715050a8cc4a321d917a6dcf2f849fd6595b5a7f76784cb",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/val/IMG_20190206_170138.jpg",
+      "sourceImage": "IMG_20190206_170138.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "8649f07c1bf9f61f59ca813164edcad0f69819b7ed4cbff0288900db68e2891a",
+      "imageSha256": "ec2d220a2f2b1ab6bc075859c2d0622d45b7a0b7e050a01909b371d32cf93dea",
+      "labelSha256": "e26c9148d4c03d1da541508a7f570f33b2f88608798b563cb62b6bf1e4733c22",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_170142.jpg",
+      "sourceImage": "IMG_20190206_170142.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "7d25c000674133910e7eeb922db09343e627d3903027bf157b9b9e66d70f6f2a",
+      "imageSha256": "14e202598daad0e3ccaaf66ff68b73afae0e311e16d79d824986a9c10efea4c7",
+      "labelSha256": "5911ada73af1332bd2a7f7ba614b89fd59eaac30134345123b30711ec6a69aa3",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_170217.jpg",
+      "sourceImage": "IMG_20190206_170217.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "2fa6af7878523191c1f48489c40b0c2aacc1109ac3001cd4d679122af775576a",
+      "imageSha256": "20be9d6cebbaaf3560846d982342529f3407d1386e2813560620d51c0b3bdf08",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/val/IMG_20190206_170222.jpg",
+      "sourceImage": "IMG_20190206_170222.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "384d9cb751711ecef4eebda39fe479b99eb12896d01e545c2023440e761ee56b",
+      "imageSha256": "545eab5aabfc33a60e3d3c2fbad51df4a4398630024998cec587759faa3fe997",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/val/IMG_20190206_170257.jpg",
+      "sourceImage": "IMG_20190206_170257.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "73ff455b3a3d1f523688e60daec7f8971b02bc1798590337c65480c5ada3f4a4",
+      "imageSha256": "a262c8f0737f7b77a70162e925b60f74780eaa69e27cf9be6bb67f50857d3956",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/val/IMG_20190206_170337.jpg",
+      "sourceImage": "IMG_20190206_170337.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "1628edf1e39f50bfeff4d58bbe75c026e722565ac169f544ed3cc6c902880490",
+      "imageSha256": "5fdf71598c4245f839a14c9f9465c97a747c5ede854fc7d7caf319f16e278fd5",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/val/IMG_20190206_170434.jpg",
+      "sourceImage": "IMG_20190206_170434.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "8d7d9d78396b74b678a60eb805eb349af282dcf2bbbac4f071967b7e9b4279d1",
+      "imageSha256": "f115702b84a3824f42cacefb1e1fe52f118cff481b6cc8e77df8147b65dca229",
+      "labelSha256": "bfd542542624965478d3533c2992467dc6d49bcb8b405fd85ef9f612df4f5460",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_170436.jpg",
+      "sourceImage": "IMG_20190206_170436.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "52798c6160b3ac8859cf1618d29bb49b1d41293b921588a8bc4c47ce1a39266e",
+      "imageSha256": "b9fe6c44a942d48218ce3989883db3fa25acd76fce4ed6605c2c7bd34c8dbd5b",
+      "labelSha256": "26ee894525520ddca94776eb20126ba0cd5ea5a14878b285ad5ddd89e5f5ce2f",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_170446.jpg",
+      "sourceImage": "IMG_20190206_170446.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "482800f979ea6a597d55e08f0c2103d3de04b67ec1a2527f091cfe150e9c2675",
+      "imageSha256": "ffb7426f0594b09e00a7b6498059eb25029dccc9d16e2f60d16b78afb43d12d2",
+      "labelSha256": "3bf0a84673991b0f70c9df67690ff4a274ae697575d763ea4884b92464e774a0",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_170448.jpg",
+      "sourceImage": "IMG_20190206_170448.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "41cbc835d2dce27236de23b13195bc44c64b8d7a401c85d72ddcd392f2b9c7bc",
+      "imageSha256": "b029f876fd96ad084adffb8980418fe4ecf9eb4149c8c2255cd054b64908d7cd",
+      "labelSha256": "66cea7a5265e96d53ba2eb7c7d7642f3ccb882649af7821f9e9b7e8fc2b6c74e",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_170606.jpg",
+      "sourceImage": "IMG_20190206_170606.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "1b9be2a0b9cada04f65f2c91f6a50942aaa9b468f299e5e52f474e843d80a8d8",
+      "imageSha256": "53e324ccec23464a6f665ab032b9dfbae9fc2fe30544ae6d073b1e7a895008ee",
+      "labelSha256": "8e91396c22eeb18dbd02f0b1cbc088d874b0f6276b8039237a90cbf316aeff59",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_170619.jpg",
+      "sourceImage": "IMG_20190206_170619.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "6b32db4fdb6bdeac7023e7f08f5a1a42ed66a9d9707e922e27312577efcd6104",
+      "imageSha256": "9d4ca28707221382d274bb1bde485bef1b264c0424081bb90a0c3ef9554d26b7",
+      "labelSha256": "36aceb98489b7417cb8ebef18bdc113e87d504d688cb550cc6c2de1ed751fa4b",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_170714.jpg",
+      "sourceImage": "IMG_20190206_170714.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "72d88c09d7a62cefcc0f98cf8aed717b583f7196535705a5915350c05e63a284",
+      "imageSha256": "5a217c8a7efdb7ce2bb1da2f4834df7bc9581dbf38bd89297827997aad138bc1",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/val/IMG_20190206_170716.jpg",
+      "sourceImage": "IMG_20190206_170716.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "fc724cb877efceb014b1b457069525758c54ecbee30af47afd9ead6791043c42",
+      "imageSha256": "4f83160cfa7137ef66a8b7c77837ee92c440b0b38a128b90b6782ff6b238153e",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/val/IMG_20190206_174446.jpg",
+      "sourceImage": "IMG_20190206_174446.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "346851a50d82fc30c27b8641da72e564157e9ab169f72256e9eced114c02a1ea",
+      "imageSha256": "9a8f647bd4777acd12e55994e70abf77e8d6985d97bbb4dc55b5b3538e2bf814",
+      "labelSha256": "bc1c6839178c2c41e176a6c31c1909db17d77c97f61c0210595cc4675195156f",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_174702.jpg",
+      "sourceImage": "IMG_20190206_174702.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "1ce7bdbf27ae90405a71835b6e7d16083e1d58714604dbc8a1301c2f21c9df80",
+      "imageSha256": "581917e7b8fd63236e57116489a970e502efe93f1667a41d78b90643b9b21e0f",
+      "labelSha256": "ff4c69ee08984f67b70e991a7b995fac8a3612f8cb5f9309cbf654859b0457a4",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_174705.jpg",
+      "sourceImage": "IMG_20190206_174705.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "976452cf4707c6d63078243e9c9eaa07907e5bff2ae194ef955ca82137d8ec27",
+      "imageSha256": "9b89f0aacce03dc3807043e5d071696eb03883ff401248061394d600586cc1e6",
+      "labelSha256": "64bd5cd0d7bdd2770715df27a96fb51e5206d1f39b3a3143070a4ab4c003c9bf",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_174757.jpg",
+      "sourceImage": "IMG_20190206_174757.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "140b3a0e35d3903f9759bfed430fe930fd5e89e7d16fff4be6cebe3fa6ed48ae",
+      "imageSha256": "6add46ca064ee655b465624c3b31539539f5d91868813cbf85bc5bf3e4ad6875",
+      "labelSha256": "86d9fd67984524547ce22d07079f0fb88e8b306e7bb8d058adb731f45d5ce7f3",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_174800.jpg",
+      "sourceImage": "IMG_20190206_174800.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "61fc3777b01b97cd625c4d94477443f4ea08915fd43f80b80684aee46f74a07b",
+      "imageSha256": "04a55460940c8e7dbeb483a65bbb4f3b14f3a81a8bd214aa9b4f3fb3d31b8874",
+      "labelSha256": "87cec19a8d00179f6ba98657b0648a1c44266a9bb32c7b9d86c108c5c0a827fa",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_174819.jpg",
+      "sourceImage": "IMG_20190206_174819.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "cc4b405b397030f8d42cb0066579ac6830ab2dc05f7e75c29c52eeb99b6970b6",
+      "imageSha256": "fca3da3dab7b6dc6ede29f77746b1ac5bcc8a57642bc3d4e1cd549d80867625c",
+      "labelSha256": "b1681a42dd01c5282a31525991b1a233c61400af46639ddf8a1b80bdf2776e62",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_174822.jpg",
+      "sourceImage": "IMG_20190206_174822.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "e63751f499dc38059f12d3d0fc776954319624e1b8569c5f61df8e438975a8b2",
+      "imageSha256": "67e27a5a397b68422f1cd6142f3089b4a4baed8a4d4dcf18cac54fe5a4a8d358",
+      "labelSha256": "a6c74f689fcff85b25d295c48b8bb197f73b4dc33a0070436bfb863f882a7111",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_174852.jpg",
+      "sourceImage": "IMG_20190206_174852.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "ee23aef6d75d773f61dfee3b0918e789bc2d7828582ea7c56a73a15a9f5dc6b0",
+      "imageSha256": "df89f52b7d14ddbb435a515bbd3c02830396a3fcbd549145a6957140d0c93955",
+      "labelSha256": "087076e58b4787f9f5dfc7ac2b16796a7e755a7c118a81efc1d954e44915beb1",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_174855.jpg",
+      "sourceImage": "IMG_20190206_174855.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "33ca7e48cd034b74ab30eac06c70fb8be9ccd45ec2a25f168f2a27a136f049f1",
+      "imageSha256": "36279f1eab2fe47386f41411fa300c78a14bcb230281eb78287b6f99682006f7",
+      "labelSha256": "8627e5466b94b426b6cbdddbc6e48f13b53d39525d41af7164d820c87be7287e",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175054.jpg",
+      "sourceImage": "IMG_20190206_175054.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "f8f750860c2af5dc73774ce55de35479b38f575f4b8c641b6e410b6258a94495",
+      "imageSha256": "dde33416743f97d019ba2ce8054dd50b6b665b2722a480deabcf2f266632d2bd",
+      "labelSha256": "e5b4341195601d63afd7fca77268b5d7997d792ed61ccd41ef69d763d6c6538e",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175058.jpg",
+      "sourceImage": "IMG_20190206_175058.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "ccf7964b55874a23825708cb4cad706eb07e705ef1bf5fa02cebbb7f6e8fa305",
+      "imageSha256": "86fae27dcecb2ec1ed0c0cf9e55b6cf91e48edfa4555828128d71d5817541b6f",
+      "labelSha256": "6be2a42fdbb4fef8fecf93d599b9fb075707df4a7b7aa5bd3edcb2f78aee6a8f",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175100.jpg",
+      "sourceImage": "IMG_20190206_175100.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "ee252f88896e444c959980a7d86ba05cd96ee9da9032b6f4d435a30fc931c40b",
+      "imageSha256": "0934eb2cdcdb9e1725ec9e4b9c339a72a210ca25485d57613ff95b24878ed544",
+      "labelSha256": "1065d2897a431e6d5e6fefa7584c213152142aaf2f032ab86f385481222a0515",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175511.jpg",
+      "sourceImage": "IMG_20190206_175511.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "da1981b26710d236a6cdcbf4be379bbce96a354d5eb7f0b53cb7f5c44a971428",
+      "imageSha256": "2dea844409b0c902a2096eb5307a385c4928bec2ad0e02295c813d922fc8f656",
+      "labelSha256": "87f9b3022e446dbafa286b43a9f82d49c8176d8b8716dd751930a922587243b6",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175516.jpg",
+      "sourceImage": "IMG_20190206_175516.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "3b3168ddb01c298ea8af3a5ae6e2987fcbc0e65e6ddf52e4e604870050766394",
+      "imageSha256": "8e059a873498fca176925526580d3f7252c97a9957afeb597b26bd02ad72eb6d",
+      "labelSha256": "3159401ab659ebc691ee4b177a0759d132d93247b7d71c7d89964fbf834983b8",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175715.jpg",
+      "sourceImage": "IMG_20190206_175715.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "2248ad85616ad783fbb1ef70a8f3e57f907f5f8844b9af8733b1607a6b849787",
+      "imageSha256": "9eb7fee7aa455bf87dc20363806ecd0160eb69594a9996b4d60bfcaf39e7a77c",
+      "labelSha256": "3b81e83e5c00df2d3a6667e879f72c4f5aa088e5802ea60fa177c7752e3a7885",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175717.jpg",
+      "sourceImage": "IMG_20190206_175717.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "f31d0ec8c767669512d51fa4445239b47db57adf0ef081970372be4f81b086d3",
+      "imageSha256": "39837b3cf3c54d0389805a1f3edcfc9f32f1dc882f9bf62839c9254b8ef986c4",
+      "labelSha256": "ac6d4fb8a71eb02ac4e30df8c48bee09cf18a9cf512ed64e3c30fd4d766859cd",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175720.jpg",
+      "sourceImage": "IMG_20190206_175720.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "5b82518afb157138ec709609f1e71c5ef2ed9edf8a38529a3d830f5607709d2d",
+      "imageSha256": "7ffac2490960447f8f69e7938ab49f48efcb04c5dc5cf7d23124ef7186775ba7",
+      "labelSha256": "b7e76e34ba77736c9a3f7cd24c9e6a6b7da619c7350b0d1b8075ac8db4aa66bd",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175724.jpg",
+      "sourceImage": "IMG_20190206_175724.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "b3c6916b2a1d43088340cf7c67e6bca9064ee3076c5578093a2b6d819daf7325",
+      "imageSha256": "a6204377a3a8ed0bc091b49ba533fc77c04b272841f68a2bc2b50ca0d4be5d5e",
+      "labelSha256": "c789c692388527743d481a022bc32f5f12cd2d548f9b8190335cfb01307cb8d6",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 7
+    },
+    {
+      "image": "images/val/IMG_20190206_175751.jpg",
+      "sourceImage": "IMG_20190206_175751.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "2eed54bfb519e107fea8312a7f6deb1425d8f0a32f49fa75beef378327960148",
+      "imageSha256": "3f1995fc215ecc1fa104ff6231d2b1b9d2318c2a0cc39751913c2fc53a58a63d",
+      "labelSha256": "4d075d7d3b9870d842589107cc1b1cf729a1ad56004a9aa92bfe573f357e3f51",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175755.jpg",
+      "sourceImage": "IMG_20190206_175755.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "39fb2fd35776d3708453870ff0af740610760ebf3e1cf3f931402bddac6b2e1c",
+      "imageSha256": "92cb0b55933137c7d3a5bf5e32c52c2b01f56f3237d329eeba865df5b49d27a7",
+      "labelSha256": "4c7c01f2cbd7c734449095add96e0698b5b6e368a62cb9dd273953d565f2fc50",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175758.jpg",
+      "sourceImage": "IMG_20190206_175758.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "0770813fd942e5e09918417b610fd553db2e160bf209a90acb75834466b07cd5",
+      "imageSha256": "ec4cc1c37c16f845fc0ddb6432788758f0bf06903cd36a0d3715c73fd729c6cc",
+      "labelSha256": "095f84861f7f8d5bdfc596d16e0ec386f459d8e127bdd60879e999a1efe5bc76",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175803.jpg",
+      "sourceImage": "IMG_20190206_175803.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "c25b944dfe00b89cef5151ee384b55d6a52d8eb9c49572e3b73aa6e0aa3b8566",
+      "imageSha256": "f084de2043ad563f2f4907b2e0aeb6580b85ccb3d22cea9fe8b67bdf586f6839",
+      "labelSha256": "3861895ddfb2e68c4dab4d8e604c5f5e71e96f0c2e174aeb5884260904a8bf1c",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175805.jpg",
+      "sourceImage": "IMG_20190206_175805.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "db44ac147e337066747cdebc6454510df7dcf82009aba463937730662d332fa4",
+      "imageSha256": "8c32308974469ce3c90c082f0cb00334b1c216503d1a6187e5dd458790ef9bb6",
+      "labelSha256": "d76c37d1a93c24d237212ea8c21cdcb73bae1369707d5162627ae75613af102c",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175853.jpg",
+      "sourceImage": "IMG_20190206_175853.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "35fa155c233ef2961ffbe7c8ab4d995358c8eaa2ca1ee48ba0b9a4d98adf0f9d",
+      "imageSha256": "809e802704a59615940c0c94edaf0f7778392d384ca2d01c1791f33c90221a19",
+      "labelSha256": "3b316e8359b74623f86b3d6897a767f695af23779d31d757b5e736a00bf93441",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175857.jpg",
+      "sourceImage": "IMG_20190206_175857.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "85f33869ee59bddb7e2d677a58077af26f6012a81eb70764ff299e45e296f0f9",
+      "imageSha256": "fa873b9f7a5227d30f328b6b2a427aeb5f617055d97b9b2504bd4f7f5a66f3b2",
+      "labelSha256": "91973899e5263f282e92bf2660b1c702d69fb6dd4d25a97f82acc08b17d4bd90",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/val/IMG_20190206_175859.jpg",
+      "sourceImage": "IMG_20190206_175859.jpg",
+      "captureId": "date-20190206",
+      "split": "val",
+      "sourceSha256": "d255f87b973833b17d91c80896167de1a428af45c794cad26d6decec4139bd91",
+      "imageSha256": "d611d23be813fcaa00344301e8edcd045f13b43d3588c70bb8d01d7f5025899c",
+      "labelSha256": "3165d96b44733504e01a332ecd7d13060cf80dfa1dde610a6c0b5f40943bfb30",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/train/IMG_20190306_104622.jpg",
+      "sourceImage": "IMG_20190306_104622.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "84b517172e35c1325b06cfd3b472bddb8b30261dd7e7df81dd4221e3b0cc77fa",
+      "imageSha256": "8979694169d855c126203fcf4c9d468ffeb3cf4030a20c9960fb889e188cebcc",
+      "labelSha256": "805090508174315b6819146ed7d07d8f6a436b5be3a86fba25db9c3276415c4e",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/train/IMG_20190306_110658.jpg",
+      "sourceImage": "IMG_20190306_110658.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "109a1f243a5505e397d3932fe8ff3065cb19dd8f838e4b3b8e2b31d86aea9124",
+      "imageSha256": "595e92835d6416ff928824407a843cd513086795b4c4f3671be97546a862446a",
+      "labelSha256": "826bb3dd01e3c4d0ef4907bc047a89189261bff508b87586039c6d1dce97aec7",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 4
+    },
+    {
+      "image": "images/train/IMG_20190306_164958.jpg",
+      "sourceImage": "IMG_20190306_164958.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "7fed9ec47214f3ee9b6931cf67e8aae500e702921bb9df524694b82012ba352a",
+      "imageSha256": "7c99424f1c163e28d48a382158cf816c016bcbf691f7d74fa985bff3c61ce026",
+      "labelSha256": "e173ca97752be25163728b2a16063dc0284162593def610418663c52f2e56d46",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_165020.jpg",
+      "sourceImage": "IMG_20190306_165020.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "46dea6dcf672ea4e73dead03132e964e3ebc51653f8f231158bb4a2ec9149b41",
+      "imageSha256": "d4e97bd30a8d7ded197f9e620a0e7161da8e080eaff7abeeb4bdf95d31ad0cb3",
+      "labelSha256": "e576d22a248af98278356136e29c250e8cfad7b66f8d44e767a9e1e547f744d9",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 2
+    },
+    {
+      "image": "images/train/IMG_20190306_170619.jpg",
+      "sourceImage": "IMG_20190306_170619.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "05332d246657fce94937154ac7d28e25d9964bdf218d28951266ea1933f229a2",
+      "imageSha256": "d6daa1cd700d21d3679d571453c4f4a0fe9bc4d57ea39df124a9f4021f375edd",
+      "labelSha256": "6072f3ff76de1172958b7cea42d83a39cb91e58c1da2d43c03f8a60bdfcee27d",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_170622.jpg",
+      "sourceImage": "IMG_20190306_170622.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "5f0295d6b4a5e149c13d39f50a5bdd06600f8d218b976608d4bffa041b01bc12",
+      "imageSha256": "d8133ec8ec0e5c8be0749f6a8c5a18199de20d7d5b2e518035d59986e9b874f5",
+      "labelSha256": "18aa2a1589f19c09515c0ed82595562807a99a6124c1878a26dfb5ada4dee35c",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_170625.jpg",
+      "sourceImage": "IMG_20190306_170625.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "c3c198d470e1f99c15d0db0ed755a08d232f06c17de3ffc5ff6ded797a5eb50a",
+      "imageSha256": "bcb5a6f14466898c2bcb2ca8a6fe5901f270ad72b83ef180bbb682bcb1b5c9c5",
+      "labelSha256": "0674f64a5a2f21da1eaa7d8ddde0fbb850103b9c0ab8f311d90b62ded27c0f01",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_171253.jpg",
+      "sourceImage": "IMG_20190306_171253.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "62075010b02a7775c3937751cfef2b397480b98ea9194eeca9772fac008e2c87",
+      "imageSha256": "55aa6a1ad67941cc975030cd3a297a1251117a8a97b45c03c642ad7e6100757e",
+      "labelSha256": "c7458349b2f944bfd4609588484154111f71e425e7d0d505c45932a204ff6d56",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 2
+    },
+    {
+      "image": "images/train/IMG_20190306_171256.jpg",
+      "sourceImage": "IMG_20190306_171256.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "5fdc7a62863c3c61efd6235b42866695934b461cbadfd33b90219b25b4dfd48b",
+      "imageSha256": "89bf2db365d2199366f5e4483a1e9700a77dbc77a8c3f7c4c7b70c3bad796b06",
+      "labelSha256": "8d35c72e845f5c1d31e2cc0f89f515c5bf8c8dd66b08e27526dc131f7cb570fb",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 2
+    },
+    {
+      "image": "images/train/IMG_20190306_171808.jpg",
+      "sourceImage": "IMG_20190306_171808.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "161d735b8870d59c8a2e9fefe3b03572c03ea95ea31453afd344af6c8c727865",
+      "imageSha256": "36e0b03078aeebfbd8010fb46de2aefcdb350f6212a2a0e674c00df664c6ad7c",
+      "labelSha256": "f122f2f6959ea933d160446285d40ea033c6c5a4c4905816c48cc77fb45ee695",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 2
+    },
+    {
+      "image": "images/train/IMG_20190306_171814.jpg",
+      "sourceImage": "IMG_20190306_171814.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "633420b35fd3285d9fd916b3fc1da0f8d24d22a4581d6e5986f7a7cbace716c3",
+      "imageSha256": "a7707e29b460c28b408a24c906df5b8d34895951c955ab4ddfe7b9fc6c177365",
+      "labelSha256": "4bcbcb1366deb3f1b22383a7cf7b700402443c522d774a936a506881487b98ff",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 2
+    },
+    {
+      "image": "images/train/IMG_20190306_171957.jpg",
+      "sourceImage": "IMG_20190306_171957.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "419eb32fee5511f9a7f963fa652d098a43d2f63ea8f56694e78c54b3864b93fe",
+      "imageSha256": "943c9d47282f466c89c86cbb5077755adcaefbd6768cbd75cf78365b8fa65b09",
+      "labelSha256": "e572f15e0fbc569cbdccdfefd3bd125e1a865444bd498e0592d63ef617260796",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_172001.jpg",
+      "sourceImage": "IMG_20190306_172001.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "1cffe44844937d8f9760d96a5adcca122f2656db2691c86be7017842594f7997",
+      "imageSha256": "b5ac434e4bc8db9e572361582e6cbe1c66ae4dff7d03a090e3ddac8b069d9e00",
+      "labelSha256": "53f5d96b43034797a370c392cc378395b14f1f0662fb5f54088eb22ba6235f2f",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_172008.jpg",
+      "sourceImage": "IMG_20190306_172008.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "c66ed9f27bdb6978237fb11eb6323fde765bbd9d3758d8f902de565be81fcd5c",
+      "imageSha256": "67d14137b9ebb24929e401e0a58cd5c89dfc1fabab849766764f017bffff4d3f",
+      "labelSha256": "77c41afb4309548027fcfb57e26571061047f809285f9d67ea66b269fd752e51",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_172403.jpg",
+      "sourceImage": "IMG_20190306_172403.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "ad5364f9dccb36dc859cde3e9d4801ccb18abc1cf3c1c81f0a71cc181cdb7bc3",
+      "imageSha256": "7a82d3927e499d8358d72a705b25859c49badb2d3c1b58c1d9c743879568d2d8",
+      "labelSha256": "e28f26f54772afce1348268fbb8820e809626ec11a8efaf4591e233ec9602779",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_172410.jpg",
+      "sourceImage": "IMG_20190306_172410.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "42e4587d2cd4a7f9ea64a2cbd60f6f2757dc23de4cb969d2a25f50a4033717f7",
+      "imageSha256": "27f3dfbd1b5dde39ce438509299a707d500e9741e49e7acda9847f96df58dc2c",
+      "labelSha256": "2ca1f8c844a55d07d4b59224fd864a04f39b083f0fe224b3bbea7d67ce9564ab",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_172745.jpg",
+      "sourceImage": "IMG_20190306_172745.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "96a1a3de12a5a8c6ee43716a4d772aae631566755865fe1e66a84c75e02ff68d",
+      "imageSha256": "e7bcb98fc3662e45b2517b898ba714c0536a96025984fb3b4b981a05b17e5056",
+      "labelSha256": "18821527a047d3cc9ae5cfe7219710afd3d111e50dd4775761462ba7c40db4d9",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_172748.jpg",
+      "sourceImage": "IMG_20190306_172748.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "52ad3cfbb331e04dabbae0826b9e3b2f6608a3c8503edb789983d7c0adcd08c5",
+      "imageSha256": "a6984c794ab59dc34a095b7478380bfe59ed3f6160d33ae9bcec1227f1b13cbc",
+      "labelSha256": "9bc45a7357685b4a686c9aa860d2565ce04ff7bf112b9fbecc8cb2d7d6c2ebb2",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_172751.jpg",
+      "sourceImage": "IMG_20190306_172751.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "57cbc39aedc1282436d5288c8a352f26830c5ab8ddee666e65abec1dca254698",
+      "imageSha256": "09c9bbb7ce567c9a6336767f1e41b2dd8bdd4f807e33b80cee53319c35108b5d",
+      "labelSha256": "21dabca08c59c96b8d8679ba28108a744b163d7b78c37ebebe4b3990156a5ef7",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_173145.jpg",
+      "sourceImage": "IMG_20190306_173145.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "83fbfc1047d02ffa80cec967774f2d1d7fb299b996687331616e6790095e67ef",
+      "imageSha256": "fd151c120011852790bd2a56526bfb4ce45bac051c721a3f145bcf4f351274de",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20190306_173147.jpg",
+      "sourceImage": "IMG_20190306_173147.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "d53451f649e2da3494bd8c040184d9c6f78c59f8ee97e7ca77fd534d8f8a2cbb",
+      "imageSha256": "873da7fa4c75cc03dc1bca103abb44f6667175a41d17a624a8838666339ac842",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20190306_173149.jpg",
+      "sourceImage": "IMG_20190306_173149.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "8a1f1bc52de22b0db33cf2188c6694b0dd958bb98f45aef20b1aa094a11149d2",
+      "imageSha256": "cc594d7d5fd42b4bb8ec45109fc0a526ee7fbfa74119e1f92e2c4ad2616951e9",
+      "labelSha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 0
+    },
+    {
+      "image": "images/train/IMG_20190306_173403.jpg",
+      "sourceImage": "IMG_20190306_173403.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "c6019f793084285c7bfb3a0d9bb28ccc2c1af65ff22e67e528626417015c4083",
+      "imageSha256": "6795c9027fb50635c91824ee2f6fad092a35ddc61412b6c2a49fc21728d65d51",
+      "labelSha256": "e9cf08013db838f62dcc940a33538f9492895d7cc80c2d039fb5cfd59d295845",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_173405.jpg",
+      "sourceImage": "IMG_20190306_173405.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "791fa472b4b565774108f61374b05d29fe0bb36a9ef751d2dc5cd2a399fbff6b",
+      "imageSha256": "0b0ae19beb2a4aec8a1f399bf6b5aefb3ce391685ab24cf59c87230e636a1da9",
+      "labelSha256": "97644f83c64cb97af41876ce9cb5035f120922fdedabac70704ce283c92017fd",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190306_173408.jpg",
+      "sourceImage": "IMG_20190306_173408.jpg",
+      "captureId": "date-20190306",
+      "split": "train",
+      "sourceSha256": "d0d162c0c79db6461e4b695d6f665d3db0ccb04d45d842b9056bd1cb3fdd26bb",
+      "imageSha256": "a367627f24d9147a85326bdb533d139e305c5ab3ff3b1b4cf32ce35e9eb92f17",
+      "labelSha256": "7dbbb955b68e4028f3d33c99052b82d8655b2549ca34f35db866f05ac4ef1904",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 3
+    },
+    {
+      "image": "images/train/IMG_20190307_152732.jpg",
+      "sourceImage": "IMG_20190307_152732.jpg",
+      "captureId": "date-20190307",
+      "split": "train",
+      "sourceSha256": "674205e009a7d6c17bbf6be38ced5f5c753a7363f2a4fbeec7453c7ad6141565",
+      "imageSha256": "2d721b3726eec35e4d17b83e41c78e47253af9e5699e81338e1181a2a898fd15",
+      "labelSha256": "0461f07deae1e92d1f9b23228cc14c111ca33b8b8f909c8aa18600bffc58cbc5",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 7
+    },
+    {
+      "image": "images/train/IMG_20190307_152734.jpg",
+      "sourceImage": "IMG_20190307_152734.jpg",
+      "captureId": "date-20190307",
+      "split": "train",
+      "sourceSha256": "be0be122f1a50d7e97026da65c153cdc74109784af7738882be66a3663717edd",
+      "imageSha256": "7fbafd7063f6c13dfa4432645b17a5b0f354fe8b4759e8c75352e5e914355cf4",
+      "labelSha256": "bfb55f878769aecfe3376282aa27c669095311aabb4c75976b45886e1885afa0",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 7
+    },
+    {
+      "image": "images/train/IMG_20190402_110254.jpg",
+      "sourceImage": "IMG_20190402_110254.jpg",
+      "captureId": "date-20190402",
+      "split": "train",
+      "sourceSha256": "d116a3cc5a1b16d497084903c0ee850bcf1951b14933a5b2403c1e7e17d9e860",
+      "imageSha256": "b2e3c2da2cd070c63df40090c73f454466110f37fc2f0f1ca4ab259ce7dfbfca",
+      "labelSha256": "d3d20ed3c691e3fc05262e2942a29f9481fc27fabc304ea6a2269d8c79ec1c82",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/train/IMG_20190409_112103.jpg",
+      "sourceImage": "IMG_20190409_112103.jpg",
+      "captureId": "date-20190409",
+      "split": "train",
+      "sourceSha256": "921ca9a229c18953192a9d8e6bd702dc92fc48394ba9e86e32f1683db415eb6b",
+      "imageSha256": "abe73c2c1e78e607be11e6f6f9c151a69521da20fc9b908496c7df9c0fbb98ed",
+      "labelSha256": "a4d7ad69935a3d875ad5943af087e82e2fc5d818cc1c0aa3eadbd98126cde49d",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/train/IMG_20190409_121733.jpg",
+      "sourceImage": "IMG_20190409_121733.jpg",
+      "captureId": "date-20190409",
+      "split": "train",
+      "sourceSha256": "846cec18d9b53bc99bfe5d798db6f3bddd6bb41e0d2d6eeeea402f5dd00b8607",
+      "imageSha256": "2f0ac976b31fbeed27cbfe3ab8d9e7560bfc08b17d5d37e87ef401991b2bae13",
+      "labelSha256": "28fc1e2bd15d5db1e7cacc84314c0bdb4fe74130430a27a7057c914043e778df",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_105750.jpg",
+      "sourceImage": "IMG_20190430_105750.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "7d52908ddf9982f7c54fe71dce457c6b76ed69e15da9e507d3aa28790cd8be66",
+      "imageSha256": "ee5b78e2008a197ac32f3727648261f9de0069e93a199323ea082045a551e701",
+      "labelSha256": "aac703762c5a79dcd6d48f4e84f36de2ac866001ba74c74850c10d280ecfeef1",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_105754.jpg",
+      "sourceImage": "IMG_20190430_105754.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "0a5c9953efffd1ae429486ee4a10dd2c1388df23ac269db31830aad5df597cab",
+      "imageSha256": "17c5db81481ba4fca601e74a1206834ce3062af6fa90b90bec502d4ebff550b2",
+      "labelSha256": "8af0f5cbc6e6b5121943de8e88d2828a04a9efa1f6fe2f5c5769f39edf3a4a40",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_105805.jpg",
+      "sourceImage": "IMG_20190430_105805.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "5765ce4fb843d4f148d60e0b8d1a78a10b9c991afce26feb1ff4866efe4f187d",
+      "imageSha256": "beb9cb9facb854b03a32ceac303aab7a96a41206f4ffd6a27152c628116611cb",
+      "labelSha256": "a75dc6e09bd4738c010f966a48218f27d47757b9dd386e79456eb6fdeceb502f",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 7
+    },
+    {
+      "image": "images/test/IMG_20190430_105808.jpg",
+      "sourceImage": "IMG_20190430_105808.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "21727b6e03f9a6965f0da8919b12cddbd4d0822ce30f751402a340857190b7be",
+      "imageSha256": "d253726a1a762eb929402c68146fd8748de4377ca95fb345c6e4b4d13f9777b5",
+      "labelSha256": "61ed02fc43a487ee958bb11cc5d0810cf0998e5dc5edff3c27fa1ab9ac2a028c",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_105959.jpg",
+      "sourceImage": "IMG_20190430_105959.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "4e421faa2e94b38aa8107a50e4649bfdd5cf18b05601ab38f80b8d901aceba49",
+      "imageSha256": "c7da6bd7848be65b7b1094239ac8cd6996b09cc563c86649de7616dbf4cb0793",
+      "labelSha256": "055618c1af2cf70ee2a437bff8ff3922804891b1b9849f66f1c415ea01585db0",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_110010.jpg",
+      "sourceImage": "IMG_20190430_110010.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "f4bb052c57bc0f9edffbe122047a956a85de6d16397acd083f03e35e7a6ed50b",
+      "imageSha256": "bce5b3874eabe2cf9d0bfce3affeb0185672fb630de01cc84752da24ef669365",
+      "labelSha256": "4a912529f5431f0d46d55a24ee1b523fd4f096215b097a9a6f77ddc372f8a69a",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_110145.jpg",
+      "sourceImage": "IMG_20190430_110145.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "bddcdcbabbff8eba230fb9f93c2d665dafbd75655ced6d9a0897aedaff049620",
+      "imageSha256": "204b2a45e8ccae8b706ef547357151400bf1c0c8f21fdf11c0f6f7c87e7c2e47",
+      "labelSha256": "86b922a6adb51068c136f03732a25b15a60c067522d8ba940df53bdccd8869b7",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 7
+    },
+    {
+      "image": "images/test/IMG_20190430_110149.jpg",
+      "sourceImage": "IMG_20190430_110149.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "d4b1688c67c3107cf6662f89048e7ce8efd82d1db0e6af1a0124cd2703ac4b2d",
+      "imageSha256": "0f09c26b06a6b7b62a63c4212354a06013647344d485603345e30c53735aac24",
+      "labelSha256": "14a0292381ab450c9c1e621a15c966cff16a168f78e3f11d95fddbfdb8b5b9d0",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_110153.jpg",
+      "sourceImage": "IMG_20190430_110153.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "84ddc2043cb4a1b0caceab0cdaa3ea44fcf148ce88f5a99558a16909dfda11e3",
+      "imageSha256": "592305a06ecd99132d1a519fc26888837cfdd8c2d87d4f73dfa94edc03733d7f",
+      "labelSha256": "65135d157956f080141cf8cad2c9cf2286aae93c3913f7f66fb427ca81a76b1c",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_110157.jpg",
+      "sourceImage": "IMG_20190430_110157.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "e0e187a0cb2ec2ac22b156e952f0d3fbf99eeb97dcc681df3d099ef438be5a2f",
+      "imageSha256": "31e6bbfe067ba421bd1d0e013e14463e0838c56a2a4b711ba3974614c7275a01",
+      "labelSha256": "c4dfe41cb6fba4bd10dca54208249e0cc7922972fb4b99a82b88e66157d02084",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_110231.jpg",
+      "sourceImage": "IMG_20190430_110231.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "cae0ffd65dd5593c0b344cd30840957da602a8050e034b060cc7787116bb322b",
+      "imageSha256": "c8b9883da96352ae9fc20897c27c4be043cd1d03a2336cb3e69d2fa866f6ff6d",
+      "labelSha256": "523b6e2fb3a455c15ff32cab5a03da9641bbef5b6e1f6e03133ca6b089b1aa84",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_110329.jpg",
+      "sourceImage": "IMG_20190430_110329.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "d894ce601fb4c6ab38a945e5057585420927de8f66c8791cd6c8ef23848a163e",
+      "imageSha256": "c90d364eafbe6cab37bfc68de5cd75d39bf8dec006001d59e4a1a901748b8b9c",
+      "labelSha256": "074d60ca3ec53cc63469a800505097de3b6c4368f4a7644e179a8cfcda075367",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_110417.jpg",
+      "sourceImage": "IMG_20190430_110417.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "4eeb18d63e7ed1367987a08163aaded97a6273dc4892793bf62bface364108e1",
+      "imageSha256": "9414c3446435192068a1c500004373f8b57c04c8945bb81ff7c33775053238ca",
+      "labelSha256": "fd7480109338ae66ffa7089f6c557d7b13c1ebd2d70be79de4d201cddc08bbf9",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_111521.jpg",
+      "sourceImage": "IMG_20190430_111521.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "342ceb79c8f10396401f8a624954ce26bc773ec0aa899949e7ce3150b90c666f",
+      "imageSha256": "d0abb008430dbf3f8be26e5936cbf9c7ec5bc8889916ed37a7c9cabe26f87e28",
+      "labelSha256": "60d6f6a7d8d3edf0a813e90a2e559784361121cabfeb8a6005e5a21d3c9e2898",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_111555.jpg",
+      "sourceImage": "IMG_20190430_111555.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "5a9c186e2c40c78c6e01ff5331fd0ede0629cbb484620b4772cd000e3339a51e",
+      "imageSha256": "e1237070dfa3a2cb8f282f336b37c6fa309907fc96c559a891b07caeddd5ec2d",
+      "labelSha256": "2a168854214cd38664487b0d75a62d0830c7a7bdaf87dba8d56543496d1da89c",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_111611.jpg",
+      "sourceImage": "IMG_20190430_111611.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "885ba6ee584fc73963b33f48128727e559b2624c6707829795e1a6d11f066fb2",
+      "imageSha256": "c75c5e15e00ae3d03f473985f70f5044689d1e387c2dc6b8b6f26340d8ac6d27",
+      "labelSha256": "203904f83ce18cb5f15f798cb6d6dcad7b27d873501e7b4d2b967d3dd2ff519f",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_111818.jpg",
+      "sourceImage": "IMG_20190430_111818.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "a276471da90bba2f872a3bff4edbceb6c55220f4001ac75e8d39d5db106a20bf",
+      "imageSha256": "16e84ed0e390c7ebe73fbc127e56596e62fec90336b03e5d67b0685a58dfad25",
+      "labelSha256": "fc2d59559d4493a45294866c319713a529662230b8f774ba411562c262df064f",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_111942.jpg",
+      "sourceImage": "IMG_20190430_111942.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "cc3060f19e01611224ae99934c406c138bb5265f024103728cc1fd8158f8b194",
+      "imageSha256": "4674b86392108b02b7655cc0a59864b2734cfd76bc0cfeb061f252537d7e7c6b",
+      "labelSha256": "67db6aeb612e24b2155f02a759a82c051e5faac8a2c833db1b3b6ded13eb0b82",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190430_111949.jpg",
+      "sourceImage": "IMG_20190430_111949.jpg",
+      "captureId": "date-20190430",
+      "split": "test",
+      "sourceSha256": "41bf7eeb7c825dc250c5a50ab9c7e5ea02de80445ec23ab747e304253e00de41",
+      "imageSha256": "44fc1c91b27d29599fd8d042522855182871e15055b85ca18c581de7cdab88fc",
+      "labelSha256": "fe9d333c1605b6e5e62e9567b2dc9c52bdcc309c9d98f0f5e5f312b4b7de6cb6",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190502_093212.jpg",
+      "sourceImage": "IMG_20190502_093212.jpg",
+      "captureId": "date-20190502",
+      "split": "test",
+      "sourceSha256": "6a23650a4358dcf21d70d0e8b335379be084f8e94ab3c52169a20edb2cacbe52",
+      "imageSha256": "b2d7bf20eb908bbec8536d7f64f87e3e6e30295e462948105c97de6cb5a71f05",
+      "labelSha256": "ed9c00ec9d7b0c8d15e4dba58615ba7d85595eb84588799501a7a90269071dfd",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190502_093643.jpg",
+      "sourceImage": "IMG_20190502_093643.jpg",
+      "captureId": "date-20190502",
+      "split": "test",
+      "sourceSha256": "adbb11af2b7e13f55c07e9a1061d6d7ec64e839eac9c563d95808e6e91386bb7",
+      "imageSha256": "256905e6881b4f6624858fbd013b1321eb7ec05331614c5970699ccf9d720f13",
+      "labelSha256": "f448dac0e648a6a8c1239db7d87348364e3fa0867e62bde48931b392a2cbfc2f",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190502_093929.jpg",
+      "sourceImage": "IMG_20190502_093929.jpg",
+      "captureId": "date-20190502",
+      "split": "test",
+      "sourceSha256": "31d2545b19a0784ac10b4c35e55a374b331381f4300e8cc9f34ee9baac070c9f",
+      "imageSha256": "6e9afb604a05bb8710c770e5bd5916abf530d0e7c2f4ab0c4645a20e42332b15",
+      "labelSha256": "9a5b6eed41e2137d2bad8c2f8add0e67956cb1f7d9e55ba2515407702fa5903e",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190502_093933.jpg",
+      "sourceImage": "IMG_20190502_093933.jpg",
+      "captureId": "date-20190502",
+      "split": "test",
+      "sourceSha256": "2d2698ae5dbefb2e6f5133bcf3747cd8e2ea2bd827a33ca92996fb9f1dba8a1d",
+      "imageSha256": "70b6ce3eae635fe4c6abd43e55ec3e1ebb7ece2b8918096d970855cf30798ff7",
+      "labelSha256": "9b9dc53df315d7a491a50dcb9972c2a7daa5dbfe6941c6131b0bc5bb0ba2ea22",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190502_093957.jpg",
+      "sourceImage": "IMG_20190502_093957.jpg",
+      "captureId": "date-20190502",
+      "split": "test",
+      "sourceSha256": "3db1cc0a9b75de53c4cbef67f3718d73078811b2d2f197e9f3cd96b3ca338eb9",
+      "imageSha256": "b3f8311d5e832fab09e63ed1f670933cb59409d8c91d87f5b46345a754760459",
+      "labelSha256": "12d1b674a3e6b1ddb3fdde9e0871bd774efa3a5be952b13cb364a871f9861613",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190502_094330.jpg",
+      "sourceImage": "IMG_20190502_094330.jpg",
+      "captureId": "date-20190502",
+      "split": "test",
+      "sourceSha256": "a76f7297024b7f230bd203654d0cd349747a595b09adbbbc53761615ca2ae670",
+      "imageSha256": "46285fbe203c74a482fbed0a8a4e0553b39faa38670959b678bab110c53c4ff2",
+      "labelSha256": "d478532a88b3776d0fdd7175bc30753822488f72d8826bd2f69bc9ccb419f55c",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 6
+    },
+    {
+      "image": "images/test/IMG_20190502_094333.jpg",
+      "sourceImage": "IMG_20190502_094333.jpg",
+      "captureId": "date-20190502",
+      "split": "test",
+      "sourceSha256": "6a94e852764fcd3e64efc94da39f7d4769fd5d280c915199486d197b6f10abc7",
+      "imageSha256": "97509a6a5ef3ede3cdcc3aca85d2ffee56e6094ce524ea05c32113d169c75b73",
+      "labelSha256": "4af5b231bcea61cb377a097c4b1e852c8a264bf01f351479fb295f533f1469e1",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190502_171330.jpg",
+      "sourceImage": "IMG_20190502_171330.jpg",
+      "captureId": "date-20190502",
+      "split": "test",
+      "sourceSha256": "2ef5ea6e017d998136fafa08b91f4ddd0227bbe45cefa32fab5cba74c6cf1e3f",
+      "imageSha256": "953e5a2b2327bcf3c56e5b0868364e3ef515f96d555754dcbfcd50405c0aa722",
+      "labelSha256": "f4e3c38f83f41485befd4589af2b540c0b8a16b64ccb1fb14684b7d5ce96f475",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190502_171332.jpg",
+      "sourceImage": "IMG_20190502_171332.jpg",
+      "captureId": "date-20190502",
+      "split": "test",
+      "sourceSha256": "66c95a8e38aeccdb5121db171d62cf22ff9bdea90e8bb9b98b39f9c6b2ba6d74",
+      "imageSha256": "db84ac1ca43e64ced08d0c6310902d376c6a375487ebb8862a85b73cb3ce19e2",
+      "labelSha256": "fdfc3408dab1a1f09da64c5620a38d73a328db5c3742500ce41ef08683259d8c",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 8
+    },
+    {
+      "image": "images/test/IMG_20190502_180150.jpg",
+      "sourceImage": "IMG_20190502_180150.jpg",
+      "captureId": "date-20190502",
+      "split": "test",
+      "sourceSha256": "c2836840c8d11fdf82201ff002c8b305ef6f12a83c9320044d2dde375a998466",
+      "imageSha256": "79521aa9a61e856361a9fb5cbe7a33f22ba00ece845ad6582005fb880589fa1b",
+      "labelSha256": "56fc929db2bf4cdf609ccb023dbdd98cff80dc268c75412efeef3f290e9a3cfd",
+      "sourceSize": [
+        3456,
+        4608
+      ],
+      "preparedSize": [
+        1200,
+        1600
+      ],
+      "boxes": 9
+    }
+  ],
+  "catalogImages": {
+    "HS-ZWEIFEL-PAPRIKA-90": {
+      "area": 807978.0,
+      "sourceImage": "IMG_20181218_130005.jpg",
+      "sourceBox": [
+        255.0,
+        601.0,
+        1121.0,
+        1534.0
+      ]
+    },
+    "HS-KNOPPERS": {
+      "area": 303314.0,
+      "sourceImage": "IMG_20181218_130005.jpg",
+      "sourceBox": [
+        673.0,
+        2138.0,
+        1047.0,
+        2949.0
+      ]
+    },
+    "HS-MMS-PEANUT": {
+      "area": 1376000.0,
+      "sourceImage": "20190125_113931.jpg",
+      "sourceBox": [
+        530.0,
+        1051.0,
+        1330.0,
+        2771.0
+      ]
+    },
+    "HS-SNICKERS-50": {
+      "area": 386925.0,
+      "sourceImage": "IMG_20181218_170655.jpg",
+      "sourceBox": [
+        1607.0,
+        42.0,
+        1992.0,
+        1047.0
+      ]
+    },
+    "HS-MALTESERS-100": {
+      "area": 580650.0,
+      "sourceImage": "IMG_20181218_170645.jpg",
+      "sourceBox": [
+        2727.0,
+        1402.0,
+        3462.0,
+        2192.0
+      ]
+    },
+    "HS-OREO-66": {
+      "area": 405300.0,
+      "sourceImage": "IMG_20181218_170655.jpg",
+      "sourceBox": [
+        1067.0,
+        77.0,
+        1487.0,
+        1042.0
+      ]
+    },
+    "HS-TWIX-50": {
+      "area": 350200.0,
+      "sourceImage": "IMG_20181218_170655.jpg",
+      "sourceBox": [
+        1972.0,
+        12.0,
+        2312.0,
+        1042.0
+      ]
+    },
+    "HS-BIFI-ROLL-50": {
+      "area": 429000.0,
+      "sourceImage": "IMG_20181218_170655.jpg",
+      "sourceBox": [
+        2472.0,
+        87.0,
+        2912.0,
+        1062.0
+      ]
+    }
+  }
+}

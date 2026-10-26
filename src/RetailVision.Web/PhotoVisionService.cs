@@ -19,7 +19,12 @@ public sealed class PhotoVisionService : IDisposable
     {
         var path = config["Vision:ManifestPath"];
         if(string.IsNullOrWhiteSpace(path)) { Message="Обученная модель SKU не подключена. Можно загрузить фото и настроить полки."; return; }
-        try { detector=new OnnxProductDetector(Path.GetFullPath(path)); Message="Подключена модель "+detector.Manifest.Version+" · CPU · точность требует независимой проверки."; }
+        try
+        {
+            detector=new OnnxProductDetector(Path.GetFullPath(path));
+            Message="Подключена модель "+detector.Manifest.Version+" · CPU · "+
+                (config["Vision:ModelNotice"] ?? "точность требует независимой проверки.");
+        }
         catch(Exception ex) when(ex is IOException or UnauthorizedAccessException or System.Text.Json.JsonException or ArgumentException or Microsoft.ML.OnnxRuntime.OnnxRuntimeException)
         { Message="Модель недоступна: файл, контрольная сумма или контракт не прошли проверку. Подробности в журнале сервера.";logger.LogError(ex,"ONNX model configuration rejected"); }
     }

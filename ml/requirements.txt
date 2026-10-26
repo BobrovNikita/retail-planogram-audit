@@ -1,5 +1,6 @@
-# Install the appropriate CPU/CUDA torch build separately; tested with torch 2.14.1 CPU.
+# Install torch separately; tested with 2.14.1 CPU and 2.14.1+cu130 (RTX 3050).
 ultralytics==8.4.187
 onnx==1.23.2
 onnxruntime==1.31.0
 PyYAML==6.0.3
+Pillow==12.3.0

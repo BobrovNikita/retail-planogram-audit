@@ -1,0 +1,5 @@
+{
+  "pretrained_yolo26n.pt": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+  "best.pt": "9c26808587ab97b32bdb4c118eecb94f1ffc7d58cbe5429019f9b544f0def2b0",
+  "model.onnx": "d5374db048147452868617d618ba67efc8e3895253967ed946eba5b29d02d75c"
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "name": "HoloSelecta · 8 продуктов · контрольный снимок",
+  "description": "Экспериментальный профиль по разметке IMG_20190430_105750.jpg. Только 8 выбранных SKU; остальные товары не входят в проверку. HoloSelecta v1: Fuchs, Grundmann, Haldimann, Fleisch (2020), DOI 10.17632/gz39ggf35n.1, CC BY 4.0. Результат модели требует ручной проверки.",
+  "store": "HoloSelecta · торговый автомат · 2019-04-30",
+  "shelves": [
+    {"number":1, "slots":[{"position":1,"sku":"HS-ZWEIFEL-PAPRIKA-90","facings":1}]},
+    {"number":2, "slots":[{"position":1,"sku":"HS-MALTESERS-100","facings":1},{"position":2,"sku":"HS-MMS-PEANUT","facings":1}]},
+    {"number":3, "slots":[{"position":1,"sku":"HS-KNOPPERS","facings":1}]},
+    {"number":4, "slots":[{"position":1,"sku":"HS-OREO-66","facings":1},{"position":2,"sku":"HS-SNICKERS-50","facings":1},{"position":3,"sku":"HS-TWIX-50","facings":1},{"position":4,"sku":"HS-BIFI-ROLL-50","facings":1}]}
+  ]
+}

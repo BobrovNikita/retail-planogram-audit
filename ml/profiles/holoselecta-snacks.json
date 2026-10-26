@@ -1,0 +1,28 @@
+{
+  "name": "holoselecta-snacks-v1",
+  "sourceUrl": "https://data.mendeley.com/datasets/gz39ggf35n/1",
+  "downloadUrl": "https://data.mendeley.com/public-files/datasets/gz39ggf35n/files/43897fdb-6d8b-42f7-9331-584bb66f05c1/file_downloaded",
+  "archiveSha256": "4492e5f544a035cf4884626187ebf39ab5e703f71a3ff05733b6c11baf926afb",
+  "license": "CC BY 4.0",
+  "attribution": "HoloSelecta v1, Klaus Fuchs, Tobias Grundmann, Mirella Haldimann, Elgar Fleisch (2020), DOI:10.17632/gz39ggf35n.1",
+  "maxImageSide": 1600,
+  "dates": {
+    "train": ["20181218", "20190103", "20190111", "20190125", "20190306", "20190307", "20190402", "20190409"],
+    "val": ["20190206"],
+    "test": ["20190430", "20190502"]
+  },
+  "exclude": {
+    "IMG_20190430_111230.jpg": "Photographed digital product menu, not physical packages",
+    "IMG_20190430_111456.jpg": "Photographed digital product menu, not physical packages"
+  },
+  "products": [
+    {"sku":"HS-SNICKERS-50", "label":"snickers___50__5000159461122", "name":"Snickers", "brand":"Snickers", "packageSize":"50 г (по разметке)", "sourceGtin":"5000159461122", "color":"#663c2f"},
+    {"sku":"HS-TWIX-50", "label":"twix___50__5000159459228", "name":"Twix", "brand":"Twix", "packageSize":"50 г (по разметке)", "sourceGtin":"5000159459228", "color":"#c79428"},
+    {"sku":"HS-MMS-PEANUT", "label":"mnms_gelb__45__40111445", "name":"M&M’s Peanut — жёлтая упаковка", "brand":"M&M’s", "packageSize":"Размер требует проверки: 45/90 г в источнике", "sourceGtin":"40111445", "color":"#e6b51c"},
+    {"sku":"HS-KNOPPERS", "label":"knoppers_riegel____4035800488808", "name":"Knoppers — батончик", "brand":"Knoppers", "packageSize":"40 г (по метаданным)", "sourceGtin":"4035800488808", "color":"#2476ad"},
+    {"sku":"HS-BIFI-ROLL-50", "label":"bifi_roll__50__4251097402635", "name":"BiFi Roll", "brand":"BiFi", "packageSize":"50 г (по разметке)", "sourceGtin":"4251097402635", "color":"#b54132"},
+    {"sku":"HS-ZWEIFEL-PAPRIKA-90", "label":"zweifel_paprika__90__7610095013002", "name":"Zweifel Paprika", "brand":"Zweifel", "packageSize":"90 г (по разметке)", "sourceGtin":"7610095013002", "color":"#c04225"},
+    {"sku":"HS-OREO-66", "label":"oreo___66__84100733", "name":"Oreo", "brand":"Oreo", "packageSize":"66 г (по разметке)", "sourceGtin":"84100733", "color":"#19569e"},
+    {"sku":"HS-MALTESERS-100", "label":"maltesers___100__5000159023061", "name":"Maltesers", "brand":"Maltesers", "packageSize":"100 г (по разметке)", "sourceGtin":"5000159023061", "color":"#c02e39"}
+  ]
+}
