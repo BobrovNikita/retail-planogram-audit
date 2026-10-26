@@ -1,0 +1,50 @@
+name: Prepare deployment
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: prepare-deployment-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - name: Verify source
+        run: |
+          dotnet restore --locked-mode
+          dotnet build -c Release --no-restore
+          dotnet test -c Release --no-build
+          python3 -m venv /tmp/retailvision-release-python
+          /tmp/retailvision-release-python/bin/pip install PyYAML==6.0.3 Pillow==12.3.0
+          /tmp/retailvision-release-python/bin/python -m unittest discover -s ml/tests
+      - name: Verify Linux image, HTTPS and restore
+        run: bash deploy/scripts/container-ci.sh
+      - name: Validate maintenance templates
+        run: |
+          bash -n deploy/scripts/check-host.sh
+          systemd-analyze verify deploy/systemd/*.service deploy/systemd/*.timer
+      - name: Package verified commit for manual deployment
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          mkdir release
+          docker tag retailvision:ci "retailvision:$GITHUB_SHA"
+          docker save "retailvision:$GITHUB_SHA" | gzip > release/retailvision-image.tar.gz
+          git archive --format=tar.gz --output=release/source.tar.gz HEAD
+          printf '%s\n' "$GITHUB_SHA" > release/COMMIT.txt
+          docker image inspect "retailvision:$GITHUB_SHA" --format '{{.Id}}' > release/IMAGE-ID.txt
+          cp deploy/RELEASE.md release/README.md
+          cd release
+          sha256sum retailvision-image.tar.gz source.tar.gz COMMIT.txt IMAGE-ID.txt README.md > SHA256SUMS
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: retailvision-linux-amd64-${{ github.sha }}
+          path: release/
+          retention-days: 14
+          if-no-files-found: error

@@ -12,10 +12,41 @@ using RetailVision.Web.Models;
 namespace RetailVision.Web.Controllers;
 
 [Authorize(Policy="Admin"),ResponseCache(NoStore=true,Location=ResponseCacheLocation.None),EnableRateLimiting("photo")]
-public sealed class HistoryController(AuditStore store,PhotoDraftStore drafts,IProductDetector detector,IComplianceAnalyzer analyzer) : Controller
+public sealed class HistoryController(AuditStore store,PhotoDraftStore drafts,IProductDetector detector,IComplianceAnalyzer analyzer, AuditRetention retention, RetentionPolicy retentionPolicy) : Controller
 {
     private string Owner => User.FindFirstValue(ClaimTypes.NameIdentifier)!;
     private static AuditReport Report(Audit audit) => new(audit,AuditStore.Snapshot(audit),AuditStore.Current(audit),AuditStore.Result(audit));
+    [HttpGet]
+    public async Task<IActionResult> Trash(int page = 1, CancellationToken ct = default)
+    {
+        page = Math.Clamp(page, 1, 100000);
+        var query = store.Query(Owner, true).Where(a => a.ArchivedAtUtc != null);
+        return View(new TrashPage(await query.OrderByDescending(a => a.ArchivedAtUtc).ThenByDescending(a => a.Id).Skip((page - 1) * 20).Take(20).ToListAsync(ct), await query.CountAsync(ct), page, retentionPolicy));
+    }
+    [HttpPost]
+    public Task<IActionResult> Archive(int id, int revision, CancellationToken ct) => ArchiveChange(id, revision, true, ct);
+    [HttpPost]
+    public Task<IActionResult> Unarchive(int id, int revision, CancellationToken ct) => ArchiveChange(id, revision, false, ct);
+    private async Task<IActionResult> ArchiveChange(int id, int revision, bool archived, CancellationToken ct)
+    {
+        if (!ModelState.IsValid) return BadRequest();
+        try { await retention.SetArchivedAsync(id, Owner, revision, archived, ct); }
+        catch (KeyNotFoundException) { return NotFound(); }
+        catch (AuditConflictException ex) { return Conflict(ex.Message); }
+        TempData["Notice"] = archived ? "Проверка перемещена в корзину. Её можно восстановить." : "Проверка восстановлена вместе с фотографией и исправлениями.";
+        return archived ? RedirectToAction(nameof(Trash)) : RedirectToAction(nameof(Details), new { id });
+    }
+    [HttpPost]
+    public async Task<IActionResult> Purge(int id, int revision, bool confirm, CancellationToken ct)
+    {
+        if (!ModelState.IsValid || !confirm) return BadRequest("Подтвердите безвозвратное удаление.");
+        try { await retention.PurgeAsync(id, Owner, revision, ct); }
+        catch (KeyNotFoundException) { return NotFound(); }
+        catch (AuditConflictException ex) { return Conflict(ex.Message); }
+        catch (ArgumentException ex) { return UnprocessableEntity(ex.Message); }
+        TempData["Notice"] = "Отчёт удалён безвозвратно. Его фотография удалена либо поставлена в очередь удаления; резервные копии хранятся отдельно.";
+        return RedirectToAction(nameof(Trash));
+    }
     private IQueryable<Audit> Filter(HistoryFilter filter)
     {
         filter.Mode??="";filter.State??="";
@@ -116,12 +147,12 @@ public sealed class HistoryController(AuditStore store,PhotoDraftStore drafts,IP
     [HttpGet]
     public async Task<IActionResult> Edit(int id,CancellationToken ct)
     {
-        var audit=await store.ReadAsync(id,Owner,ct);return audit is null?NotFound():View(Report(audit));
+        var audit=await store.ReadAsync(id,Owner,ct);return audit is null || audit.ArchivedAtUtc is not null?NotFound():View(Report(audit));
     }
     [HttpGet]
     public async Task<IActionResult> ReviewData(int id,CancellationToken ct)
     {
-        var audit=await store.ReadAsync(id,Owner,ct);if(audit is null)return NotFound();
+        var audit=await store.ReadAsync(id,Owner,ct);if(audit is null || audit.ArchivedAtUtc is not null)return NotFound();
         return Json(new {audit.Revision,snapshot=AuditStore.Snapshot(audit),current=AuditStore.Current(audit)});
     }
     [HttpPost,RequestSizeLimit(256*1024)]

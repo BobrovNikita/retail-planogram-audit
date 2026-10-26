@@ -14,8 +14,8 @@ public sealed class AuditStore(RetailVisionDbContext db, IComplianceAnalyzer ana
     public static AuditSnapshot Snapshot(Audit audit) => JsonSerializer.Deserialize<AuditSnapshot>(audit.SnapshotJson,Json)!;
     public static IReadOnlyList<ReviewedDetection> Current(Audit audit) => JsonSerializer.Deserialize<List<ReviewedDetection>>(audit.CurrentDetectionsJson,Json)!;
     public static ComplianceResult Result(Audit audit) => JsonSerializer.Deserialize<ComplianceResult>(audit.ResultJson,Json)!;
-    public IQueryable<Audit> Query(string owner) => db.Audits.AsNoTracking().Where(a=>a.OwnerId==owner && a.SnapshotJson!="{}");
-    public Task<Audit?> ReadAsync(int id,string owner,CancellationToken ct) => Query(owner).Include(a=>a.Corrections).SingleOrDefaultAsync(a=>a.Id==id,ct);
+    public IQueryable<Audit> Query(string owner, bool includeArchived = false) => db.Audits.AsNoTracking().Where(a=>a.OwnerId==owner && a.SnapshotJson!="{}" && (includeArchived || a.ArchivedAtUtc==null));
+    public Task<Audit?> ReadAsync(int id,string owner,CancellationToken ct) => Query(owner,true).Include(a=>a.Corrections).SingleOrDefaultAsync(a=>a.Id==id,ct);
     public async Task<byte[]?> ImageAsync(Audit audit,CancellationToken ct)
     {
         if(audit.PhotoPath is null || !Regex.IsMatch(audit.PhotoPath,"^[a-f0-9]{32}\\.png$")) return null;
@@ -25,7 +25,7 @@ public sealed class AuditStore(RetailVisionDbContext db, IComplianceAnalyzer ana
     public async Task<int> SaveAsync(string owner,string source,int? planogramId,int planogramVersion,AuditSnapshot snapshot,byte[]? photo,CancellationToken ct)
     {
         if(string.IsNullOrWhiteSpace(owner) || snapshot.OriginalDetection.Mode is not ("REAL" or "DEMO")) throw new ArgumentException("Сохраняются только REAL или явно обозначенные DEMO-проверки.");
-        var existing=await Query(owner).Where(a=>a.SourceKey==source).Select(a=>(int?)a.Id).SingleOrDefaultAsync(ct);
+        var existing=await Query(owner,true).Where(a=>a.SourceKey==source).Select(a=>(int?)a.Id).SingleOrDefaultAsync(ct);
         if(existing.HasValue)return existing.Value;
         if(snapshot.OriginalDetection.Mode=="REAL" && (photo is null || photo.Length==0 || photo.Length>32*1024*1024))throw new ArgumentException("Для REAL-проверки требуется фотография.");
         var current=snapshot.OriginalDetection.Products.Select(d=>new ReviewedDetection(d)).ToArray();
@@ -51,14 +51,14 @@ public sealed class AuditStore(RetailVisionDbContext db, IComplianceAnalyzer ana
         catch(DbUpdateException)
         {
             if(path is not null)File.Delete(path);db.ChangeTracker.Clear();
-            var duplicate=await Query(owner).Where(a=>a.SourceKey==source).Select(a=>(int?)a.Id).SingleOrDefaultAsync(ct);
+            var duplicate=await Query(owner,true).Where(a=>a.SourceKey==source).Select(a=>(int?)a.Id).SingleOrDefaultAsync(ct);
             if(duplicate.HasValue)return duplicate.Value;throw;
         }
         catch {if(path is not null)File.Delete(path);throw;}
     }
     public async Task CorrectAsync(int id,string owner,int revision,string reason,IReadOnlyList<DetectionCorrection>? changes,bool restore,CancellationToken ct)
     {
-        var audit=await db.Audits.Include(a=>a.Detections).Include(a=>a.Violations).AsSplitQuery().SingleOrDefaultAsync(a=>a.Id==id && a.OwnerId==owner,ct)
+        var audit=await db.Audits.Include(a=>a.Detections).Include(a=>a.Violations).AsSplitQuery().SingleOrDefaultAsync(a=>a.Id==id && a.OwnerId==owner && a.ArchivedAtUtc==null,ct)
             ?? throw new KeyNotFoundException();
         if(audit.Revision!=revision)throw new AuditConflictException();
         if(string.IsNullOrWhiteSpace(reason) || reason.Trim().Length>1000)throw new ArgumentException("Укажите причину исправления (до 1000 символов).");

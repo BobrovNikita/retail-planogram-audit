@@ -16,6 +16,86 @@ namespace RetailVision.IntegrationTests;
 
 public sealed class HistoryTests
 {
+    private static async Task<HttpResponseMessage> TrashAction(HttpClient client, int id, string action, int revision, bool confirm = false, bool csrf = true)
+    {
+        var data = new Dictionary<string, string> { ["revision"] = revision.ToString(), ["confirm"] = confirm.ToString() };
+        if (csrf) data["__RequestVerificationToken"] = await Token(client);
+        return await client.PostAsync($"/history/{action}/{id}", new FormUrlEncodedContent(data));
+    }
+    [Fact]
+    public async Task TrashIsReversiblePrivateAndExcludedFromAnalytics()
+    {
+        using var factory = new AppFactory(); using var client = Client(factory); await Login(client, factory);
+        var key = Guid.NewGuid().ToString("N"); var id = await Save(client, "missing", key);
+        var original = (await Export(client, id)).GetProperty("snapshot").ToString();
+        Assert.Equal(HttpStatusCode.BadRequest, (await TrashAction(client, id, "archive", 1, csrf:false)).StatusCode);
+        Assert.Equal(HttpStatusCode.Redirect, (await TrashAction(client, id, "archive", 1)).StatusCode);
+        Assert.Equal(HttpStatusCode.Conflict, (await TrashAction(client, id, "unarchive", 1)).StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, (await client.GetAsync("/history/edit/" + id)).StatusCode);
+        Assert.Contains("В КОРЗИНЕ", WebUtility.HtmlDecode(await client.GetStringAsync("/history/details/" + id)));
+        Assert.Equal(id, await Save(client, "missing", key)); // No duplicate/resurrection from an old source.
+        using (var scope = factory.Services.CreateScope())
+        {
+            var store = scope.ServiceProvider.GetRequiredService<AuditStore>();
+            var db = scope.ServiceProvider.GetRequiredService<RetailVisionDbContext>();
+            var audit = await db.Audits.SingleAsync();
+            Assert.Empty(await store.Query(audit.OwnerId).ToListAsync());
+            Assert.Single(await store.Query(audit.OwnerId, true).ToListAsync());
+            var retention = scope.ServiceProvider.GetRequiredService<AuditRetention>();
+            await Assert.ThrowsAsync<KeyNotFoundException>(() => retention.SetArchivedAsync(id, "other-owner", 2, false, default));
+            await Assert.ThrowsAsync<KeyNotFoundException>(() => retention.PurgeAsync(id, "other-owner", 2, default));
+            await Assert.ThrowsAsync<KeyNotFoundException>(() => store.CorrectAsync(id, audit.OwnerId, 2, "archived", [], false, default));
+        }
+        Assert.Equal(HttpStatusCode.Redirect, (await TrashAction(client, id, "unarchive", 2)).StatusCode);
+        Assert.Equal(original, (await Export(client, id)).GetProperty("snapshot").ToString());
+        Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/history/edit/" + id)).StatusCode);
+    }
+    [Fact]
+    public async Task PurgeRequiresArchiveGracePeriodConfirmationAndCurrentRevision()
+    {
+        using var factory = new AppFactory(); using var client = Client(factory); await Login(client, factory);
+        var id = await Save(client);
+        Assert.Equal(HttpStatusCode.UnprocessableEntity, (await TrashAction(client, id, "purge", 1, true)).StatusCode);
+        await TrashAction(client, id, "archive", 1);
+        Assert.Equal(HttpStatusCode.UnprocessableEntity, (await TrashAction(client, id, "purge", 2, true)).StatusCode);
+        using (var scope = factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<RetailVisionDbContext>();
+            (await db.Audits.SingleAsync()).ArchivedAtUtc = DateTime.UtcNow.AddDays(-31); await db.SaveChangesAsync();
+        }
+        Assert.Equal(HttpStatusCode.BadRequest, (await TrashAction(client, id, "purge", 2, false)).StatusCode);
+        Assert.Equal(HttpStatusCode.BadRequest, (await TrashAction(client, id, "purge", 2, true, false)).StatusCode);
+        Assert.Equal(HttpStatusCode.Conflict, (await TrashAction(client, id, "purge", 1, true)).StatusCode);
+        Assert.Equal(HttpStatusCode.Redirect, (await TrashAction(client, id, "purge", 2, true)).StatusCode);
+        Assert.Equal(HttpStatusCode.NotFound, (await client.GetAsync("/history/details/" + id)).StatusCode);
+        using var finalScope = factory.Services.CreateScope(); var finalDb = finalScope.ServiceProvider.GetRequiredService<RetailVisionDbContext>();
+        Assert.Empty(await finalDb.Set<DetectedProduct>().ToListAsync());
+        Assert.Empty(await finalDb.Set<AuditViolation>().ToListAsync());
+    }
+    [Fact]
+    public async Task CleanupPreservesActiveReportsAndRetriesFailedPhotoDeletion()
+    {
+        using var factory = new AppFactory(); using var client = Client(factory); await Login(client, factory);
+        var oldId = await Save(client); var activeId = await Save(client);
+        using var scope = factory.Services.CreateScope(); var db = scope.ServiceProvider.GetRequiredService<RetailVisionDbContext>();
+        var old = await db.Audits.SingleAsync(a => a.Id == oldId);
+        old.ArchivedAtUtc = DateTime.UtcNow.AddDays(-31); old.PhotoPath = Guid.NewGuid().ToString("N") + ".png";
+        var cfg = scope.ServiceProvider.GetRequiredService<Microsoft.Extensions.Configuration.IConfiguration>();
+        var root = cfg["Storage:DataDirectory"]!;
+        var blocked = Path.Combine(root, "audit-photos", old.PhotoPath);
+        Directory.CreateDirectory(blocked); // File.Delete fails on this directory on Windows/Linux.
+        await db.SaveChangesAsync();
+        var logger = Microsoft.Extensions.Logging.Abstractions.NullLogger<AuditRetention>.Instance;
+        await new AuditRetention(db, new RetentionPolicy(), root, logger).MaintainAsync(default);
+        Assert.Equal(2, await db.Audits.CountAsync()); // Default never purges archives.
+        var retention = new AuditRetention(db, new RetentionPolicy(30, true), root, logger);
+        await retention.MaintainAsync(default);
+        Assert.Equal(activeId, (await db.Audits.SingleAsync()).Id);
+        Assert.Single(await db.Set<PendingPhotoDeletion>().ToListAsync());
+        Directory.Delete(blocked); await File.WriteAllBytesAsync(blocked, [1,2,3]);
+        await retention.MaintainAsync(default);
+        Assert.False(File.Exists(blocked)); Assert.Empty(await db.Set<PendingPhotoDeletion>().ToListAsync());
+    }
     private static HttpClient Client(AppFactory factory)=>factory.CreateClient(new WebApplicationFactoryClientOptions{AllowAutoRedirect=false});
     private static async Task<string> Token(HttpClient client,string page="/audit")=>WebUtility.HtmlDecode(Regex.Match(await client.GetStringAsync(page),"name=\"__RequestVerificationToken\"[^>]*value=\"([^\"]+)\"").Groups[1].Value);
     private static async Task Login(HttpClient client,AppFactory factory,string? email=null,string? password=null)

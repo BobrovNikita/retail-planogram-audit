@@ -215,6 +215,9 @@ namespace RetailVision.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime?>("ArchivedAtUtc")
+                        .HasColumnType("TEXT");
+
                     b.Property<double>("CompliancePercent")
                         .HasColumnType("REAL");
 
@@ -296,6 +299,8 @@ namespace RetailVision.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ArchivedAtUtc");
 
                     b.HasIndex("CreatedAtUtc");
 
@@ -448,6 +453,19 @@ namespace RetailVision.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ModelVersions");
+                });
+
+            modelBuilder.Entity("RetailVision.Core.PendingPhotoDeletion", b =>
+                {
+                    b.Property<string>("Path")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("QueuedAtUtc")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Path");
+
+                    b.ToTable("PendingPhotoDeletion");
                 });
 
             modelBuilder.Entity("RetailVision.Core.Planogram", b =>

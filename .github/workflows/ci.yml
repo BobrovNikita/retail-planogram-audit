@@ -35,3 +35,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Build production image and verify HTTPS, native libraries and restore
         run: bash deploy/scripts/container-ci.sh
+      - name: Validate maintenance scripts and systemd units
+        run: |
+          bash -n deploy/scripts/check-host.sh
+          systemd-analyze verify deploy/systemd/*.service deploy/systemd/*.timer

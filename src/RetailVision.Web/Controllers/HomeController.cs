@@ -14,7 +14,7 @@ public sealed class HomeController(RetailVisionDbContext db) : Controller
     public async Task<IActionResult> Index(CancellationToken ct)
     {
         var owner=User.FindFirstValue(ClaimTypes.NameIdentifier);
-        var audits = db.Audits.AsNoTracking().Where(a => owner!=null && a.OwnerId==owner && a.Mode == "REAL" && a.SnapshotJson!="{}");
+        var audits = db.Audits.AsNoTracking().Where(a => owner!=null && a.OwnerId==owner && a.Mode == "REAL" && a.SnapshotJson!="{}" && a.ArchivedAtUtc==null);
         var days=await audits.GroupBy(a=>a.CreatedAtUtc.Date).Select(g=>new {Date=g.Key,Count=g.Count(),Average=g.Average(a=>a.CompliancePercent)})
             .OrderByDescending(d=>d.Date).Take(14).ToListAsync(ct);
         return View(new DashboardViewModel(await audits.CountAsync(ct),

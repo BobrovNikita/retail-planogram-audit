@@ -1,0 +1,10 @@
+[Unit]
+Description=RetailVision consistent backup
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/retailvision/maintenance.env
+ExecStart=/bin/bash -c 'cd "$$RETAILVISION_ROOT" && exec /usr/bin/flock -n /run/retailvision-backup.lock /bin/bash deploy/scripts/backup.sh "$$RETAILVISION_BACKUP_DIR"'
+UMask=0077

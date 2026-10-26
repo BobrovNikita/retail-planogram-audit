@@ -27,6 +27,12 @@ public sealed class SeedMarker
     public string Id { get; set; } = "";
 }
 
+public sealed class PendingPhotoDeletion
+{
+    public string Path { get; set; } = "";
+    public DateTime QueuedAtUtc { get; set; } = DateTime.UtcNow;
+}
+
 public sealed class ModelVersion
 {
     public int Id { get; set; }
@@ -74,6 +80,7 @@ public sealed class PlanogramSlot
 // Only explicitly saved, owner-scoped reports are persisted. Public fixtures never insert rows.
 public sealed class Audit
 {
+    public DateTime? ArchivedAtUtc { get; set; }
     public int Id { get; set; }
     public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
     public int? PlanogramId { get; set; }

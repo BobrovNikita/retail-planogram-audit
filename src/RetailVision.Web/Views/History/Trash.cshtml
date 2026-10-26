@@ -1,0 +1,19 @@
+@model TrashPage
+@{ ViewData["Title"] = "Корзина проверок"; }
+<div class="page-heading"><div><p class="eyebrow">ИСТОРИЯ / ХРАНЕНИЕ</p><h1>Корзина проверок</h1><p class="subheading">Отчёты в корзине не участвуют в аналитике. До окончательного удаления доступны просмотр, экспорт и восстановление.</p></div><a href="/history" class="button secondary">← История</a></div>
+<div class="notice"><span class="badge amber">@Model.Policy.TrashDays дней</span><p>Окончательное удаление разрешено после этого срока в корзине. @(Model.Policy.AutoPurge ? "Автоочистка включена: просроченные записи удаляются при обслуживании сервера." : "Автоочистка выключена: после срока записи сохраняются до вашего подтверждения.") Восстановление из корзины не заменяет резервную копию.</p></div>
+<section class="panel"><h2>В корзине: @Model.Total</h2>
+@if(Model.Total == 0){<p>Корзина пуста. Чтобы убрать проверку из истории, откройте её отчёт и нажмите «В корзину».</p>}
+@foreach(var audit in Model.Audits)
+{
+    var eligible = audit.ArchivedAtUtc!.Value.AddDays(Model.Policy.TrashDays);
+    <article class="panel"><h3><a href="/history/details/@audit.Id">#@audit.Id · @audit.PlanogramName →</a></h3>
+    <p>@audit.Mode · в корзине с @audit.ArchivedAtUtc.Value.ToString("dd.MM.yyyy HH:mm") UTC. Удаление доступно с @eligible.ToString("dd.MM.yyyy HH:mm") UTC.</p>
+    <form asp-action="Unarchive" asp-route-id="@audit.Id" method="post"><input type="hidden" name="revision" value="@audit.Revision" /><button type="submit" class="button secondary">Восстановить проверку</button></form>
+    @if(eligible <= DateTime.UtcNow)
+    {
+        <details><summary>Удалить безвозвратно</summary><form asp-action="Purge" asp-route-id="@audit.Id" method="post"><input type="hidden" name="revision" value="@audit.Revision" /><p>Будут удалены отчёт, исходные детекции, исправления и сохранённая фотография. Вернуть их можно будет только из отдельной резервной копии.</p><label><input type="checkbox" name="confirm" value="true" required /> Подтверждаю безвозвратное удаление проверки #@audit.Id</label><p><button type="submit" class="button secondary">Удалить окончательно</button></p></form></details>
+    }
+    </article>
+}
+<nav class="report-actions" aria-label="Страницы корзины">@if(Model.Page > 1){<a href="?page=@(Model.Page-1)" class="button secondary">← Назад</a>}@if(Model.Page * 20 < Model.Total){<a href="?page=@(Model.Page+1)" class="button secondary">Далее →</a>}</nav></section>

@@ -43,6 +43,9 @@ builder.Services.AddAuthorizationBuilder().AddPolicy("Admin", policy => policy.R
 builder.Services.AddControllersWithViews(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 builder.Services.AddSingleton<IComplianceAnalyzer, ComplianceAnalyzer>();
 builder.Services.AddScoped<PlanogramStore>();
+builder.Services.AddSingleton(new RetentionPolicy(builder.Configuration.GetValue("Retention:TrashDays", 30), builder.Configuration.GetValue("Retention:AutoPurge", false)));
+builder.Services.AddScoped(sp => new AuditRetention(sp.GetRequiredService<RetailVisionDbContext>(), sp.GetRequiredService<RetentionPolicy>(), dataPath, sp.GetRequiredService<ILogger<AuditRetention>>()));
+builder.Services.AddHostedService<RetentionWorker>();
 builder.Services.AddScoped(sp => new AuditStore(sp.GetRequiredService<RetailVisionDbContext>(), sp.GetRequiredService<IComplianceAnalyzer>(),
     sp.GetRequiredService<IConfiguration>()["Storage:DataDirectory"] ?? dataPath));
 builder.Services.AddSingleton<IProductDetector, FixtureProductDetector>();

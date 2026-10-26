@@ -20,6 +20,8 @@ public sealed class RetailVisionDbContext(DbContextOptions<RetailVisionDbContext
         builder.Entity<Product>().Property(p => p.Revision).IsConcurrencyToken();
         builder.Entity<Planogram>().Property(p => p.Version).IsConcurrencyToken();
         builder.Entity<SeedMarker>().HasKey(m => m.Id);
+        builder.Entity<PendingPhotoDeletion>().HasKey(m => m.Path);
+        builder.Entity<Audit>().HasIndex(a => a.ArchivedAtUtc);
         builder.Entity<Product>().Property(p => p.Sku).HasMaxLength(64);
         builder.Entity<Product>().Property(p => p.Name).HasMaxLength(200);
         builder.Entity<Product>().HasOne(p => p.Category).WithMany().OnDelete(DeleteBehavior.Restrict);

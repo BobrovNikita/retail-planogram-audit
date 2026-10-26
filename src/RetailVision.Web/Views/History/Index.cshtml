@@ -1,6 +1,7 @@
 @model HistoryPage
 @{ViewData["Title"]="История проверок"; var f=Model.Filter;}
 <div class="page-heading"><div><p class="eyebrow">ПРОВЕРКИ / ИСТОРИЯ</p><h1>Каждая проверка — в истории</h1><p class="subheading">Ваши сохранённые результаты, исходные детекции и журнал исправлений.</p></div><a class="button primary" href="/photoaudit">Новая проверка →</a></div>
+<p><a class="inline-link" href="/history/trash">Корзина и восстановление →</a></p>
 <div asp-validation-summary="All" class="validation-errors"></div><partial name="_Filters" model="Model.Filter" />
 <section class="panel"><div class="panel-heading"><h2>Сохранено: @Model.Total</h2><a class="inline-link" href="/history/analytics">Открыть аналитику →</a></div>
 @if(Model.Total==0){<div class="table-empty"><div><h3>Проверок пока нет</h3><p>Сохраните результат анализа фото или учебный DEMO-сценарий. Если включены фильтры, попробуйте изменить условия.</p><a class="button secondary" href="/audit">Попробовать DEMO</a></div></div>}

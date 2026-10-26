@@ -18,7 +18,7 @@ cleanup() {
   done
 }
 trap cleanup EXIT
-openssl req -x509 -newkey rsa:2048 -sha256 -nodes -days 1 -subj /CN=localhost \
+openssl req -x509 -newkey rsa:2048 -sha256 -nodes -days 14 -subj /CN=localhost \
   -addext subjectAltName=DNS:localhost -keyout "$TLS_DIRECTORY/privkey.pem" -out "$SMOKE_CA" >/dev/null 2>&1
 openssl rand -base64 36 | tr -d '\n' > "$ADMIN_PASSWORD_FILE"
 printf 'aA7!\n' >> "$ADMIN_PASSWORD_FILE"
@@ -47,6 +47,9 @@ bash deploy/scripts/restore.sh "$archive"
 docker compose up -d --wait --wait-timeout 150
 curl --retry 10 --retry-connrefused --retry-delay 1 --cacert "$SMOKE_CA" --fail --silent https://localhost:8443/health
 python3 deploy/scripts/container-smoke.py verify
+RETAILVISION_ROOT="$PWD" RETAILVISION_BACKUP_DIR="$task_dir/backups" \
+  RETAILVISION_HEALTH_URL=https://localhost:8443/health RETAILVISION_TLS_CERT="$SMOKE_CA" \
+  CURL_CA_BUNDLE="$SMOKE_CA" bash deploy/scripts/check-host.sh
 docker compose stop app
 if bash deploy/scripts/restore.sh "$archive"; then
   echo 'Restore incorrectly accepted a nonempty volume.' >&2

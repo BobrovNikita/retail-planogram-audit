@@ -12,6 +12,7 @@ public sealed class HistoryFilter
     public int Page { get; set; } = 1;
 }
 public record HistoryPage(HistoryFilter Filter,IReadOnlyList<Audit> Audits,int Total);
+public record TrashPage(IReadOnlyList<Audit> Audits, int Total, int Page, RetailVision.Infrastructure.RetentionPolicy Policy);
 public record AuditReport(Audit Audit,AuditSnapshot Snapshot,IReadOnlyList<ReviewedDetection> Current,ComplianceResult Result);
 public record AuditDay(DateTime Date,int Count,double Average);
 public record AnalyticsPage(HistoryFilter Filter,int Count,double? Average,int Violations,int Review,int Corrected,IReadOnlyList<AuditDay> Days);

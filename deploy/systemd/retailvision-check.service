@@ -1,0 +1,9 @@
+[Unit]
+Description=RetailVision host health and backup freshness
+After=docker.service network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/retailvision/maintenance.env
+ExecStart=/bin/bash -c 'cd "$$RETAILVISION_ROOT" && exec /bin/bash deploy/scripts/check-host.sh'
+UMask=0077
