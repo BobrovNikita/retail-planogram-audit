@@ -20,3 +20,9 @@
 - Официальный PyPI: [Ultralytics](https://pypi.org/project/ultralytics/), [ONNX](https://pypi.org/project/onnx/). Версии закреплены в ml/requirements.txt, окружение и результаты пробы описаны в ml-pipeline.md.
 
 Совместимость дополнительно проверена фактическим restore/build/test и native ONNX inference. При смене версии экспортёра контракт нужно перепроверить.
+
+Дополнительно для этапа 6 (2026-10-26):
+
+- Microsoft: [Forwarded Headers и доверенные proxy](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-10.0), [.NET container images](https://learn.microsoft.com/en-us/dotnet/core/docker/container-images). SDK 10.0.400-noble и ASP.NET 10.0.11-noble проверены через MCR, их manifest digests закреплены в Dockerfile. Noble включает ICU для русской культуры.
+- Docker: [Compose secrets](https://docs.docker.com/compose/how-tos/use-secrets/). Bootstrap использует файл /run/secrets, права исходного файла должны позволять чтение пользователю app.
+- Nginx: [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header). Список [официальных Docker-образов](https://github.com/docker-library/official-images/blob/master/library/nginx) подтвердил stable tag 1.30.6-alpine; proxy перезаписывает X-Forwarded-For/Proto и сохраняет исходный Host с портом.
